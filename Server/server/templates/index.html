@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+    </head>
+<body>
+
+<h1>Choose a locaton</h1>
+<p>
+    Current Location: {{location}}
+</p>
+<form action="" method="POST" novalidate>
+    {{form.hidden_tag()}}
+    <p>
+        {{form.option.label}}
+        <br>
+        {% for subfield in form.option %}
+        <tr>
+            <td>{{ subfield }}</td>
+            <td>{{ subfield.label }}</td>
+        </tr>
+        {% endfor %}
+        <br>
+        {{form.submit()}}
+    </p>
+</form>
+
+</body>
+</html>
