@@ -6,7 +6,10 @@
 <body>
 
 <h1>Choose a locaton</h1>
-<form action="localhost:5000/game/location" method="POST" novalidate>
+<p>
+    Current Location: {{location}}
+</p>
+<form action="" method="POST" novalidate>
     {{form.hidden_tag()}}
     <p>
         {{form.option.label}}

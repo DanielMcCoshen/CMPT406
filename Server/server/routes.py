@@ -5,19 +5,22 @@ from server.forms import position_form
 
 location = "centre"
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/index')
+@app.route("/game/location/", methods=['POST']) # this is bad but I want it working, should be own route
 def index():
-    form = position_form()
-    return render_template('index.html', title="choose direction", form=form), status.HTTP_200_OK
-
-@app.route("/game/location/", methods=['POST'])
-def set_loc():
     global location
     form = position_form()
     if form.validate_on_submit():
-        location = form.option.data
-    return status.HTTP_200_OK
+        location = form.option.data    
+    print(location)
+    return render_template('index.html', location=location, title="choose direction", form=form), status.HTTP_200_OK
+
+
+#def set_loc():
+#    global location
+#    form = position_form()
+   
     
 @app.route("/game/location", methods=['GET'])
 def get_loc():
