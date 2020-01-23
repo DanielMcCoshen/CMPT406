@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class WeaponControl : MonoBehaviour
 {
     // !!!! This is a stripped down version of my 306's turret script. I think it's a good place to start.
 
