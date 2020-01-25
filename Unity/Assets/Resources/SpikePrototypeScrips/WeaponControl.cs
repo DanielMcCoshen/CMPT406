@@ -89,7 +89,7 @@ public class WeaponControl : MonoBehaviour
 
         if (bullet != null)
         {
-            bullet.SelectTarget(target);
+            //bullet.SelectTarget(target);
         }
     }
 }
