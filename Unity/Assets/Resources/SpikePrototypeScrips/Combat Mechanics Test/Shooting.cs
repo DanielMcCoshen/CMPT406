@@ -18,7 +18,10 @@ public class Shooting : MonoBehaviour
             Shoot();
         }
     }
-
+    
+    /**
+     * Fires a bullet in the direction the player is facing.
+     */ 
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);

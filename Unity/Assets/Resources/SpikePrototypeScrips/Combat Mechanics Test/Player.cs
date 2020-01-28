@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Variables
     public float movementSpeed;
+
+    public bool useController;
 
     [Header("Dodge Variables")]
     private bool dodging;
-    [SerializeField]
-    private string dodgeKey = "space";
     [SerializeField]
     private float dodgeSpeedMultiplication = 3f;
     [SerializeField]
@@ -20,23 +19,16 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public Camera mainCam;
 
-    Vector2 movement;
+    Vector2 movementDirection;
     Vector2 mousePos;
-
-    // Methods
-
-    private void Start()
-    {
-        if (rb == null)
-        {
-            Debug.LogError("rb not set in inspector.");
-            rb = this.GetComponent<Rigidbody2D>();
-        }
-    }
+    Vector2 controllerPos;
 
     void Update()
     {
-        GetMovementData();
+        if (!dodging)
+        {
+            GetInput();
+        }
     }
 
     void FixedUpdate()
@@ -44,48 +36,97 @@ public class Player : MonoBehaviour
         DoMovement();
     }
 
-    void GetMovementData()
+    /**
+     * Gets the input from the mouse and keyboard and controller.
+     * Does not gather input if the user is dodging.
+     */
+    void GetInput()
     {
-        if (Input.GetKeyDown(dodgeKey) && !dodging && movement != Vector2.zero)
+        void GetDodgeInput()
         {
-            //Debug.Log("Dodge key pressed.");
-            dodging = true;
-            StartCoroutine(EndDash());
+            if ((Input.GetButtonDown("Jump")) && movementDirection != Vector2.zero)
+            {
+                //Debug.Log("Dodge key pressed.");
+                dodging = true;
+                StartCoroutine(EndDash());
+            }
         }
 
-        if (!dodging)
+        void GetMovementInput()
         {
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
+            movementDirection.x = Input.GetAxisRaw("Horizontal");
+            movementDirection.y = Input.GetAxisRaw("Vertical");
         }
 
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        void GetMouseInput()
+        {
+            mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        }
+
+        void GetControllerInput()
+        {
+            controllerPos = Vector2.right * Input.GetAxisRaw("RHorizontal") + Vector2.up * -Input.GetAxisRaw("RVertical");
+        }
+
+        GetDodgeInput();
+        GetMovementInput();
+        GetMouseInput();
+        GetControllerInput();
     }
 
+    /**
+     * Moves and rotates the player from user input.
+     */
     void DoMovement()
     {
-
-
-        // Move character
-        if (!dodging)
+        void MoveCharacter()
         {
-            rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
-        }
-        else
-        {
-            float step = movementSpeed * 3f;
-            rb.MovePosition(rb.position + movement * step * Time.fixedDeltaTime);
+            if (!dodging)
+            {
+                rb.MovePosition(rb.position + movementDirection * movementSpeed * Time.fixedDeltaTime);
+            }
+            else
+            {
+                float step = movementSpeed * 3f;
+                rb.MovePosition(rb.position + movementDirection * step * Time.fixedDeltaTime);
+            }
         }
 
-        // Point to mouse
-        Vector2 lookDir = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-        rb.rotation = angle - 90f;
+        void RotateWithMouse()
+        {
+            Vector2 lookDirection = mousePos - rb.position;
+            float angleOfRotation = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+            rb.rotation = angleOfRotation - 90f;
+        }
+
+        void RotateWithController()
+        {
+            if (controllerPos.sqrMagnitude > 0.0f)
+            {
+                float angleOfRotation = Mathf.Atan2(controllerPos.y, controllerPos.x) * Mathf.Rad2Deg;
+                rb.rotation = angleOfRotation - 90f;
+            }
+        }
+
+        if (!useController)
+        {
+            RotateWithMouse();
+        }
+
+        if (useController)
+        {
+            RotateWithController();
+        }
+
+        MoveCharacter();
     }
 
+    /**
+     * Ends the dodge when it's length is exceeded.
+     */ 
     IEnumerator EndDash()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(dodgeLength);
         //Debug.Log("Dodge end.");
         dodging = false;
     }
