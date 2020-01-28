@@ -527,7 +527,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
-  dodgeKey: space
+  useController: 1
+  dodgeSpeedMultiplication: 3
+  dodgeLength: 0.3
+  dodgeColour: {r: 0.018116951, g: 0, b: 1, a: 1}
+  spriteRenderer: {fileID: 1330762236}
   rb: {fileID: 940888121}
   mainCam: {fileID: 1200211572}
 --- !u!4 &940888120

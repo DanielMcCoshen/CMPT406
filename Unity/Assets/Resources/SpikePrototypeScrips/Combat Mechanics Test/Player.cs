@@ -14,6 +14,13 @@ public class Player : MonoBehaviour
     private float dodgeSpeedMultiplication = 3f;
     [SerializeField]
     private float dodgeLength = 0.3f;
+    [SerializeField]
+    private Color dodgeColour = new Color(255,255,255);
+
+    [Header("Sprite Variables")]
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+    private Color baseColour;
 
     [Header("Object References")]
     public Rigidbody2D rb;
@@ -22,6 +29,16 @@ public class Player : MonoBehaviour
     Vector2 movementDirection;
     Vector2 mousePos;
     Vector2 controllerPos;
+
+    private void Start()
+    {
+        baseColour = spriteRenderer.color;
+
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("Sprite Renderer not set in editor");
+        }
+    }
 
     void Update()
     {
@@ -84,11 +101,13 @@ public class Player : MonoBehaviour
             if (!dodging)
             {
                 rb.MovePosition(rb.position + movementDirection * movementSpeed * Time.fixedDeltaTime);
+                this.spriteRenderer.color = baseColour;
             }
             else
             {
                 float step = movementSpeed * 3f;
                 rb.MovePosition(rb.position + movementDirection * step * Time.fixedDeltaTime);
+                this.spriteRenderer.color = dodgeColour;
             }
         }
 
