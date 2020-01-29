@@ -2,8 +2,9 @@ from server import app
 from flask_api import status
 from flask import render_template, jsonify, request
 from server.forms import position_form
-from model import game_room, rooms
+from model import game_room, rooms, user
 from datetime import datetime, timedelta
+from server.helpers import room_not_found, invalid_token, access_denied, user_exists
 import jwt
 
 @app.route('/', methods=['GET'])
@@ -16,7 +17,7 @@ def create_game():
     room_id = new_game.get_id()
     rooms.get_map().update({room_id: new_game})
     expiry = datetime.utcnow() + timedelta(hours=5) # expire this room in 5 hours, not sure if should be used
-    game_token = jwt.encode({"user": "game", "exp": expiry}, app.config['SECRET_KEY'], algorithm='HS256').decode('utf8')
+    game_token = jwt.encode({"role": "game", "exp": expiry}, app.config['SECRET_KEY'], algorithm='HS256').decode('utf8')
 
     res = {
         "room_id": room_id,
@@ -26,8 +27,21 @@ def create_game():
 
 @app.route('/game/<game_id>/join', methods=['POST'])
 def join_room(game_id):
+    current_room = rooms.get_map().get(game_id, None)
+    if current_room is None:
+        return room_not_found()
+    request_json = request.json
+    user_name = request_json['user_name']
+
+    try:
+        current_room.add_user(user(name=user_name, colour=request_json['colour']))
+    except KeyError:
+        return user_exists()
+
+    expiry = datetime.utcnow() + timedelta(hours=5) # expire this room in 5 hours, not sure if should be used
+    user_token = jwt.encode({'role': 'user', 'name': user_name, 'exp': expiry}, app.config['SECRET_KEY'], algorithm='HS256').decode('utf8')
     res = {
-        "token": "xxxxx.yyyyy.zzzzz"
+        "token": user_token
     }
     return jsonify(res), status.HTTP_200_OK
 
@@ -80,27 +94,14 @@ def change_priority(game_id, job_id):
 @app.route('/game/<game_id>', methods=['DELETE'])
 def close_room(game_id):
     token = request.headers.get('Authorization').replace("Bearer ", "")
-    token_payload = {}
     try:
         token_payload = jwt.decode(token, app.config['SECRET_KEY'], algorithms='HS256')
-    except Exception as e:
-        print(token)
-        print(e)
-        res = {
-            "error": "Invalid Token"
-        }
-        return res, status.HTTP_403_FORBIDDEN
+    except Exception:
+       return invalid_token()
 
-    if token_payload['user'] != 'game':
-        res = {
-            "error": "Access Denied"
-        }
-        return res, status.HTTP_403_FORBIDDEN
-
+    if token_payload['role'] != 'game':
+       return access_denied()
     if rooms.get_map().pop(game_id, None) is None:
-        res = {
-            "error": "game not found"
-        }
-        return jsonify(res), status.HTTP_404_NOT_FOUND
+        return room_not_found()
     else:
         return "", status.HTTP_200_OK
