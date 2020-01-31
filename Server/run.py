@@ -1,3 +1,6 @@
 from server import app
+from model import rooms
 
-print("This is a test")
+print("begining setup")
+rooms.get_map()
+
