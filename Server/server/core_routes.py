@@ -4,7 +4,7 @@ from flask import render_template, jsonify, request
 from server.forms import position_form
 from model import game_room, rooms, user
 from datetime import datetime, timedelta
-from server.helpers import room_not_found, invalid_token, access_denied, user_exists
+from server.helpers import room_not_found, invalid_token, access_denied, user_exists, validate_game, room_exists
 import jwt
 
 @app.route('/', methods=['GET'])
@@ -27,9 +27,10 @@ def create_game():
 
 @app.route('/game/<game_id>/join', methods=['POST'])
 def join_room(game_id):
-    current_room = rooms.get_map().get(game_id, None)
-    if current_room is None:
+    if not room_exists(game_id):
         return room_not_found()
+        
+    current_room = rooms.get_map().get(game_id, None)
     request_json = request.json
     user_name = request_json['user_name']
 
@@ -94,14 +95,9 @@ def change_priority(game_id, job_id):
 @app.route('/game/<game_id>', methods=['DELETE'])
 def close_room(game_id):
     token = request.headers.get('Authorization').replace("Bearer ", "")
-    try:
-        token_payload = jwt.decode(token, app.config['SECRET_KEY'], algorithms='HS256')
-    except Exception:
-       return invalid_token()
-
-    if token_payload['role'] != 'game':
-       return access_denied()
-    if rooms.get_map().pop(game_id, None) is None:
-        return room_not_found()
+    valid = validate_game(game_room, token)
+    if valid is not None:
+        return valid
     else:
+        rooms.get_map().pop(game_id, None) 
         return "", status.HTTP_200_OK

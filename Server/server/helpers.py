@@ -29,3 +29,23 @@ def user_exists():
         "error": "User Exists"
     }
     return res, status.HTTP_409_CONFLICT
+
+def room_exists(game_id):
+    rooms.get_map().get(game_id, None) is not None
+
+def validate_game(game_room, token):
+    try:
+        token_payload = jwt.decode(token, app.config['SECRET_KEY'], algorithms='HS256')
+    except Exception:
+       return invalid_token()
+
+    if token_payload['role'] != 'game':
+       return access_denied()
+    elif not room_exists(game_room):
+        return room_not_found()
+    else:
+        return None
+
+
+
+
