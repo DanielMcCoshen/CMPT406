@@ -29,7 +29,7 @@ def create_game():
 def join_room(game_id):
     if not room_exists(game_id):
         return room_not_found()
-        
+
     current_room = rooms.get_map().get(game_id, None)
     request_json = request.json
     user_name = request_json['user_name']
@@ -48,6 +48,11 @@ def join_room(game_id):
 
 @app.route('/game/<game_id>/jobs', methods=['POST'])
 def create_job(game_id):
+    token = request.headers.get('Authorization').replace("Bearer ", "")
+    valid = validate_game(game_id, token)
+    if valid is not None:
+        return valid
+
     res = {
         "job_id": 10
     }
@@ -95,7 +100,7 @@ def change_priority(game_id, job_id):
 @app.route('/game/<game_id>', methods=['DELETE'])
 def close_room(game_id):
     token = request.headers.get('Authorization').replace("Bearer ", "")
-    valid = validate_game(game_room, token)
+    valid = validate_game(game_id, token)
     if valid is not None:
         return valid
     else:

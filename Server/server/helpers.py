@@ -31,7 +31,7 @@ def user_exists():
     return res, status.HTTP_409_CONFLICT
 
 def room_exists(game_id):
-    rooms.get_map().get(game_id, None) is not None
+    return rooms.get_map().get(game_id, None) is not None
 
 def validate_game(game_room, token):
     try:

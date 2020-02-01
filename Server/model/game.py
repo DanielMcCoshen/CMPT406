@@ -1,6 +1,8 @@
 import random
 import string
 
+
+
 class user(object):
     def __init__(self, name, colour):
         self._name = name
