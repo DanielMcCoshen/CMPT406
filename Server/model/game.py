@@ -1,7 +1,74 @@
 import random
 import string
+from datetime import datetime, timedelta
 
+class option(object):
+    def __init__(self, id, icon_path, cost):
+        self._id = id
+        self._icon = icon_path
+        self._cost = cost
+    
+    def get_id(self):
+        return self._id
+    def get_icon(self):
+        return self._icon
+    def get_cost(self):
+        return self._cost
+    def to_json(self):
+        return {
+            "id": self._id,
+            "icon": self._icon,
+            "cost": self._cost
+        }
 
+class job(object):
+    def __init__(self, options: list):
+        self._options = options
+        self._id = None
+        self._time_complete = None
+
+    def set_id(self, id):
+        self._id = id
+
+    def get_id(self):
+        return self._id
+
+    def get_options(self):
+        return self._options
+
+    def start(self, length: timedelta):
+        self._time_complete = datetime.utcnow() + length
+    
+    def is_complete(self):
+        if self._time_complete is None:
+            return False
+        else:
+            return datetime.utcnow() >= self._time_complete
+
+    def get_result(self):
+        if self.is_complete:
+            current = self._options[0]
+            for x in self._options:
+                if x.get_votes() > current.get_votes():
+                    current = x
+            return current
+        else:
+            return None
+
+    def to_json(self):
+        complete = self.is_complete()
+        if not complete:
+            if self._time_complete is None:
+                time_remaining = -1
+            else:
+                time_remaining = (self._time_complete - datetime.utcnow()).total_seconds()
+        else:
+            time_remaining = 0
+
+        return {
+            "options": [x.to_json() for x in self._options],
+            "time_remaining": time_remaining
+            }
 
 class user(object):
     def __init__(self, name, colour):
@@ -28,30 +95,41 @@ class user(object):
             "mischeif_points": self._mp
         }
 
-class game_room(object):
-    def __init__(self):
+class gameroom(object):
+    def __init__(self, vote_time):
         self._id = ''.join(random.choices(string.ascii_letters + string.digits, k=5))
         self._current_job = None
         self._jobs = []
         self._users = {}
+        self._next_job_id = 0
+        self._complete_jobs = {}
+        self._vote_len = vote_time
 
     def get_id(self):
         return self._id
 
     def get_current_job(self):
+        if self._current_job is not None and self._current_job.is_complete():
+            self._complete_jobs.update({self._current_job.get_id(): self._current_job})
+            self.next_job()
+
         return self._current_job
 
-    def add_job(self, new_job):
+    def add_job(self, new_job: job):
+        new_job.set_id(self._next_job_id)
+        self._next_job_id = self._next_job_id + 1
         if self._current_job is None:
             self._current_job = new_job
+            new_job.start(self._vote_len)
         else:
             self._jobs.append(new_job)
 
     def next_job(self):
-        if not self._jobs:
+        if len(self._jobs) == 0:
             self._current_job = None
         else:
             self._current_job = self._jobs.pop(0)
+            self._current_job.start(self._vote_len)
         
         return self.get_current_job()
 
@@ -63,15 +141,35 @@ class game_room(object):
     def get_all_users(self):
         return self._users.values()
 
+    def get_user(self, user_name, default = None):
+        return self._users.get(user_name, default)
+
 class rooms(object):
     _instance = None
 
     def __init__(self):
-        raise RuntimeError("call get_list() instead")
+        raise RuntimeError("call get() instead")
 
     @classmethod
     def get_map(cls):
         if cls._instance is None:
             print("creating instance")
             cls._instance = {}
+        return cls._instance
+
+class optionlist(object):
+    _instance = None
+    
+    def __init__(self):
+        raise RuntimeError("call get() instead")
+
+    @classmethod
+    def get(cls):
+        if cls._instance is None:
+            print("populating opions list")
+            cls._instance = [
+                option(id=0, icon_path="icon0.png", cost=0),
+                option(id=1, icon_path="icon1.png", cost=0),
+                option(id=2, icon_path="icon2.png", cost=0)
+            ]
         return cls._instance

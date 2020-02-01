@@ -2,10 +2,11 @@ from server import app
 from flask_api import status
 from flask import render_template, jsonify, request
 from server.forms import position_form
-from model import game_room, rooms, user
+from model import gameroom, rooms, user, optionlist, job
 from datetime import datetime, timedelta
-from server.helpers import room_not_found, invalid_token, access_denied, user_exists, validate_game, room_exists
+from server.helpers import room_not_found, invalid_token, access_denied, user_exists, validate_game, room_exists, validate_user
 import jwt
+import random
 
 @app.route('/', methods=['GET'])
 def index():
@@ -13,7 +14,7 @@ def index():
 
 @app.route('/game', methods=['POST'])
 def create_game():
-    new_game = game_room()
+    new_game = gameroom(timedelta(seconds=app.config["VOTE_TIME"]))
     room_id = new_game.get_id()
     rooms.get_map().update({room_id: new_game})
     expiry = datetime.utcnow() + timedelta(hours=5) # expire this room in 5 hours, not sure if should be used
@@ -52,30 +53,31 @@ def create_job(game_id):
     valid = validate_game(game_id, token)
     if valid is not None:
         return valid
+    current_room = rooms.get_map().get(game_id, None)
+    
+    options = random.sample(optionlist.get(), app.config["VOTE_OPTIONS"])
+    new_job = job(options)
+    current_room.add_job(new_job)
 
     res = {
-        "job_id": 10
+        "job_id": new_job.get_id()
     }
     return jsonify(res), status.HTTP_201_CREATED
 
 @app.route('/game/<game_id>/jobs', methods=['GET'])
 def current_job(game_id):
-    res = {
-        "options": [
-            {
-                "id": 3,
-                "icon": "room3.png",
-                "cost": 20
-            },
-            {
-                "id": 4,
-                "icon": "room4.png",
-                "cost": -1
-            }
-        ],
-        "time_remaining": 9.54,
-        "mischeif_points": 100
-    }
+    token = request.headers.get('Authorization').replace("Bearer ", "")
+    validation = validate_user(game_id, token)
+    if not validation[0]:
+        return validation[1]
+    user = validation[1]
+    current_room = rooms.get_map().get(game_id, None)
+    current_job = current_room.get_current_job()
+    if current_job is not None:
+        res = current_room.get_current_job().to_json()
+    else:
+        res = {}
+    res.update({"mischeif_points": user.get_mischeif_points()})
     return jsonify(res), status.HTTP_200_OK
 
 @app.route('/game/<game_id>/jobs/vote', methods=['POST'])

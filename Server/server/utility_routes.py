@@ -2,7 +2,7 @@ from server import app
 from flask_api import status
 from flask import render_template, jsonify, request
 from server.forms import position_form
-from model import game_room, rooms, user
+from model import gameroom, rooms, user
 from datetime import datetime, timedelta
 from server.helpers import room_not_found, invalid_token, access_denied, validate_game
 import jwt
