@@ -82,17 +82,41 @@ def current_job(game_id):
 
 @app.route('/game/<game_id>/jobs/vote', methods=['POST'])
 def submit_vote(game_id):
+    token = request.headers.get('Authorization').replace("Bearer ", "")
+    validation = validate_user(game_id, token)
+    if not validation[0]:
+        return validation[1]
+    option = request.json['choice']
+    user = validation[1]
+    current_room = rooms.get_map().get(game_id, None)
+    current_room.get_current_job().vote(int(option), user)
+
     res = {
-        "mischeif_points": 200
+        "mischeif_points": user.get_mischeif_points()
     }
     return jsonify(res), status.HTTP_200_OK
 
 @app.route('/game/<game_id>/jobs/<job_id>', methods=['GET'])
 def get_results(game_id, job_id):
+    token = request.headers.get('Authorization').replace("Bearer ", "")
+    validation = validate_game(game_id, token)
+    if validation is not None:
+        return validation
+    current_room = rooms.get_map().get(game_id, None)
+
+    try:
+        result = current_room.get_result(int(job_id))
+    except RuntimeError:
+        return {
+            "error": "Job Not Found"
+        }, status.HTTP_404_NOT_FOUND
+
+    is_complete = result is not None
     res = {
-        "complete": True,
-        "result": 5
+        "complete": is_complete,
     }
+    if is_complete:
+        res.update({"result" : result.get_id()})
     return jsonify(res), status.HTTP_200_OK
 
 @app.route('/game/<game_id>/jobs/<job_id>', methods=['PUT'])

@@ -23,9 +23,10 @@ class option(object):
 
 class job(object):
     def __init__(self, options: list):
-        self._options = options
+        self._options = [[option, 0] for option in options]
         self._id = None
         self._time_complete = None
+        self._voters = []
 
     def set_id(self, id):
         self._id = id
@@ -34,7 +35,7 @@ class job(object):
         return self._id
 
     def get_options(self):
-        return self._options
+        return [x[0] for x in self._options]
 
     def start(self, length: timedelta):
         self._time_complete = datetime.utcnow() + length
@@ -46,14 +47,27 @@ class job(object):
             return datetime.utcnow() >= self._time_complete
 
     def get_result(self):
-        if self.is_complete:
+        if self.is_complete():
             current = self._options[0]
             for x in self._options:
-                if x.get_votes() > current.get_votes():
+                if x[1] > current[1]:
                     current = x
-            return current
+            return current[0]
         else:
             return None
+
+    def vote(self, option, user):
+        if user in  self._voters:
+            return None
+        else: 
+            for x in self._options:
+                if x[0].get_id() == option:
+                    x[1] = x[1] + 1
+                    user.set_mischeif_points(user.get_mischeif_points() - x[0].get_cost())
+                    self._voters.append(user)
+            else:
+                return None
+
 
     def to_json(self):
         complete = self.is_complete()
@@ -66,7 +80,7 @@ class job(object):
             time_remaining = 0
 
         return {
-            "options": [x.to_json() for x in self._options],
+            "options": [x[0].to_json() for x in self._options],
             "time_remaining": time_remaining
             }
 
@@ -143,6 +157,19 @@ class gameroom(object):
 
     def get_user(self, user_name, default = None):
         return self._users.get(user_name, default)
+
+    def get_result(self, job_id):
+        job = self._complete_jobs.get(job_id, None)
+        if job is None and self._current_job.get_id() == job_id:
+            job = self._current_job
+        elif job is None:
+            for j in self._jobs:
+                if j.get_id() == job_id:
+                    job = j
+                    break
+            else: 
+                raise RuntimeError("Job Does Not Exist")
+        return job.get_result()
 
 class rooms(object):
     _instance = None
