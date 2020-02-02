@@ -9,7 +9,7 @@ import jwt
 
 @app.route('/', methods=['GET'])
 def index():
-    return "Home Page", status.HTTP_200_OK
+    return render_template("index.html"), status.HTTP_200_OK
 
 @app.route('/game', methods=['POST'])
 def create_game():

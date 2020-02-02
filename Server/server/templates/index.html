@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>{{title}}</title>
-    </head>
-<body>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <title>Flask React</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- styles -->
+  </head>
+  <body>
+    <div class="container">
+      <h1>Flask React</h1>
+      <br>
+      <div id="content"></div>
+    </div>
+    <!-- scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+    <script type="text/jsx">
 
-<h1>Choose a locaton</h1>
-<p>
-    Current Location: {{location}}
-</p>
-<form action="" method="POST" novalidate>
-    {{form.hidden_tag()}}
-    <p>
-        {{form.option.label}}
-        <br>
-        {% for subfield in form.option %}
-        <tr>
-            <td>{{ subfield }}</td>
-            <td>{{ subfield.label }}</td>
-        </tr>
-        {% endfor %}
-        <br>
-        {{form.submit()}}
-    </p>
-</form>
+      /*** @jsx React.DOM */
 
-</body>
+      var realPython = React.createClass({
+        render: function() {
+          return (<h2>Greetings, from Real Python!</h2>);
+        }
+      });
+
+      ReactDOM.render(
+        React.createElement(realPython, null),
+        document.getElementById('content')
+      );
+
+    </script>
+  </body>
 </html>
