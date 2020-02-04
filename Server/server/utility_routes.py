@@ -36,3 +36,8 @@ def get_user(game_id, user_name):
         "mischeif_points": 300
     }
     return jsonify(res)
+
+@app.route('/game/<game_id>/users/<user_name>', methods=['DELETE'])
+def kick_user(game_id, user_name):
+    return '', status.HTTP_200_OK
+    
