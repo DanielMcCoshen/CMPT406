@@ -1,1 +1,1 @@
-from model.game import game_room, rooms, user
+from model.game import gameroom, rooms, user, optionlist, option, job

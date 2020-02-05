@@ -2,7 +2,7 @@ from server import app
 from flask_api import status
 from flask import render_template, jsonify, request
 from server.forms import position_form
-from model import game_room, rooms, user
+from model import gameroom, rooms, user
 from datetime import datetime, timedelta
 import jwt
 
@@ -29,3 +29,37 @@ def user_exists():
         "error": "User Exists"
     }
     return res, status.HTTP_409_CONFLICT
+
+def room_exists(game_id):
+    return rooms.get_map().get(game_id, None) is not None
+
+def validate_game(game_id, token):
+    try:
+        token_payload = jwt.decode(token, app.config['SECRET_KEY'], algorithms='HS256')
+    except Exception:
+       return invalid_token()
+
+    if token_payload['role'] != 'game':
+       return access_denied()
+    elif not room_exists(game_id):
+        return room_not_found()
+    else:
+        return None
+
+def validate_user(game_id, token):
+    try:
+        token_payload = jwt.decode(token, app.config['SECRET_KEY'], algorithms='HS256')
+    except Exception:
+       return (False, invalid_token())
+
+    if token_payload['role'] != 'user':
+       return (False, access_denied())
+    elif not room_exists(game_id):
+        return (False, room_not_found())
+    elif rooms.get_map().get(game_id, None).get_user(token_payload["name"]) == None:
+        return (False, access_denied())
+    else:
+        return  (True, rooms.get_map().get(game_id, None).get_user(token_payload["name"]))
+
+
+
