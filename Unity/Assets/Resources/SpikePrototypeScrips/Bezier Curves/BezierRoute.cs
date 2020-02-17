@@ -6,8 +6,20 @@ public class BezierRoute : MonoBehaviour
 {
     [SerializeField]
     private Transform[] controlPoints;
+    private float curveMagnitude;
 
     private Vector2 gizmosPosition;
+
+    private void Start() {
+        Vector2 midpoint = (controlPoints[3].localPosition - controlPoints[0].localPosition)/2;
+        Debug.Log(midpoint);
+
+        curveMagnitude = midpoint.x;
+
+        controlPoints[1].localPosition = new Vector2(controlPoints[0].localPosition.x,  curveMagnitude);
+        controlPoints[2].localPosition = new Vector2(controlPoints[3].localPosition.x, curveMagnitude);
+
+    }
 
     private void OnDrawGizmos() {
         for (float t = 0; t <= 1; t += 0.05f) {
