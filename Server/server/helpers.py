@@ -30,6 +30,12 @@ def user_exists():
     }
     return res, status.HTTP_409_CONFLICT
 
+def no_current_job():
+    res = {
+        "error": "No Current Job"
+    }
+    return res, status.HTTP_200_OK
+
 def room_exists(game_id):
     return rooms.get_map().get(game_id, None) is not None
 
