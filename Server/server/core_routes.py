@@ -4,7 +4,7 @@ from flask import render_template, jsonify, request
 from server.forms import position_form
 from model import gameroom, rooms, user, optionlist, job
 from datetime import datetime, timedelta
-from server.helpers import room_not_found, invalid_token, access_denied, user_exists, validate_game, room_exists, validate_user
+from server.helpers import room_not_found, invalid_token, access_denied, user_exists, validate_game, room_exists, validate_user, bad_request
 import jwt
 import random
 
@@ -86,7 +86,9 @@ def submit_vote(game_id):
     validation = validate_user(game_id, token)
     if not validation[0]:
         return validation[1]
-    option = request.json['choice']
+    option = request.json.get('choice', None)
+    if option == '' or option is None:
+        return bad_request()
     user = validation[1]
     current_room = rooms.get_map().get(game_id, None)
     current_room.get_current_job().vote(int(option), user)
