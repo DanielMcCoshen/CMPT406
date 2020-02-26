@@ -12,6 +12,12 @@ def room_not_found():
     }
     return jsonify(res), status.HTTP_404_NOT_FOUND
 
+def bad_request():
+    res={
+        "error": "invalid request"
+    }
+    return jsonify(res), status.HTTP_400_BAD_REQUEST
+
 def invalid_token():
     res = {
         "error": "Invalid Token"
