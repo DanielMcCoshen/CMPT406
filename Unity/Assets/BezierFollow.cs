@@ -17,7 +17,7 @@ public class BezierFollow : MonoBehaviour
         routeToFollow = 0;
         tParam = 0f;
         speedModifier = 0.5f;
-        coroutineAllowed = true;    
+        //coroutineAllowed = true;    
     }
 
     // Update is called once per frame
@@ -53,6 +53,10 @@ public class BezierFollow : MonoBehaviour
         if (routeToFollow > routes.Length - 1) {
             routeToFollow = 0;
         }
+        coroutineAllowed = true;
+    }
+
+    public void StartMoving() {
         coroutineAllowed = true;
     }
 

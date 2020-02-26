@@ -11,14 +11,25 @@ public class BezierRoute : MonoBehaviour
     private Vector2 gizmosPosition;
 
     private void Start() {
-        Vector2 midpoint = (controlPoints[3].localPosition - controlPoints[0].localPosition)/2;
-        Debug.Log(midpoint);
+    }
+
+    public void SetStartAndEnd(Transform start, Transform end) {
+        controlPoints[0].position = start.position;
+        
+        Vector2 dir = (end.position - start.position);
+        float distance = Vector2.Distance(start.position, end.position);
+        Vector2 midpoint = dir/2;
+        //Debug.Log(midpoint);
+
+        controlPoints[3].position = new Vector2(start.position.x + distance, start.position.y);
 
         curveMagnitude = midpoint.x;
 
         controlPoints[1].localPosition = new Vector2(controlPoints[0].localPosition.x,  curveMagnitude);
         controlPoints[2].localPosition = new Vector2(controlPoints[3].localPosition.x, curveMagnitude);
 
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     private void OnDrawGizmos() {
