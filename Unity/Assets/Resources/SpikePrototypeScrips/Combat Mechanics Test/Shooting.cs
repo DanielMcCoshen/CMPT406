@@ -6,26 +6,49 @@ public class Shooting : MonoBehaviour
 {
 
     public Transform firePoint;
-    public GameObject bulletPrefab;
+    public List<GameObject> weapons;
 
-    public float bulletForce = 20f;
+    public GameObject weaponEquipped = null;
 
-    // Update is called once per frame
+    void Start()
+    {
+        if(weapons.Count > 0)
+        {
+            weaponEquipped = weapons[0];
+            foreach (GameObject weapon in weapons)
+            {
+                weapon.GetComponent<Weapon>().SetFirePoint(firePoint);
+            }
+        }
+    }
+
     void Update()
     {
         if(Input.GetButtonDown("Fire1"))
         {
             Shoot();
         }
+
+        for(int index = 0; index < weapons.Count; index++)
+        {
+            if(Input.GetKeyDown("" + (index+1)))
+            {
+                if(weaponEquipped != null && !weaponEquipped.Equals(null))
+                {
+                    weaponEquipped.SetActive(false);
+                }
+                
+                weaponEquipped = weapons[index];
+                weaponEquipped.SetActive(true);
+            }
+        }
     }
     
-    /**
-     * Fires a bullet in the direction the player is facing.
-     */ 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+        if (weaponEquipped != null && !weaponEquipped.Equals(null))
+        {
+           weaponEquipped.GetComponent<Weapon>().FireWeapon();
+        }
     }
 }
