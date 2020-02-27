@@ -85,7 +85,7 @@ public class WeaponControl : MonoBehaviour
     void Shoot()
     {
         GameObject bulletRef = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Bullet bullet = bulletRef.GetComponent<Bullet>();
+        Weapon bullet = bulletRef.GetComponent<Weapon>();
 
         if (bullet != null)
         {

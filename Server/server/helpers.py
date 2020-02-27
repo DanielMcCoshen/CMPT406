@@ -12,6 +12,12 @@ def room_not_found():
     }
     return jsonify(res), status.HTTP_404_NOT_FOUND
 
+def bad_request():
+    res={
+        "error": "invalid request"
+    }
+    return jsonify(res), status.HTTP_400_BAD_REQUEST
+
 def invalid_token():
     res = {
         "error": "Invalid Token"
@@ -29,6 +35,12 @@ def user_exists():
         "error": "User Exists"
     }
     return res, status.HTTP_409_CONFLICT
+
+def no_current_job():
+    res = {
+        "error": "No Current Job"
+    }
+    return res, status.HTTP_200_OK
 
 def room_exists(game_id):
     return rooms.get_map().get(game_id, None) is not None
