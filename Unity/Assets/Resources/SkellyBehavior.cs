@@ -58,7 +58,12 @@ public class SkellyBehavior : MonoBehaviour
     */
 
     [SerializeField]
-    private int jumpTimer;
+    private float jumpTimer;
+    private float jumpTimerCounter;
+
+    [SerializeField]
+    private float shootTimer;
+    private float shootTimerCounter;
 
     [SerializeField]
     private float speed;
@@ -73,6 +78,8 @@ public class SkellyBehavior : MonoBehaviour
     void Start()
     {
         currentState = states.NOTHING;
+        jumpTimerCounter = jumpTimer;
+        shootTimerCounter = shootTimer;
     }
 
     void Update()
@@ -82,43 +89,62 @@ public class SkellyBehavior : MonoBehaviour
         switch (currentState)
         {
             case states.NOTHING:
-                StartCoroutine(Jump());
+                currentState = states.JUMP_WAITING;
+                //StartCoroutine(Jump());
                 break;
 
             case states.SHOOT_WAITING:
-            
+                shootTimerCounter -= Time.deltaTime;
+                if(shootTimerCounter <= 0)
+                {
+                    currentState = states.SHOOTING;
+                }
+                break;
 
             case states.SHOOTING:
                 Debug.Log("BANG");
                 currentState = states.NOTHING;
+                shootTimerCounter = shootTimer;
                 break;
 
             case states.JUMP_WAITING:
+                jumpTimerCounter -= Time.deltaTime;
+                if(jumpTimerCounter <= 0)
+                {
+                    currentState = states.JUMPING;
+                }
+                break;
                 
 
             case states.JUMPING:
+                destination = new Vector2(player.transform.position.x, player.transform.position.y);
                 rb.MovePosition(Vector2.MoveTowards(transform.position, destination, speed));
                 if(Vector2.Distance(transform.position, destination) < 1)
                 {
-                    StartCoroutine(Shoot());
+                    currentState = states.SHOOT_WAITING;
+                    jumpTimerCounter = jumpTimer;
+                    //StartCoroutine(Shoot());
                 }
                 break;
 
         }
     }
 
+    /*
     private IEnumerator Shoot()
     {
-        currentState = states.SHOOT_WAITING;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(5f);
         currentState = states.SHOOTING;
     }
 
+    
     private IEnumerator Jump()
     {
-        currentState = states.JUMP_WAITING;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(5f);
         destination = new Vector2(player.transform.position.x, player.transform.position.y);
         currentState = states.JUMPING;
     }
+
+    // Coroutines are actually ass and do not work.  
+    */
 }
