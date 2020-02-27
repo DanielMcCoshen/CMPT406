@@ -71,9 +71,16 @@ public class SkellyBehavior : MonoBehaviour
     public GameObject player;
     public Rigidbody2D rb;
 
+    public Transform aimPoint;
+    public Transform firePoint;
+    public GameObject projectilePrefab;
+    public float projectileForce;
+
     private Vector2 destination;
     private enum states { NOTHING, SHOOT_WAITING, SHOOTING, JUMP_WAITING, JUMPING };
     private states currentState;
+
+    
 
     void Start()
     {
@@ -82,9 +89,21 @@ public class SkellyBehavior : MonoBehaviour
         shootTimerCounter = shootTimer;
     }
 
+    public void ThrowSpear(Vector3 position, Quaternion rotation)
+    {
+        //Debug.Log("BANG");
+        GameObject projectile = Instantiate(projectilePrefab, position, rotation);
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        rb.AddForce(projectile.transform.up * projectileForce, ForceMode2D.Impulse);
+    }
+
     void Update()
     {
-        Debug.Log(currentState);
+        Vector2 currentVelocity = rb.velocity;
+        Vector2 oppositeForce = -currentVelocity;
+        rb.AddRelativeForce(oppositeForce);
+
+        //Debug.Log(currentState);
         //Debug.Log(Vector2.Distance(transform.position, destination));
         switch (currentState)
         {
@@ -102,7 +121,8 @@ public class SkellyBehavior : MonoBehaviour
                 break;
 
             case states.SHOOTING:
-                Debug.Log("BANG");
+                //Debug.Log("BANG");
+                ThrowSpear(firePoint.position, aimPoint.rotation);
                 currentState = states.NOTHING;
                 shootTimerCounter = shootTimer;
                 break;
@@ -114,12 +134,29 @@ public class SkellyBehavior : MonoBehaviour
                     if (Mathf.Abs(transform.position.x - player.transform.position.x) < Mathf.Abs(transform.position.y - player.transform.position.y))
                     {
                         destination.x = transform.position.x;
-                        destination.y = player.transform.position.y;
+                        if(transform.position.y > player.transform.position.y)
+                        {
+                            
+                            destination.y = player.transform.position.y + 2f;
+                        }
+                        else
+                        {
+                            destination.y = player.transform.position.y + 2f;
+                        }
+                        
                     }
 
                     else
                     {
-                        destination.x = player.transform.position.x;
+                        if (transform.position.x > player.transform.position.x)
+                        {
+
+                            destination.x = player.transform.position.x + 2f;
+                        }
+                        else
+                        {
+                            destination.x = player.transform.position.x + 2f;
+                        }
                         destination.y = transform.position.y;
                     }
                     currentState = states.JUMPING;
@@ -151,11 +188,11 @@ public class SkellyBehavior : MonoBehaviour
     
     private IEnumerator Jump()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(shoot);
         destination = new Vector2(player.transform.position.x, player.transform.position.y);
         currentState = states.JUMPING;
     }
-
+    
     // Coroutines are actually ass and do not work.  
     */
 }
