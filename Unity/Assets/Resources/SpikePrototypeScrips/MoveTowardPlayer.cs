@@ -7,7 +7,7 @@ public class MoveTowardPlayer : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Transform playerPosition;
-    float maxVelocityChange = 75f;
+    float maxVelocityChange = 100f;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +31,7 @@ public class MoveTowardPlayer : MonoBehaviour
         }
         var targetVelocity = new Vector2(directionFromInputs(playerPosition.position.x, gameObject.transform.position.x),
             directionFromInputs(playerPosition.position.y, gameObject.transform.position.y));
-        targetVelocity *= 50f * Time.fixedDeltaTime;
+        targetVelocity *= 150f * Time.fixedDeltaTime;
 
         // Apply a force that attempts to reach our target velocity
         var velocity = rb.velocity;
