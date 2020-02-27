@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
     public float cooldownTimer;
     public bool onCooldown = false;
     public Transform firePoint = null;
+    public Transform aimPoint = null;
     public int firesBeforeCooldown;
     public int numberOfShotsFired = 0;
     // Deletes bullet if it touches a Collider2D that is not the player.
@@ -16,6 +17,11 @@ public class Weapon : MonoBehaviour
     public void SetFirePoint(Transform fp)
     {
         firePoint = fp;
+    }
+
+    public void SetAimPoint(Transform fp)
+    {
+        aimPoint = fp;
     }
 
     public void FireProjectile(Vector3 position, Quaternion rotation)
@@ -29,7 +35,7 @@ public class Weapon : MonoBehaviour
     {
         if (!onCooldown)
         {
-            FireProjectile(firePoint.position, firePoint.rotation);
+            FireProjectile(firePoint.position, aimPoint.rotation);
             StartCoroutine(WeaponCooldown());
         }
         
