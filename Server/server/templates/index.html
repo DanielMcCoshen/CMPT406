@@ -8,28 +8,231 @@
   </head>
   <body>
     <div class="container">
-      <h1>Flask React</h1>
+      <h1>Chief Fraser O'Hogans Sorry Soiree Of Sad Situations </h1>
       <br>
-      <div id="content"></div>
+      <div id="info"></div>
+      <div id="content"> 
+      </div>
+      <div id='root'></div>
     </div>
     <!-- scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+    
+    <script src="static/js/home.js"></script>
     <script type="text/jsx">
 
       /*** @jsx React.DOM */
+      
+      var game_room_id = '';
+      var name_value = '';
+      var player_token = '';
+      var infoText = 'Welcome to the OCC Abstention, make sure you fill in your badge and department.';
+      var question = '';
+      var option1 = '';
+      var option2 = '';
+      var option1ID = '';
+      var option2ID = '';
+      var resendTimer = 5000;
 
-      var realPython = React.createClass({
+      var information = React.createClass({
         render: function() {
-          return (<h2>Greetings, from Real Python!</h2>);
+          return (<p>{infoText}</p>);
         }
       });
 
+      var waitingForVote = React.createClass({
+        render: function() {
+          return (<p>Waiting</p>);
+        }
+      });
+
+      function refresh() {
+        resendTimer = 5000;
+        
+        console.log(player_token);
+        fetch("/game/" + game_room_id + "/jobs", {
+          method: "GET",
+          mode: 'cors',
+          headers: {
+            Authorization: "Bearer " + player_token,
+          }
+          }
+        ).then(function(response){
+          console.log("refreshing??");
+          if(response.status !== 200){
+            response.json().then(function(data){
+              infoText = 'It seems your ultravator has failed the reason was ' + data.error;
+              ReactDOM.render(
+              React.createElement(information, null),
+              document.getElementById('content')
+            )}
+          );
+          }
+          else{
+            response.json().then(function(data){
+              if(data.hasOwnProperty('options')){
+
+                option1 = data.options[0].icon;
+                option2 = data.options[1].icon;
+
+                option1ID = data.options[0].id;
+                option2ID = data.options[1].id;
+                
+                ReactDOM.render(
+                React.createElement(VoterEntryForm, null),
+                document.getElementById('root')
+                )
+                resendTimer = data.time_remaining;
+            }
+          })
+          }
+          
+        }).catch(function(err){
+          console.log("its fucked " + err);
+        })
+
+        setTimeout(refresh, resendTimer);
+        // ...
+      }
+
+      class VoterEntryForm extends React.Component{
+        constructor(props) {
+          super(props);
+          this.state = {choice:''};
+
+          this.handleChange = this.handleChange.bind(this);
+          this.handleSubmit = this.handleSubmit.bind(this);
+        }
+
+        handleChange(event){
+            this.setState({ choice: event.target.value });
+        }
+
+
+        handleSubmit(event){
+
+          event.preventDefault();
+          
+
+          fetch("/game/" + game_room_id + "/jobs/vote", {
+            method: "POST",
+            mode: 'cors',
+            headers: {
+              Authorization: "Bearer " + player_token,
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              'choice': this.state.choice,
+              'mp_spent': '0'
+            })
+            }
+          )
+        }
+
+
+        render(){
+          return(
+          <form onSubmit={this.handleSubmit}>
+            <p>
+              {question}
+              <br />
+              <input type="radio" name="vote" value={option1ID} /> {option1}
+              <br />
+              <input type="radio" name="vote" value={option2ID} /> {option2}
+            </p>
+            
+            <input type="submit" value="Submit" />
+          </form>
+          )
+        }
+      }
+
+      class JoinRoomForm extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {gameRoomValue: '', nameValue: ''};
+      
+          this.handleChange = this.handleChange.bind(this);
+          this.handleSubmit = this.handleSubmit.bind(this);
+        }
+      
+        handleChange(event) {
+          this.setState({[event.target.name]: event.target.value});
+        }
+      
+        handleSubmit(event) {
+          event.preventDefault();
+          game_room_id = this.state.gameRoomValue;
+          name_value = this.state.nameVale;
+          fetch("/game/" + this.state.gameRoomValue + "/join", {
+            method: "POST",
+            mode: 'cors',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              "user_name": this.state.nameValue,
+              "colour": '#00ffff',
+            })
+          }).then(function(response){
+            if(response.status !== 200){
+              response.json().then(function(data){
+                infoText = 'It seems your biforcator couldnt contact the fleet, the reason was ' + data.error;
+                ReactDOM.render(
+                React.createElement(information, null),
+                document.getElementById('content')
+              )}
+            );
+            }
+            infoText = 'You have reached your department number:: ' + game_room_id;
+            ReactDOM.render(
+              React.createElement(information, null),
+              document.getElementById('content')
+            );
+            ReactDOM.render(
+                React.createElement(waitingForVote, null),
+                document.getElementById('root')
+              )
+            response.json().then(function(data){
+              player_token = data.token;
+              console.log(player_token);
+            })
+            setTimeout(refresh, 3000)
+            
+               
+          }).catch(function(err){
+
+          })
+        }
+      
+        render() {
+          return (
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                Room ID:
+                <input type="text" name = "gameRoomValue" value={this.state.gameRoomValue} onChange={this.handleChange} />
+              </label>
+              <label>
+                User Name:
+                <input type="text" name = "nameValue" value={this.state.nameValue} onChange={this.handleChange} />
+              </label>
+              <input type="submit" value="Submit" />
+            </form>
+          );
+        }
+      }
+
       ReactDOM.render(
-        React.createElement(realPython, null),
+        React.createElement(information, null),
         document.getElementById('content')
       );
+      ReactDOM.render(
+        React.createElement(JoinRoomForm, null), 
+        document.getElementById('root'));
 
     </script>
   </body>
