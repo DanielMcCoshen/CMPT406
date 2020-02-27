@@ -9,6 +9,8 @@ public class SkellyBehavior : MonoBehaviour
     private bool waitingForJump;
     public GameObject player;
     public Rigidbody2D rb;
+    [SerializeField]
+    public float speed;
 
 
 
@@ -22,10 +24,10 @@ public class SkellyBehavior : MonoBehaviour
         var destination_y = player.transform.position.y;
 
         Vector2 direction_force = new Vector2();
-        direction_force.Set(destination_x - transform.position.x, destination_y - transform.position.y);
+        direction_force.Set(destination_x, destination_y);
 
-        rb.AddForce(direction_force);
-        
+        transform.position = Vector2.MoveTowards(transform.position, direction_force, speed);
+
     }
 
     private IEnumerator JumpCheck()
