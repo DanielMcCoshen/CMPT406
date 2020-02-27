@@ -67,7 +67,7 @@ public class SkellyBehavior : MonoBehaviour
     public Rigidbody2D rb;
 
     private Vector2 destination;
-    private enum states { NOTHING, SHOOTING, WAITING, JUMPING };
+    private enum states { NOTHING, SHOOT_WAITING, SHOOTING, JUMP_WAITING, JUMPING };
     private states currentState;
 
     void Start()
@@ -77,34 +77,47 @@ public class SkellyBehavior : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(currentState);
+        //Debug.Log(Vector2.Distance(transform.position, destination));
         switch (currentState)
         {
             case states.NOTHING:
-
-
-            case states.SHOOTING:
-
-
-
-            case states.WAITING:
                 StartCoroutine(Jump());
                 break;
 
+            case states.SHOOT_WAITING:
+            
+
+            case states.SHOOTING:
+                Debug.Log("BANG");
+                currentState = states.NOTHING;
+                break;
+
+            case states.JUMP_WAITING:
+                
+
             case states.JUMPING:
                 rb.MovePosition(Vector2.MoveTowards(transform.position, destination, speed));
-                if(Vector2.Distance(transform.position, destination) < 4)
+                if(Vector2.Distance(transform.position, destination) < 1)
                 {
-                    currentState = states.SHOOTING;
+                    StartCoroutine(Shoot());
                 }
                 break;
 
         }
     }
 
+    private IEnumerator Shoot()
+    {
+        currentState = states.SHOOT_WAITING;
+        yield return new WaitForSeconds(5);
+        currentState = states.SHOOTING;
+    }
+
     private IEnumerator Jump()
     {
-        currentState = states.WAITING;
-        yield return new WaitForSeconds(2);
+        currentState = states.JUMP_WAITING;
+        yield return new WaitForSeconds(5);
         destination = new Vector2(player.transform.position.x, player.transform.position.y);
         currentState = states.JUMPING;
     }
