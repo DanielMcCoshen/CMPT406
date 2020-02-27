@@ -17,6 +17,8 @@ public class Shooting : MonoBehaviour
 
     public bool useController;
 
+    public PlayerAnimations playerAnimationManager;
+
     Vector2 mousePos;
     Vector2 controllerPos;
 
@@ -24,12 +26,28 @@ public class Shooting : MonoBehaviour
     {
         if(weapons.Count > 0)
         {
-            weaponEquipped = weapons[0];
+            EquipWeapon(0);
             foreach (GameObject weapon in weapons)
             {
-                weapon.GetComponent<Weapon>().SetFirePoint(firePoint);
+                weapon.GetComponent<Weapon>().SetAimPoint(firePoint);
+            }
+            for(int index = 1; index < weapons.Count; index++)
+            {
+                weapons[index].SetActive(false);
             }
         }
+    }
+
+    private void EquipWeapon(int index)
+    {
+        if (HasWeaponEquipped())
+        {
+            weaponEquipped.SetActive(false);
+        }
+
+        weaponEquipped = weapons[index];
+        weaponEquipped.SetActive(true);
+        weaponEquipped.GetComponent<PlayerWeaponAnimations>().Equipped(playerAnimationManager.direction);
     }
 
     void Update()
@@ -43,13 +61,7 @@ public class Shooting : MonoBehaviour
         {
             if(Input.GetKeyDown("" + (index+1)))
             {
-                if(weaponEquipped != null && !weaponEquipped.Equals(null))
-                {
-                    weaponEquipped.SetActive(false);
-                }
-                
-                weaponEquipped = weapons[index];
-                weaponEquipped.SetActive(true);
+                EquipWeapon(index);
             }
         }
 
@@ -106,9 +118,19 @@ public class Shooting : MonoBehaviour
 
     void Shoot()
     {
-        if (weaponEquipped != null && !weaponEquipped.Equals(null))
+        if (HasWeaponEquipped())
         {
            weaponEquipped.GetComponent<Weapon>().FireWeapon();
         }
+    }
+
+    public GameObject CurrentWeapon()
+    {
+        return weaponEquipped;
+    }
+
+    public bool HasWeaponEquipped()
+    {
+        return (weaponEquipped != null && !weaponEquipped.Equals(null));
     }
 }

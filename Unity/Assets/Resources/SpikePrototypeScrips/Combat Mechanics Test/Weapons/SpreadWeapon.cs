@@ -12,7 +12,7 @@ public class SpreadWeapon : Weapon
     {
         for (int variance = -(numberOfProjectiles-1); variance < numberOfProjectiles; variance++)
         {
-            FireProjectile(firePoint.position, Quaternion.Euler(new Vector3(0, 0, (rotationRate * (float)variance) + firePoint.rotation.eulerAngles.z)));
+            FireProjectile(firePoint.position, Quaternion.Euler(new Vector3(0, 0, (rotationRate * (float)variance) + aimPoint.rotation.eulerAngles.z)));
         }
     }
 

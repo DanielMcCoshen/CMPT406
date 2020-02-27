@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6612259150889516927}
   m_Layer: 0
-  m_Name: AimPointEastWest
+  m_Name: AimPointNorthSouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 1974774393380107328}
   - component: {fileID: 3073570973705354714}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: EastWest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5701062643399161500}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.767, z: 0}
+  m_LocalPosition: {x: 0, y: 2.02, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children:
   - {fileID: 8780024988736523236}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 2387900401702792790}
   - component: {fileID: 775344701742430644}
   m_Layer: 0
-  m_Name: New Sprite (1)
+  m_Name: NorthSouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6934715241358530649}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: 1.084, z: 0}
+  m_LocalPosition: {x: 0.283, y: 1.084, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children:
   - {fileID: 6612259150889516927}
@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 8917361828605797050}
   - component: {fileID: 8917361828605797049}
   - component: {fileID: 8917361828605797048}
+  - component: {fileID: 5485181010050875431}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -329,9 +330,28 @@ MonoBehaviour:
   cooldownTimer: 3
   onCooldown: 0
   firePoint: {fileID: 0}
+  aimPoint: {fileID: 0}
   firesBeforeCooldown: 0
   numberOfShotsFired: 0
   numberOfProjectiles: 5
   rotationRate: 3
   numberOfWaves: 2
   timeBetweenWaves: 0.1
+--- !u!114 &5485181010050875431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8917361828605797055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39afc5a90cafda746a33ad6783e2e07b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimPoint: {fileID: 8917361828605797050}
+  northSouthSprite: {fileID: 6934715241358530649}
+  eastWestSprite: {fileID: 5701062643399161500}
+  weapon: {fileID: 8917361828605797048}
+  northSouthFirePoint: {fileID: 6612259150889516927}
+  eastWestFirePoint: {fileID: 8780024988736523236}
