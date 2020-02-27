@@ -118,6 +118,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -6179,7 +6181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511779154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.54, y: 2.54, z: 0}
+  m_LocalPosition: {x: 4.16, y: 2.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6198,8 +6200,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpTimer: 2
+  shootTimer: 2
+  speed: 0.2
   player: {fileID: 940888118}
-  rb: {fileID: 0}
+  rb: {fileID: 1511779158}
 --- !u!50 &1511779158
 Rigidbody2D:
   serializedVersion: 4

@@ -111,13 +111,24 @@ public class SkellyBehavior : MonoBehaviour
                 jumpTimerCounter -= Time.deltaTime;
                 if(jumpTimerCounter <= 0)
                 {
+                    if (Mathf.Abs(transform.position.x - player.transform.position.x) < Mathf.Abs(transform.position.y - player.transform.position.y))
+                    {
+                        destination.x = transform.position.x;
+                        destination.y = player.transform.position.y;
+                    }
+
+                    else
+                    {
+                        destination.x = player.transform.position.x;
+                        destination.y = transform.position.y;
+                    }
                     currentState = states.JUMPING;
                 }
                 break;
                 
 
             case states.JUMPING:
-                destination = new Vector2(player.transform.position.x, player.transform.position.y);
+                //destination = new Vector2(player.transform.position.x, player.transform.position.y);
                 rb.MovePosition(Vector2.MoveTowards(transform.position, destination, speed));
                 if(Vector2.Distance(transform.position, destination) < 1)
                 {
