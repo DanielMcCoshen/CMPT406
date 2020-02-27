@@ -13,46 +13,14 @@ public class WeaponControl : MonoBehaviour
 
     public Transform firePoint;
 
-    [Header("Bullet Settings")]
-
-    [SerializeField]
-    [Tooltip("How many shots a second.")]
-    private float fireRate = 1f;
-    private float fireCountdown = 0f;
     [SerializeField]
     public GameObject bulletPrefab;
 
-    [Header("Burst Fire Settings")]
-    [SerializeField]
-    private bool doBurstFire = false;
-    [SerializeField]
-    private float burstFireRate = 0.5f;
-    [SerializeField]
-    private float burstSize = 3f;
-
-    [Header("Beam Settings")]
-    [SerializeField]
-    private bool useLaser = false;
-
-    [SerializeField]
-    private int damageOverTime = 30;
-    [Tooltip("The enemy's speed will be reduced by this percentage.")]
-    public float slowPercentage = 0.5f;
-
-    [SerializeField]
-    public LineRenderer lineRenderer;
-    [SerializeField]
-    public ParticleSystem impactEffect;
-    [SerializeField]
-    public Light impactLight;
-
-    [Header("Radiator Settings")]
-    [SerializeField]
-    private bool doRadiation = false;
 
     // Private References
     private GameObject rangeIndicator;
     private Transform partToRotate;
+
 
     // Start is called before the first frame update
     void Start()

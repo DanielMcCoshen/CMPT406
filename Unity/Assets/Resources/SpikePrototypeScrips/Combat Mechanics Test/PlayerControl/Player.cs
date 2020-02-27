@@ -75,11 +75,6 @@ public class Player : MonoBehaviour
             movementDirection.y = Input.GetAxisRaw("Vertical");
         }
 
-        void GetMouseInput()
-        {
-            mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        }
-
         void GetControllerInput()
         {
             controllerPos = Vector2.right * Input.GetAxisRaw("RHorizontal") + Vector2.up * -Input.GetAxisRaw("RVertical");
@@ -87,7 +82,6 @@ public class Player : MonoBehaviour
 
         GetDodgeInput();
         GetMovementInput();
-        GetMouseInput();
         GetControllerInput();
     }
 
@@ -109,32 +103,6 @@ public class Player : MonoBehaviour
                 rb.MovePosition(rb.position + movementDirection * step * Time.fixedDeltaTime);
                 this.spriteRenderer.color = dodgeColour;
             }
-        }
-
-        void RotateWithMouse()
-        {
-            Vector2 lookDirection = mousePos - rb.position;
-            float angleOfRotation = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-            rb.rotation = angleOfRotation - 90f;
-        }
-
-        void RotateWithController()
-        {
-            if (controllerPos.sqrMagnitude > 0.0f)
-            {
-                float angleOfRotation = Mathf.Atan2(controllerPos.y, controllerPos.x) * Mathf.Rad2Deg;
-                rb.rotation = angleOfRotation - 90f;
-            }
-        }
-
-        if (!useController)
-        {
-            RotateWithMouse();
-        }
-
-        if (useController)
-        {
-            RotateWithController();
         }
 
         MoveCharacter();
