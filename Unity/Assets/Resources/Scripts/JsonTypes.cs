@@ -20,3 +20,16 @@ public class PlayerList
 {
     public List<PlayerInfo> users;
 }
+
+[System.Serializable]
+public class PostJobResponse
+{
+    public int job_id;
+    public string error;
+}
+
+public class checkJobResponse
+{
+    public bool complete;
+    public int result;
+}

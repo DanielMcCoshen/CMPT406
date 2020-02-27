@@ -25,7 +25,6 @@ public class MainMenu : MonoBehaviour
         {
             string roster = "";
             yield return new WaitForSeconds(1f);
-            Debug.Log(ServerInfo.Instance.Players);
             foreach (PlayerInfo player in ServerInfo.Instance.Players)
             {
                     roster += player.name + '\n';
