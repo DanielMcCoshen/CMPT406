@@ -65,4 +65,16 @@ public class NetworkManager
             ServerInfo.Instance.Players = new List<PlayerInfo>();
         }
     }
+
+    public static async Task BeginVote(Room room)
+    {
+        Debug.Log("Begining Vote");
+        room.JobId = 1;
+    }
+
+    public static async Task CheckVote(Room room)
+    {
+        Debug.Log("Checking Room");
+        room.RoomLayout = RoomList.Instance.AllRooms[0];
+    }
 }
