@@ -5,7 +5,7 @@ using UnityEngine;
 public class BezierFollow : MonoBehaviour
 {
     [SerializeField]
-    private Transform[] routes;
+    public Transform[] routes;
 
     private int routeToFollow;
     private float tParam;

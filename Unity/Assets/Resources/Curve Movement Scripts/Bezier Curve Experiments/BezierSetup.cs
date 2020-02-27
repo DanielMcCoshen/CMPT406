@@ -5,13 +5,13 @@ using UnityEngine;
 public class BezierSetup : MonoBehaviour
 {
     [SerializeField]
-    private Transform firePoint;
+    public Transform firePoint;
     [SerializeField]
-    private Transform target;
+    public Transform target;
     [SerializeField]
-    private BezierRoute route;
+    public BezierRoute route;
     [SerializeField]
-    private BezierFollow projectile;
+    public BezierFollow projectile;
 
     // Start is called before the first frame update
     void Start()

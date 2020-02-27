@@ -5,7 +5,7 @@ using UnityEngine;
 public class BezierRoute : MonoBehaviour
 {
     [SerializeField]
-    private Transform[] controlPoints;
+    public Transform[] controlPoints;
     private float curveMagnitude;
 
     private Vector2 gizmosPosition;
