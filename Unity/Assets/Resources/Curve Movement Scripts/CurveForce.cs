@@ -57,7 +57,7 @@ public class CurveForce : MonoBehaviour
     }
 
     /**
-     * Moves and rotates the player from user input.
+     * Sets up the location to rotate around and begins the projectile's movement.
      */
     public void Setup(Vector3 firePoint, Vector3 target) {
         start = firePoint;
