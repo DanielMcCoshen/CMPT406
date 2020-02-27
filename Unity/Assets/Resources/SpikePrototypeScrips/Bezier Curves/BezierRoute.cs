@@ -30,6 +30,11 @@ public class BezierRoute : MonoBehaviour
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        // Fix offset.
+
+        Vector2 offset = (controlPoints[0].position - start.position);
+        controlPoints[0].position = new Vector2(controlPoints[0].position.x + offset.x, controlPoints[0].position.y + offset.y);
     }
 
     private void OnDrawGizmos() {
