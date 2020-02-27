@@ -84,6 +84,10 @@ public class SkellyBehavior : MonoBehaviour
 
     void Update()
     {
+        Vector2 currentVelocity = rb.velocity;
+        Vector2 oppositeForce = -currentVelocity;
+        rb.AddRelativeForce(oppositeForce);
+
         Debug.Log(currentState);
         //Debug.Log(Vector2.Distance(transform.position, destination));
         switch (currentState)
