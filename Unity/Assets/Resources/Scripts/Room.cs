@@ -40,7 +40,7 @@ public class Room : MonoBehaviour
             DestroyImmediate(roomTemp);
             roomLayoutObj = Instantiate(value, gameObject.transform);
             roomLayout = roomLayoutObj.GetComponent<RoomMap>();
-            roomLayout.room = this;
+            //roomLayout.room = this;
             votingComplete = true;
         }
     }

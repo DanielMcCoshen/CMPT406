@@ -18,7 +18,9 @@ public class RoomList
         allRooms = new List<GameObject>
         {
             Resources.Load("Prefabs/Rooms/10x20/Bean") as GameObject,
-            Resources.Load("Prefabs/Rooms/10x20/Room2") as GameObject
+            Resources.Load("Prefabs/Rooms/10x20/Room2") as GameObject,
+            Resources.Load("Prefabs/Rooms/10x20/Doonut") as GameObject,
+            Resources.Load("Prefabs/Rooms/10x20/Island") as GameObject
         };
         Debug.Log("RoomList Creation");
     }

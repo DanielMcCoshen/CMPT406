@@ -988,9 +988,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a67abde1592d1024a90b6051daed40f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 50
   maxVelocityChange: 100
-  maxMovementSpeed: 0
+  maxMovementSpeed: 50
   useController: 0
   dodgeSpeedMultiplication: 3
   dodgeLength: 0.3
@@ -1560,7 +1560,7 @@ GameObject:
   - component: {fileID: 5371079274988783512}
   - component: {fileID: 5371079274988783515}
   - component: {fileID: 4635480507957668492}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: DeathCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2122,8 +2122,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 92428915
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: -5542452072615830912, guid: 2b8e7eeef29305d4eb38a7595d952d34,
     type: 3}
@@ -2205,8 +2205,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 92428915
+  m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: -5542452072615830912, guid: 2b8e7eeef29305d4eb38a7595d952d34,
     type: 3}
@@ -2484,8 +2484,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 92428915
+  m_SortingLayer: 1
   m_SortingOrder: 5
   m_Sprite: {fileID: 1981269222569700514, guid: 2b8e7eeef29305d4eb38a7595d952d34,
     type: 3}

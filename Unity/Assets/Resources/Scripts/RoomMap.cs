@@ -17,7 +17,7 @@ public class RoomMap : MonoBehaviour
 
     public Vector2 Size { get => size; }
 
-    public Room room;
+    //public Room room;
 
     public Transform SpawnLocation { get => spawnLocation; }
 
@@ -49,9 +49,10 @@ public class RoomMap : MonoBehaviour
     {
         dynamicDanger.SetActive(option);
     }
-
+    /**
     public void activateRoom()
     {
         room.enterRoom();
     }
+    */
 }
