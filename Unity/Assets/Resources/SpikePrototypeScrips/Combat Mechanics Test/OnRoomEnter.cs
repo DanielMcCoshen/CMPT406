@@ -9,7 +9,7 @@ public class OnRoomEnter : MonoBehaviour
     {
         if (col.tag != "DeathPit")
         {
-            //roomMap.activateRoom();
+            roomMap.activateRoom(col.gameObject);
         }
     }
 }

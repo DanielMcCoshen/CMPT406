@@ -17,7 +17,7 @@ public class RoomMap : MonoBehaviour
 
     public Vector2 Size { get => size; }
 
-    //public Room room;
+    public Room room;
 
     public Transform SpawnLocation { get => spawnLocation; }
 
@@ -49,10 +49,10 @@ public class RoomMap : MonoBehaviour
     {
         dynamicDanger.SetActive(option);
     }
-    /**
-    public void activateRoom()
+
+    public void activateRoom(GameObject playerDeathTrigger)
     {
+        playerDeathTrigger.GetComponent<OnDeathTrapEnterPlayer>().SetRespawnPosition(spawnLocation);
         room.enterRoom();
     }
-    */
 }

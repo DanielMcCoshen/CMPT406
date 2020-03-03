@@ -18,6 +18,12 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
         
     }
 
+    public void SetRespawnPosition(Transform pos)
+    {
+        respawnPosition = pos.position;
+    }
+
+
     public override void OnDeathTrapTrigger(string trapType)
     {
         gameObject.transform.parent.gameObject.transform.position = respawnPosition;
