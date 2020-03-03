@@ -28,7 +28,8 @@ public class Weapon : MonoBehaviour
     {
         GameObject projectile = Instantiate(projectilePrefab, position, rotation );
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.AddForce(projectile.transform.up * projectileForce, ForceMode2D.Impulse);
+        Vector3 direction = new Vector3(projectile.transform.up.x, projectile.transform.up.y * .5f, projectile.transform.up.z);
+        rb.AddForce(direction * projectileForce, ForceMode2D.Impulse);
     }
 
     public virtual void FireWeapon()

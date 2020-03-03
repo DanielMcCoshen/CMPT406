@@ -1489,9 +1489,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 435b907d0be9fac49a57c356a324c71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpTimer: 1
-  shootTimer: 0.5
-  speed: 5
+  shootWaitTime: 1
+  jumpWait: 1
+  moveTime: 2
+  units: 2
+  vertForce: 200
   player: {fileID: 0}
   rb: {fileID: 2864122154467151726}
   aimPoint: {fileID: 6032447089163776470}
@@ -1519,7 +1521,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &14978844245623427
 BoxCollider2D:
   m_ObjectHideFlags: 0
