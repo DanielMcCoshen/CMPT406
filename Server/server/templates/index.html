@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>Chief Fraser O'Hogans Sorry Soiree Of Sad Situations </h1>
+      <h1>Streams of Fate </h1>
       <br>
       <div id="info"></div>
       <div id="content"> 
@@ -28,7 +28,7 @@
       var game_room_id = '';
       var name_value = '';
       var player_token = '';
-      var infoText = 'Welcome to the OCC Abstention, make sure you fill in your badge and department.';
+      var infoText = 'Welcome Streams of Fate. Please fill out your room info';
       var question = '';
       var option1 = '';
       var option2 = '';
@@ -63,7 +63,7 @@
           console.log("refreshing??");
           if(response.status !== 200){
             response.json().then(function(data){
-              infoText = 'It seems your ultravator has failed the reason was ' + data.error;
+              infoText = 'Something has gone wrong, the reason was ' + data.error;
               ReactDOM.render(
               React.createElement(information, null),
               document.getElementById('content')
@@ -108,6 +108,7 @@
 
         handleChange(event){
             this.setState({ choice: event.target.value });
+            console.log("set worked")
         }
 
 
@@ -138,10 +139,13 @@
           <form onSubmit={this.handleSubmit}>
             <p>
               {question}
-              <br />
-              <input type="radio" name="vote" value={option1ID} /> {option1}
-              <br />
-              <input type="radio" name="vote" value={option2ID} /> {option2}
+              <label>
+              <input type="radio" name="vote" onChange={this.handleChange} 
+              checked={ this.state.choice==={option1ID}}  value={option1ID} />{option1}
+              </label><label>
+              <input type="radio" name="vote" onChange={this.handleChange} 
+              checked={ this.state.choice==={option2ID}} value={option2ID} />{option2}
+              </label>
             </p>
             
             <input type="submit" value="Submit" />
@@ -181,14 +185,14 @@
           }).then(function(response){
             if(response.status !== 200){
               response.json().then(function(data){
-                infoText = 'It seems your biforcator couldnt contact the fleet, the reason was ' + data.error;
+                infoText = 'Something went wrong, the reason was ' + data.error;
                 ReactDOM.render(
                 React.createElement(information, null),
                 document.getElementById('content')
               )}
             );
             }
-            infoText = 'You have reached your department number:: ' + game_room_id;
+            infoText = 'You have joined game room: ' + game_room_id;
             ReactDOM.render(
               React.createElement(information, null),
               document.getElementById('content')
