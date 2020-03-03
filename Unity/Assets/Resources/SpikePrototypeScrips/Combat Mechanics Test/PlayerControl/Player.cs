@@ -5,7 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float movementSpeed;
-
+    public float maxVelocityChange = 100f;
+    public float maxMovementSpeed;
     public bool useController;
 
     [Header("Dodge Variables")]
@@ -29,11 +30,12 @@ public class Player : MonoBehaviour
     Vector2 movementDirection;
     Vector2 mousePos;
     Vector2 controllerPos;
+    
 
     private void Start()
     {
         baseColour = spriteRenderer.color;
-
+        maxVelocityChange = 3f * movementSpeed;
         if (spriteRenderer == null)
         {
             Debug.LogError("Sprite Renderer not set in editor");
@@ -94,13 +96,51 @@ public class Player : MonoBehaviour
         {
             if (!dodging)
             {
-                rb.MovePosition(rb.position + movementDirection * movementSpeed * Time.fixedDeltaTime);
+
+              
+                var targetVelocity = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+                targetVelocity = transform.TransformDirection(targetVelocity);
+                targetVelocity *= movementSpeed*10 * Time.fixedDeltaTime;
+                targetVelocity.x = Mathf.Clamp(targetVelocity.x, -maxMovementSpeed, maxMovementSpeed);
+                targetVelocity.y = Mathf.Clamp(targetVelocity.y, -maxMovementSpeed, maxMovementSpeed);
+
+                // Apply a force that attempts to reach our target velocity
+                var velocity = rb.velocity;
+                var velocityChange = (new Vector2(targetVelocity.x, targetVelocity.y) - velocity);
+
+
+                velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+                velocityChange.y = Mathf.Clamp(velocityChange.y, -maxVelocityChange, maxVelocityChange)*.5f;
+                rb.AddForce(velocityChange);
                 this.spriteRenderer.color = baseColour;
             }
             else
             {
+
+                float directionFromInputs(float target, float origin)
+                {
+                    if (target > origin)
+                    {
+                        return 1f;
+                    }
+                    else if (target < origin)
+                    {
+                        return -1f;
+                    }
+                    return 0f;
+                }
                 float step = movementSpeed * 3f;
-                rb.MovePosition(rb.position + movementDirection * step * Time.fixedDeltaTime);
+                var targetVelocity = new Vector2(directionFromInputs(movementDirection.x + rb.position.x, rb.position.x),
+                    directionFromInputs(movementDirection.y+ rb.position.y, rb.position.y));
+                targetVelocity *= step * Time.fixedDeltaTime;
+                Debug.Log(targetVelocity.x);
+                Debug.Log(targetVelocity.y);
+                // Apply a force that attempts to reach our target velocity
+                var velocity = rb.velocity;
+                var velocityChange = (targetVelocity - velocity);
+                velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+                velocityChange.y = Mathf.Clamp(velocityChange.y, -maxVelocityChange, maxVelocityChange);
+                rb.AddForce(velocityChange);
                 this.spriteRenderer.color = dodgeColour;
             }
         }

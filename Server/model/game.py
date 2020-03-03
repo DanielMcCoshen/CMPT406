@@ -195,8 +195,10 @@ class optionlist(object):
         if cls._instance is None:
             print("populating opions list")
             cls._instance = [
-                option(id=0, icon_path="icon0.png", cost=0),
-                option(id=1, icon_path="icon1.png", cost=0),
-                option(id=2, icon_path="icon2.png", cost=0)
+                option(id=0, icon_path="Bean", cost=0),
+                option(id=1, icon_path="T Section", cost=0),
+                option(id=2, icon_path="Donut", cost=0),
+		option(id=3, icon_path="Island", cost=0)
+
             ]
         return cls._instance

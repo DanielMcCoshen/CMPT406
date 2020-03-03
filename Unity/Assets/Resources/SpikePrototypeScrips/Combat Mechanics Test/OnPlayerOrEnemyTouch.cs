@@ -32,9 +32,11 @@ public class OnPlayerOrEnemyTouch : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("activate");
-        entities[col.gameObject.GetComponent<OnDeathTrapEnter>().NameForDeathTrap()] = true;
-        StartCoroutine(ActivateTrap(col.gameObject));
+        if (col.tag != "DeathPit")
+        {
+            entities[col.gameObject.GetComponent<OnDeathTrapEnter>().NameForDeathTrap()] = true;
+            StartCoroutine(ActivateTrap(col.gameObject));
+        }
     }
 
     IEnumerator ActivateTrap(GameObject entity)

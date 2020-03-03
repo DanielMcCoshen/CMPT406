@@ -14,8 +14,10 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         if(collision.gameObject.tag != "Projectile")
         {
+            
             if (collision.gameObject.GetComponent<Rigidbody2D>() != null)
             {
                 Vector3 dir = this.transform.position - collision.gameObject.transform.position;
