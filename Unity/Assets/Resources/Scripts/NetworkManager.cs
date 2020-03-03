@@ -65,4 +65,47 @@ public class NetworkManager
             ServerInfo.Instance.Players = new List<PlayerInfo>();
         }
     }
+
+    public static async Task BeginVote(Room room)
+    {
+        HttpResponseMessage response;
+        PostJobResponse json;
+        try
+        {
+            response = await client.PostAsync(ServerInfo.Instance.Hostname + "/game/" + ServerInfo.Instance.RoomCode + "/jobs", null);
+            json = JsonUtility.FromJson<PostJobResponse>(await response.Content.ReadAsStringAsync());
+        }
+        catch(Exception e)
+        {
+            Debug.LogError(e.Message);
+            return;
+        }
+
+        room.JobId = json.job_id;
+    }
+
+    public static async Task CheckVote(Room room)
+    {
+        Debug.Log("Checking Room");
+        HttpResponseMessage response;
+        checkJobResponse json;
+        try
+        {
+            response = await client.GetAsync(ServerInfo.Instance.Hostname + "/game/" + ServerInfo.Instance.RoomCode + "/jobs/" + room.JobId);
+            json = JsonUtility.FromJson<checkJobResponse>(await response.Content.ReadAsStringAsync());
+            response.EnsureSuccessStatusCode();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+            return;
+        }
+
+        if (json.complete)
+        {
+            Debug.Log(json.result);
+            room.RoomLayout = RoomList.Instance.AllRooms[json.result];
+        }
+        
+    }
 }

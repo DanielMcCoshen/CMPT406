@@ -20,7 +20,6 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
 
     public override void OnDeathTrapTrigger(string trapType)
     {
-        Debug.Log("is this working??");
         gameObject.transform.parent.gameObject.transform.position = respawnPosition;
     }
 
