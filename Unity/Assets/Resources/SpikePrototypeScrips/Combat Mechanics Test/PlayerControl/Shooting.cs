@@ -22,6 +22,17 @@ public class Shooting : MonoBehaviour
     Vector2 mousePos;
     Vector2 controllerPos;
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Weapon")
+        {
+            GameObject obj = Instantiate(col.gameObject.GetComponent<ItemPickup>().GetItem(), firePoint.position, 
+                firePoint.rotation, firePoint);
+            weapons.Add(obj.gameObject);
+            col.gameObject.GetComponent<ItemPickup>().DestroySelf();
+        }
+    }
+
     void Start()
     {
         if(weapons.Count > 0)
