@@ -15,6 +15,8 @@ public class Shooting : MonoBehaviour
 
     public GameObject weaponEquipped = null;
 
+    public OnDeathTrapEnterPlayer playersDeathTrap;
+
     public bool useController;
 
     public PlayerAnimations playerAnimationManager;
@@ -29,6 +31,12 @@ public class Shooting : MonoBehaviour
             GameObject obj = Instantiate(col.gameObject.GetComponent<ItemPickup>().GetItem(), firePoint.position, 
                 firePoint.rotation, firePoint);
             weapons.Add(obj.gameObject);
+            col.gameObject.GetComponent<ItemPickup>().DestroySelf();
+            obj.SetActive(false);
+        }
+        else if(col.gameObject.tag == "Souls")
+        {
+            playersDeathTrap.AddLife();
             col.gameObject.GetComponent<ItemPickup>().DestroySelf();
         }
     }
