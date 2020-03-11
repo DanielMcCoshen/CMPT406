@@ -18,18 +18,27 @@ public class HydraBehavior : MonoBehaviour
 
     public Transform aimPoint;
     public Transform firePoint;
-    public GameObject projectilePrefab;
-    public float projectileForce;
+    public GameObject snipeProjectilePrefab;
+    public GameObject bigProjectilePrefab;
+    public GameObject spreadProjectilePrefab;
+    public float snipeProjectileForce;
+    public float bigProjectileForce;
+    public float spreadProjectileForce;
 
     private Vector2 destination;
     private enum states { NOTHING, SHOOTING };
     private states currentState;
-
+    private enum attackPattern { SNIPE, BIG, SPREAD }
+    private attackPattern currentAttackPattern;
     
 
     void Start()
     {
         currentState = states.NOTHING;
+
+        // Replace this with code to get the starting pattern based on votes
+        currentAttackPattern = attackPattern.SNIPE;
+
         player = GameObject.FindWithTag("Player");
     }
 
@@ -52,16 +61,29 @@ public class HydraBehavior : MonoBehaviour
 
     public void ShootFireball(Vector3 position, Quaternion rotation)
     {
-        GameObject projectile = Instantiate(projectilePrefab, position, rotation);
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.AddForce(projectile.transform.up * projectileForce, ForceMode2D.Impulse);
+        if(currentAttackPattern == attackPattern.SNIPE)
+        {
+            GameObject projectile = Instantiate(snipeProjectilePrefab, position, rotation);
+            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+            rb.AddForce(projectile.transform.up * snipeProjectileForce, ForceMode2D.Impulse);
+        }
+
+        else if (currentAttackPattern == attackPattern.BIG)
+        {
+            GameObject projectile = Instantiate(bigProjectilePrefab, position, rotation);
+            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+            rb.AddForce(projectile.transform.up * bigProjectileForce, ForceMode2D.Impulse);
+        }
     }
 
     private IEnumerator Shoot()
     {
         currentState = states.SHOOTING;
         yield return new WaitForSeconds(2);
-        ShootFireball(firePoint.position, aimPoint.rotation);
+        if(UnityEngine.Random.Range(0.0f, 0.1f) >= 0.5)
+        {
+            ShootFireball(firePoint.position, aimPoint.rotation);
+        }
         currentState = states.NOTHING;
     }
 }

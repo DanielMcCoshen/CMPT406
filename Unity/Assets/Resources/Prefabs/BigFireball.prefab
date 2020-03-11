@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 116108136109980077, guid: 2289589074145ee48ac88cb9a1b6c8ac,
         type: 3}
       propertyPath: m_Name
-      value: Fireball
+      value: BigFireball
       objectReference: {fileID: 0}
     - target: {fileID: 116108136109980081, guid: 2289589074145ee48ac88cb9a1b6c8ac,
         type: 3}
@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 4156037124192145613, guid: 2289589074145ee48ac88cb9a1b6c8ac,
         type: 3}
       propertyPath: force
-      value: 200
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2289589074145ee48ac88cb9a1b6c8ac, type: 3}
