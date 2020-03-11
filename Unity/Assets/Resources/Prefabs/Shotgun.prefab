@@ -46,7 +46,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1974774393380107328
 Transform:
   m_ObjectHideFlags: 0
@@ -329,8 +329,8 @@ MonoBehaviour:
   projectileForce: 15
   cooldownTimer: 3
   onCooldown: 0
-  firePoint: {fileID: 0}
-  aimPoint: {fileID: 0}
+  firePoint: {fileID: 6612259150889516927}
+  aimPoint: {fileID: 8917361828605797050}
   firesBeforeCooldown: 0
   numberOfShotsFired: 0
   numberOfProjectiles: 5
