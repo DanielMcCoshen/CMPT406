@@ -6,7 +6,7 @@ using System;
 public class HydraBehavior : MonoBehaviour
 {
     public float shootWaitTime = 2f;
-    private float angle = 90f;
+    private float angle = 0f;
     private float forcePerUnit = 0f;
     public float vertForce = 200f;
    
@@ -42,7 +42,7 @@ public class HydraBehavior : MonoBehaviour
         switch (currentState)
         {
             case states.NOTHING:
-                currentState = states.SHOOTING;
+                StartCoroutine(Shoot());
                 break;
 
             case states.SHOOTING:
