@@ -39,7 +39,7 @@ public class HydraBehavior : MonoBehaviour
         // Replace this with code to get the starting pattern based on votes
         currentAttackPattern = attackPattern.BIG;
 
-        hydraHeads = gameObject.GetComponent<HydraControl>().hydraHeads;
+        hydraHeads = GameObject.Find("HydraControl").gameObject.GetComponent<HydraControl>().hydraHeads;
 
         player = GameObject.FindWithTag("Player");
     }

@@ -123,12 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &153754755 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5371079275456856086, guid: e438db75c9d051a4ca87469b0001c2b8,
-    type: 3}
-  m_PrefabInstance: {fileID: 360821222}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &321317988
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,14 +244,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootWaitTime: 2
-  vertForce: 200
   player: {fileID: 0}
   rb: {fileID: 321317990}
-  aimPoint: {fileID: 153754755}
-  firePoint: {fileID: 2087025565}
-  projectilePrefab: {fileID: 619597399905580419, guid: 52b88c894b5a7334faed0ebac09e70d8,
+  aimPoint: {fileID: 1098487670}
+  firePoint: {fileID: 1277559840}
+  snipeProjectilePrefab: {fileID: 619597399905580419, guid: 52b88c894b5a7334faed0ebac09e70d8,
     type: 3}
-  projectileForce: 10
+  bigProjectilePrefab: {fileID: 619597399905580419, guid: c36ed101ba726444484e2e8d29a196b8,
+    type: 3}
+  spreadProjectilePrefab: {fileID: 619597399905580419, guid: 0291c528b5bfda64e9cce6a3348dedc3,
+    type: 3}
+  snipeProjectileForce: 40
+  bigProjectileForce: 10
+  spreadProjectileForce: 15
 --- !u!4 &321317993
 Transform:
   m_ObjectHideFlags: 0
@@ -265,12 +264,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321317988}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.47, y: 6.59, z: -0.7755434}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.20962, y: 3.5525804, z: 1.0804629}
   m_LocalScale: {x: 2, y: 2, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Children:
+  - {fileID: 1098487670}
+  - {fileID: 1277559840}
+  m_Father: {fileID: 1703535115}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &360821222
 PrefabInstance:
@@ -339,6 +340,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6644164564882290101, guid: e438db75c9d051a4ca87469b0001c2b8,
+        type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 1001646414}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e438db75c9d051a4ca87469b0001c2b8, type: 3}
 --- !u!1 &1001646412
@@ -424,6 +430,53 @@ Transform:
   m_Father: {fileID: 1922549652}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1098487669
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1098487670}
+  - component: {fileID: 1098487671}
+  m_Layer: 0
+  m_Name: HydraAimPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1098487670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098487669}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 321317993}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1098487671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098487669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b1a079117392a468c9977b70baa9e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPosition: {fileID: 0}
+  aimPoint: {fileID: 1098487670}
+  prefabParent: {fileID: 321317993}
+  firePoint: {fileID: 1277559840}
 --- !u!1001 &1109872659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -493,15 +546,84 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9625329ef1afa3429267f742aaeef52, type: 3}
+--- !u!1 &1277559839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1277559840}
+  m_Layer: 0
+  m_Name: HydraFirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1277559840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277559839}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 321317993}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1703535114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1703535115}
+  - component: {fileID: 1703535116}
+  m_Layer: 0
+  m_Name: HydraControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1703535115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703535114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.2603801, y: 3.0374198, z: -1.8560064}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 321317993}
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1703535116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703535114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189371505313551499ef3d4b75ca18e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hydraHeads: 6
 --- !u!4 &1922549652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5371079275745038150, guid: e438db75c9d051a4ca87469b0001c2b8,
-    type: 3}
-  m_PrefabInstance: {fileID: 360821222}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2087025565 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4629512157470235077, guid: e438db75c9d051a4ca87469b0001c2b8,
     type: 3}
   m_PrefabInstance: {fileID: 360821222}
   m_PrefabAsset: {fileID: 0}
