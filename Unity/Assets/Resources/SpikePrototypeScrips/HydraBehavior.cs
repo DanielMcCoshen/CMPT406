@@ -37,7 +37,8 @@ public class HydraBehavior : MonoBehaviour
         currentState = states.NOTHING;
 
         // Replace this with code to get the starting pattern based on votes
-        currentAttackPattern = attackPattern.BIG;
+        currentAttackPattern = attackPattern.SNIPE;
+        //currentAttackPattern = attackPattern.BIG;
 
         hydraHeads = GameObject.Find("HydraControl").gameObject.GetComponent<HydraControl>().hydraHeads;
 
