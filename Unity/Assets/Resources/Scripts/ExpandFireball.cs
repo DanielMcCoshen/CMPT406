@@ -20,7 +20,8 @@ public class ExpandFireball : MonoBehaviour
         if (transform.localScale.x <= 5.0f)
         {
             projectileTransform.localScale *= 1.005f;
+            projectile.GetComponent<CircleCollider2D>().radius *= 1.005f;
         }
-        projectile.force += 4.0f;
+        projectile.force += 1.0f;
     }
 }

@@ -28,8 +28,8 @@ public class HydraBehavior : MonoBehaviour
     private Vector2 destination;
     private enum states { NOTHING, SHOOTING };
     private states currentState;
-    private enum attackPattern { SNIPE, BIG, SPREAD }
-    private attackPattern currentAttackPattern;
+    public enum attackPattern { SNIPE, BIG, SPREAD }
+    public attackPattern currentAttackPattern;
     
 
     void Start()
@@ -59,6 +59,11 @@ public class HydraBehavior : MonoBehaviour
             case states.SHOOTING:
                 break;
         }
+    }
+
+    public void setAttackPattern(attackPattern newAttack)
+    {
+        this.currentAttackPattern = newAttack;
     }
 
     public void ShootFireball(Vector3 position, Quaternion rotation)
