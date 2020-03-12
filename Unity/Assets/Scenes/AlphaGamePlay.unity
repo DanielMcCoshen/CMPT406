@@ -157,6 +157,7 @@ MonoBehaviour:
   roomTemp: {fileID: 1938987467}
   bridges:
   - {fileID: 1909286687}
+  filter: 0
   player: {fileID: 5371079274604825529, guid: e438db75c9d051a4ca87469b0001c2b8, type: 3}
   startingRoomMap: {fileID: 4590693985318068831, guid: c21852672a856b6468e13842b19315fc,
     type: 3}
@@ -4263,7 +4264,9 @@ MonoBehaviour:
   neighbours:
   - {fileID: 245960042}
   roomTemp: {fileID: 1493801947}
-  bridges: []
+  bridges:
+  - {fileID: 1909286687}
+  filter: 13
 --- !u!4 &610303861
 Transform:
   m_ObjectHideFlags: 0

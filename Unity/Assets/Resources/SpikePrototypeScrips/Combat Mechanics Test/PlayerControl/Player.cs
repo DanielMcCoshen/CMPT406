@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 
     [Header("Sprite Variables")]
     [SerializeField]
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer = null;
     private Color baseColour;
 
     [Header("Object References")]

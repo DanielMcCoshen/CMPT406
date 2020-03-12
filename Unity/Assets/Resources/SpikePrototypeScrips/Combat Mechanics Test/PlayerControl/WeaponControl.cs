@@ -7,7 +7,7 @@ public class WeaponControl : MonoBehaviour
     // !!!! This is a stripped down version of my 306's turret script. I think it's a good place to start.
 
     //[SerializeField]
-    private Transform target;
+    private Transform target = null;
 
     [Header("Weapon Settings")]
 

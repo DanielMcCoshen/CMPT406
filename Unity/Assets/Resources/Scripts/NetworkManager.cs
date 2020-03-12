@@ -66,13 +66,20 @@ public class NetworkManager
         }
     }
 
-    public static async Task BeginVote(Room room)
+    public static async Task BeginRoomVote(Room room)
     {
         HttpResponseMessage response;
         PostJobResponse json;
+
+        VoteOptions options = new VoteOptions();
+        options.level = 1;
+        options.type = 0;
+        options.filter_id = room.Filter;
+
         try
         {
-            response = await client.PostAsync(ServerInfo.Instance.Hostname + "/game/" + ServerInfo.Instance.RoomCode + "/jobs", null);
+            StringContent requestContent = new StringContent(JsonUtility.ToJson(options));
+            response = await client.PostAsync(ServerInfo.Instance.Hostname + "/game/" + ServerInfo.Instance.RoomCode + "/jobs", requestContent);
             json = JsonUtility.FromJson<PostJobResponse>(await response.Content.ReadAsStringAsync());
         }
         catch(Exception e)
@@ -88,11 +95,11 @@ public class NetworkManager
     {
         Debug.Log("Checking Room");
         HttpResponseMessage response;
-        checkJobResponse json;
+        CheckJobResponse json;
         try
         {
             response = await client.GetAsync(ServerInfo.Instance.Hostname + "/game/" + ServerInfo.Instance.RoomCode + "/jobs/" + room.JobId);
-            json = JsonUtility.FromJson<checkJobResponse>(await response.Content.ReadAsStringAsync());
+            json = JsonUtility.FromJson<CheckJobResponse>(await response.Content.ReadAsStringAsync());
             response.EnsureSuccessStatusCode();
         }
         catch (Exception e)

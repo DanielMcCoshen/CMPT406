@@ -24,6 +24,10 @@ public class Room : MonoBehaviour
     protected RoomMap roomLayout;
     private int jobId;
 
+    [SerializeField]
+    private int filter;
+    public int Filter { get => filter; set => filter = value; }
+
     public GameObject RoomLayout {
         get {
             if (!votingComplete)
@@ -70,7 +74,7 @@ public class Room : MonoBehaviour
     {
         if (!votingCommenced)
         {
-            await NetworkManager.BeginVote(this);
+            await NetworkManager.BeginRoomVote(this);
             StartCoroutine(verifyRoom());
         }
     }
