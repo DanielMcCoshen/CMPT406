@@ -4230,6 +4230,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bridge1
       objectReference: {fileID: 0}
+    - target: {fileID: 8319849141711348165, guid: e2f91e03d1dd0cd4bb69ce68f1dda957,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2f91e03d1dd0cd4bb69ce68f1dda957, type: 3}
 --- !u!1 &610303859

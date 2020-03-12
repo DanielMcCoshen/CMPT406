@@ -78,7 +78,7 @@ public class NetworkManager
 
         try
         {
-            StringContent requestContent = new StringContent(JsonUtility.ToJson(options));
+            StringContent requestContent = new StringContent(JsonUtility.ToJson(options), System.Text.Encoding.UTF8, "application/json");
             response = await client.PostAsync(ServerInfo.Instance.Hostname + "/game/" + ServerInfo.Instance.RoomCode + "/jobs", requestContent);
             json = JsonUtility.FromJson<PostJobResponse>(await response.Content.ReadAsStringAsync());
         }
