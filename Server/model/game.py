@@ -194,11 +194,25 @@ class optionlist(object):
     def get(cls):
         if cls._instance is None:
             print("populating opions list")
-            cls._instance = [
-                option(id=0, icon_path="Bean", cost=0),
-                option(id=1, icon_path="T Section", cost=0),
-                option(id=2, icon_path="Donut", cost=0),
-		option(id=3, icon_path="Island", cost=0)
-
-            ]
+            cls._instance = {
+                0:  [],
+                1:  [],
+                2:  [],
+                3:  [],
+                4:  [],
+                5:  [],
+                6:  [],
+                7:  [],
+                8:  [],
+                9:  [],
+                10: [],
+                11: [],
+                13: [   
+                        option(0, "Bean", 0), 
+                        option(1, "T Junction", 0), 
+                        option(2, "Donut", 0),
+                        option(3, "Island", 0)
+                    ],
+                14: []
+            }
         return cls._instance

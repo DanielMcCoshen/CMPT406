@@ -5,17 +5,13 @@ using System.Collections.Generic;
 public class RoomMap : MonoBehaviour
 {
     [SerializeField]
-    private Transform spawnLocation;
+    private Transform spawnLocation = null;
 
     public List<GameObject> enemies = new List<GameObject>();
 
     [SerializeField]
-    private Vector2 size;
-
-    [SerializeField]
     private GameObject loot = null;
 
-    public Vector2 Size { get => size; }
 
     public Room room;
 

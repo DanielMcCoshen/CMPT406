@@ -28,8 +28,16 @@ public class PostJobResponse
     public string error;
 }
 
-public class checkJobResponse
+public class CheckJobResponse
 {
     public bool complete;
     public int result;
+}
+
+[System.Serializable]
+public class VoteOptions
+{
+    public int filter_id;
+    public int type;
+    public int level;
 }
