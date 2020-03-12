@@ -483,6 +483,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HydraHead4
       objectReference: {fileID: 0}
+    - target: {fileID: 6450840893047336506, guid: f270396fef5491d458b81925fbf04914,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hydra
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f270396fef5491d458b81925fbf04914, type: 3}
 --- !u!4 &419108050853692979 stripped
@@ -575,6 +580,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HydraHead1
       objectReference: {fileID: 0}
+    - target: {fileID: 7096167823224926629, guid: baed3347842be6c47838b8bcfdbfa7c3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hydra
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baed3347842be6c47838b8bcfdbfa7c3, type: 3}
 --- !u!1001 &3781046721480623933
@@ -588,6 +598,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HydraHead3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114550301252599595, guid: 37a13acbbe02e0c4b9ab6b2586a38370,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hydra
       objectReference: {fileID: 0}
     - target: {fileID: 2483376208507379357, guid: 37a13acbbe02e0c4b9ab6b2586a38370,
         type: 3}
@@ -751,6 +766,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HydraHead6
       objectReference: {fileID: 0}
+    - target: {fileID: 7726657218593768217, guid: 0440738c6203e6c4fb90d087f4ddc4a2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hydra
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0440738c6203e6c4fb90d087f4ddc4a2, type: 3}
 --- !u!1001 &5375412807676147634
@@ -819,6 +839,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HydraHead2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410552023001104911, guid: f5a99566c038d4c468520531a42ed74b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hydra
       objectReference: {fileID: 0}
     - target: {fileID: 5375412806850926139, guid: f5a99566c038d4c468520531a42ed74b,
         type: 3}
@@ -903,6 +928,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HydraHead5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6466652167628032804, guid: e651f41c6b1c07a4c844f663caf073b4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hydra
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e651f41c6b1c07a4c844f663caf073b4, type: 3}

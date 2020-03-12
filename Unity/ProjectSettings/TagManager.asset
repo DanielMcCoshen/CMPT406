@@ -7,6 +7,7 @@ TagManager:
   - Projectile
   - DeathPit
   - Weapon
+  - Hydra
   layers:
   - Default
   - TransparentFX
