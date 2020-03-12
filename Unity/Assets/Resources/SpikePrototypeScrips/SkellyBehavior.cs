@@ -1,74 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class SkellyBehavior : MonoBehaviour
 {
-    /*
-    [SerializeField]
-    private int jumpTimer;
+    public float shootWaitTime = 1f;
+    public float jumpWait;
+    public float moveTime;
+    public float units;
+    private float angle = 90f;
+    private float forcePerUnit = 0f;
+    public float vertForce = 200f;
+   
+    private bool vertical = false;
+    private bool switched = false;
 
-    public GameObject player;
-    public Rigidbody2D rb;
-
-    [SerializeField]
-    private float speed;
-
-    private Vector2 destination = new Vector2();
-    private bool jumping = false;
-    private float distanceToPlayer;
-
-
-    private IEnumerator JumpCheck()
-    {
-        jumping = true;
-        yield return new WaitForSeconds(jumpTimer);
-        destination.Set(player.transform.position.x, player.transform.position.y);
-        Debug.Log("setting destination");
-        jumping = true;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        jumping = false;
-        rb = gameObject.GetComponent<Rigidbody2D>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(jumping);
-
-        if (!jumping)
-        {
-            StartCoroutine(JumpCheck());
-            //Debug.Log("Ran JumpCheck");
-        }
-
-        else
-        {
-            rb.MovePosition(Vector2.MoveTowards(transform.position, destination, speed));
-            if (Vector2.Distance(transform.position, destination) < 4)
-            {
-                jumping = false;
-            }
-        }
-    }
-    */
-
-    [SerializeField]
-    private float jumpTimer;
-    private float jumpTimerCounter;
-
-    [SerializeField]
-    private float shootTimer;
-    private float shootTimerCounter;
-
-    [SerializeField]
-    private float speed;
-
-    public GameObject player;
+    public GameObject player = null;
     public Rigidbody2D rb;
 
     public Transform aimPoint;
@@ -77,7 +25,7 @@ public class SkellyBehavior : MonoBehaviour
     public float projectileForce;
 
     private Vector2 destination;
-    private enum states { NOTHING, SHOOT_WAITING, SHOOTING, JUMP_WAITING, JUMPING };
+    private enum states { NOTHING, SHOOT_WAITING, SHOOTING, JUMP_WAITING, INTERMEDIATE, JUMPING };
     private states currentState;
 
     
@@ -85,13 +33,12 @@ public class SkellyBehavior : MonoBehaviour
     void Start()
     {
         currentState = states.NOTHING;
-        jumpTimerCounter = jumpTimer;
-        shootTimerCounter = shootTimer;
+        forcePerUnit = 15.384615384615384615384615384615f * (5f / moveTime);
+        player = GameObject.FindWithTag("Player");
     }
 
     public void ThrowSpear(Vector3 position, Quaternion rotation)
     {
-        //Debug.Log("BANG");
         GameObject projectile = Instantiate(projectilePrefab, position, rotation);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         rb.AddForce(projectile.transform.up * projectileForce, ForceMode2D.Impulse);
@@ -103,8 +50,6 @@ public class SkellyBehavior : MonoBehaviour
         Vector2 oppositeForce = -currentVelocity;
         rb.AddRelativeForce(oppositeForce);
 
-        //Debug.Log(currentState);
-        //Debug.Log(Vector2.Distance(transform.position, destination));
         switch (currentState)
         {
             case states.NOTHING:
@@ -113,69 +58,125 @@ public class SkellyBehavior : MonoBehaviour
                 break;
 
             case states.SHOOT_WAITING:
-                shootTimerCounter -= Time.deltaTime;
-                if(shootTimerCounter <= 0)
-                {
-                    currentState = states.SHOOTING;
-                }
+                StartCoroutine(WaitToShoot());
+                currentState = states.INTERMEDIATE;
                 break;
 
             case states.SHOOTING:
                 //Debug.Log("BANG");
+                currentState = states.INTERMEDIATE;
                 ThrowSpear(firePoint.position, aimPoint.rotation);
-                currentState = states.NOTHING;
-                shootTimerCounter = shootTimer;
                 break;
 
             case states.JUMP_WAITING:
-                jumpTimerCounter -= Time.deltaTime;
-                if(jumpTimerCounter <= 0)
+                currentState = states.INTERMEDIATE;
+                if (Mathf.Abs(transform.position.x - player.transform.position.x) < Mathf.Abs(transform.position.y - player.transform.position.y))
                 {
-                    if (Mathf.Abs(transform.position.x - player.transform.position.x) < Mathf.Abs(transform.position.y - player.transform.position.y))
+                    vertical = true;
+                    destination.x = transform.position.x;
+                    if (transform.position.y > player.transform.position.y)
                     {
-                        destination.x = transform.position.x;
-                        if(transform.position.y > player.transform.position.y)
-                        {
-                            
-                            destination.y = player.transform.position.y + 2f;
-                        }
-                        else
-                        {
-                            destination.y = player.transform.position.y + 2f;
-                        }
-                        
-                    }
 
+                        destination.y = player.transform.position.y + 2f;
+                    }
                     else
                     {
-                        if (transform.position.x > player.transform.position.x)
-                        {
-
-                            destination.x = player.transform.position.x + 2f;
-                        }
-                        else
-                        {
-                            destination.x = player.transform.position.x + 2f;
-                        }
-                        destination.y = transform.position.y;
+                        destination.y = player.transform.position.y + 2f;
                     }
-                    currentState = states.JUMPING;
+
                 }
+                else
+                {
+                    if (transform.position.x > player.transform.position.x)
+                    {
+
+                        destination.x = player.transform.position.x + 2f;
+                    }
+                    else
+                    {
+                        destination.x = player.transform.position.x + 2f;
+                    }
+                    destination.y = transform.position.y;
+                }
+                StartCoroutine(JumpWaiting());
                 break;
                 
 
             case states.JUMPING:
-                //destination = new Vector2(player.transform.position.x, player.transform.position.y);
-                rb.MovePosition(Vector2.MoveTowards(transform.position, destination, speed));
-                if(Vector2.Distance(transform.position, destination) < 1)
+                
+                float adj = Time.deltaTime / moveTime;
+
+                if (vertical)
                 {
-                    currentState = states.SHOOT_WAITING;
-                    jumpTimerCounter = jumpTimer;
-                    //StartCoroutine(Shoot());
+                    Vector3 dir = new Vector3(0, vertForce, 0);
+                    if (switched)
+                    {
+                        rb.AddForce(dir * adj * -1);
+                    }
+                    else
+                    {
+                        rb.AddForce(dir * adj);
+                    }
+                }
+                else
+                {
+                    angle += (180f * adj);
+                    Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
+                    rb.AddForce(dir * (forcePerUnit * units * adj));
                 }
                 break;
 
         }
+    }
+
+    private IEnumerator JumpWaiting()
+    {
+
+        yield return new WaitForSeconds(jumpWait);
+        currentState = states.JUMPING;
+
+        if (vertical)
+        {
+            float first = moveTime * (2f / 3f);
+            float second = moveTime * (1f/3f);
+            if (destination.y < player.transform.position.y)
+            {
+                StartCoroutine(JumpVertical(second,first));
+            }
+            else
+            {
+                StartCoroutine(JumpVertical(first,second));
+            }
+        }
+        else
+        {
+            StartCoroutine(Jump(moveTime));
+        }
+        
+    }
+
+    private IEnumerator Jump(float timeTotal)
+    {
+        yield return new WaitForSeconds(timeTotal);
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        switched = false;
+        vertical = false;
+        currentState = states.SHOOT_WAITING;
+    }
+
+    private IEnumerator JumpVertical(float firstTimer, float secondTimer)
+    {
+        yield return new WaitForSeconds(firstTimer);
+        switched = true;
+        StartCoroutine(Jump(secondTimer));
+    }
+
+    private IEnumerator WaitToShoot()
+    {
+        yield return new WaitForSeconds(shootWaitTime);
+        currentState = states.SHOOTING;
+        yield return new WaitForSeconds(shootWaitTime);
+        currentState = states.NOTHING;
     }
 
     /*

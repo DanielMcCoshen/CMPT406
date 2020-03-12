@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
 
 
                 velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-                velocityChange.y = Mathf.Clamp(velocityChange.y, -maxVelocityChange, maxVelocityChange);
+                velocityChange.y = Mathf.Clamp(velocityChange.y, -maxVelocityChange, maxVelocityChange)*.5f;
                 rb.AddForce(velocityChange);
                 this.spriteRenderer.color = baseColour;
             }
