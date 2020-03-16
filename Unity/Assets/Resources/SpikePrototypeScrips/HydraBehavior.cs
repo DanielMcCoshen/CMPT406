@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 public class HydraBehavior : MonoBehaviour
 {
     public float shootWaitTime = 2f;
@@ -21,12 +22,12 @@ public class HydraBehavior : MonoBehaviour
     public GameObject snipeProjectilePrefab;
     public GameObject bigProjectilePrefab;
     public GameObject spreadProjectilePrefab;
+    public HealthBar healthBar;
     public float snipeProjectileForce;
     public float bigProjectileForce;
     public float spreadProjectileForce;
     private int hydraHeads;
 
-    private Vector2 destination;
     private enum states { NOTHING, SHOOTING };
     private states currentState;
     public enum attackPattern { SNIPE, BIG, SPREAD }
@@ -37,6 +38,7 @@ public class HydraBehavior : MonoBehaviour
     {
         currentState = states.NOTHING;
         health = 100.0f;
+
 
         // Replace this with code to get the starting pattern based on votes
         //currentAttackPattern = attackPattern.SNIPE;
@@ -100,10 +102,12 @@ public class HydraBehavior : MonoBehaviour
     {
         currentState = states.SHOOTING;
         yield return new WaitForSeconds(UnityEngine.Random.Range(1.0f, 4.0f));
-        this.health -= 10.0f;
         if(UnityEngine.Random.Range(0.0f, 10.0f) >= hydraHeads)
         {
             ShootFireball(firePoint.position, aimPoint.rotation);
+            //health -= 10.0f;
+            //this.healthBar.SetSize(health / 100);
+            healthBar.SetSize(0.5f);
         }
         currentState = states.NOTHING;
     }
