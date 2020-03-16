@@ -5,17 +5,17 @@ using UnityEngine;
 public class HydraHealthbar : MonoBehaviour
 {
 
-
+    private Transform bar;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        Transform bar = transform.Find("Bar");
     }
 
     // Update is called once per frame
-    void Update()
+    public void SetSize(float sizeNormalized)
     {
-        gameObject.transform.localScale = new Vector3 (1, (int)(gameObject.GetComponent<HydraBehavior>().health / 100.0f), 1);
+        bar.localScale = new Vector3(sizeNormalized, 1f);
     }
 }
