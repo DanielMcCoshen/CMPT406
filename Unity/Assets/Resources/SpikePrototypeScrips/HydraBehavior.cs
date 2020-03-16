@@ -8,6 +8,7 @@ public class HydraBehavior : MonoBehaviour
     public float shootWaitTime = 2f;
     private float angle = 0f;
     private float forcePerUnit = 0f;
+    public float health;
    
     private bool vertical = false;
     private bool switched = false;
@@ -35,10 +36,11 @@ public class HydraBehavior : MonoBehaviour
     void Start()
     {
         currentState = states.NOTHING;
+        health = 100.0f;
 
         // Replace this with code to get the starting pattern based on votes
-        currentAttackPattern = attackPattern.SNIPE;
-        //currentAttackPattern = attackPattern.BIG;
+        //currentAttackPattern = attackPattern.SNIPE;
+        currentAttackPattern = attackPattern.BIG;
 
         hydraHeads = GameObject.Find("HydraControl").gameObject.GetComponent<HydraControl>().hydraHeads;
 
@@ -50,6 +52,16 @@ public class HydraBehavior : MonoBehaviour
         Vector2 currentVelocity = rb.velocity;
         Vector2 oppositeForce = -currentVelocity;
         rb.AddRelativeForce(oppositeForce);
+        if (this.health <= 0.0f)
+        {
+            GameObject.Find("HydraControl").GetComponent<HydraControl>().hydraHeads -= 1;
+            GameObject.Destroy(this);
+        }
+
+        if (hydraHeads <= 0)
+        {
+            //game over
+        }
 
         switch (currentState)
         {
@@ -88,6 +100,7 @@ public class HydraBehavior : MonoBehaviour
     {
         currentState = states.SHOOTING;
         yield return new WaitForSeconds(UnityEngine.Random.Range(1.0f, 4.0f));
+        this.health -= 10.0f;
         if(UnityEngine.Random.Range(0.0f, 10.0f) >= hydraHeads)
         {
             ShootFireball(firePoint.position, aimPoint.rotation);

@@ -20,11 +20,17 @@ public class Projectile : MonoBehaviour
             
             if (collision.gameObject.GetComponent<Rigidbody2D>() != null)
             {
-                Vector3 dir = this.transform.position - collision.gameObject.transform.position;
-                dir = -dir.normalized;
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(dir.x, dir.y, transform.position.z) * force);
-            }
-        
+                if (collision.gameObject.tag == "Hydra")
+                {
+                    collision.gameObject.GetComponent<HydraBehavior>().health -= this.force / 25.0f;
+                }
+                else
+                {
+                    Vector3 dir = this.transform.position - collision.gameObject.transform.position;
+                    dir = -dir.normalized;
+                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(dir.x, dir.y, transform.position.z) * force);
+                }
+            }        
             Destroy(gameObject);
         }
         
