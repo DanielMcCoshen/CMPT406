@@ -23,29 +23,19 @@ public class HydraBehavior : MonoBehaviour
     public GameObject bigProjectilePrefab;
     public GameObject spreadProjectilePrefab;
     public HealthBar healthBar;
+    public HydraControl hydraControl;
     public float snipeProjectileForce;
     public float bigProjectileForce;
     public float spreadProjectileForce;
-    private int hydraHeads;
 
     private enum states { NOTHING, SHOOTING };
     private states currentState;
-    public enum attackPattern { SNIPE, BIG, SPREAD }
-    public attackPattern currentAttackPattern;
     
 
     void Start()
     {
         currentState = states.NOTHING;
         health = 100.0f;
-
-
-        // Replace this with code to get the starting pattern based on votes
-        //currentAttackPattern = attackPattern.SNIPE;
-        currentAttackPattern = attackPattern.BIG;
-
-        hydraHeads = GameObject.Find("HydraControl").gameObject.GetComponent<HydraControl>().hydraHeads;
-
         player = GameObject.FindWithTag("Player");
     }
 
@@ -54,16 +44,6 @@ public class HydraBehavior : MonoBehaviour
         Vector2 currentVelocity = rb.velocity;
         Vector2 oppositeForce = -currentVelocity;
         rb.AddRelativeForce(oppositeForce);
-        if (this.health <= 0.0f)
-        {
-            GameObject.Find("HydraControl").GetComponent<HydraControl>().hydraHeads -= 1;
-            GameObject.Destroy(this);
-        }
-
-        if (hydraHeads <= 0)
-        {
-            //game over
-        }
 
         switch (currentState)
         {
@@ -76,21 +56,16 @@ public class HydraBehavior : MonoBehaviour
         }
     }
 
-    public void setAttackPattern(attackPattern newAttack)
-    {
-        this.currentAttackPattern = newAttack;
-    }
-
     public void ShootFireball(Vector3 position, Quaternion rotation)
     {
-        if(currentAttackPattern == attackPattern.SNIPE)
+        if(hydraControl.currentAttackPattern == HydraControl.attackPattern.SNIPE)
         {
             GameObject projectile = Instantiate(snipeProjectilePrefab, position, rotation);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(projectile.transform.up * snipeProjectileForce, ForceMode2D.Impulse);
         }
 
-        else if (currentAttackPattern == attackPattern.BIG)
+        else if (hydraControl.currentAttackPattern == HydraControl.attackPattern.BIG)
         {
             GameObject projectile = Instantiate(bigProjectilePrefab, position, rotation);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
@@ -102,25 +77,41 @@ public class HydraBehavior : MonoBehaviour
     {
         currentState = states.SHOOTING;
         yield return new WaitForSeconds(UnityEngine.Random.Range(1.0f, 4.0f));
-        if(UnityEngine.Random.Range(0.0f, 10.0f) >= hydraHeads)
+        if(UnityEngine.Random.Range(0.0f, 10.0f) >= hydraControl.hydraHeads)
         {
             ShootFireball(firePoint.position, aimPoint.rotation);
-            //health -= 10.0f;
-            //healthBar.SetSize(health / 100);
         }
         currentState = states.NOTHING;
     }
 
     public void SetHealth(float damage)
     {
-        health -= damage;
-        if(health <= 0)
+        this.health -= damage;
+        if(this.health <= 0)
         {
             healthBar.SetSize(0);
+            if(hydraControl == null)
+            {
+                Debug.Log("hydraControl not found");
+            }
+            hydraControl.hydraHeads -= 1;
+            if(hydraControl.hydraHeads == 3)
+            {
+                hydraControl.setAttackPattern(HydraControl.attackPattern.BIG);
+                Debug.Log("Attack pattern changed");
+            }
+            Debug.Log(hydraControl.hydraHeads);
+            Destroy(gameObject);
         }
+
         else
         {
             healthBar.SetSize(health / 100);
         }
+    }
+
+    public void Defeated()
+    {
+        //Do game over stuff. 
     }
 }
