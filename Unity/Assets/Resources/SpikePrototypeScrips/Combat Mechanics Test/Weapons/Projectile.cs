@@ -22,7 +22,9 @@ public class Projectile : MonoBehaviour
             {
                 if (collision.gameObject.tag == "Hydra")
                 {
-                    collision.gameObject.GetComponent<HydraBehavior>().health -= this.force / 25.0f;
+                    var damage = this.force / 50.0f;
+                    var hydraHealth = collision.gameObject.GetComponent<HydraBehavior>();
+                    hydraHealth.SetHealth(damage);
                 }
                 else
                 {

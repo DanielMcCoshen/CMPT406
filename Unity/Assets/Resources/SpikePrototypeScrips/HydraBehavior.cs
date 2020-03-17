@@ -105,9 +105,22 @@ public class HydraBehavior : MonoBehaviour
         if(UnityEngine.Random.Range(0.0f, 10.0f) >= hydraHeads)
         {
             ShootFireball(firePoint.position, aimPoint.rotation);
-            health -= 10.0f;
-            healthBar.SetSize(health / 100);
+            //health -= 10.0f;
+            //healthBar.SetSize(health / 100);
         }
         currentState = states.NOTHING;
+    }
+
+    public void SetHealth(float damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            healthBar.SetSize(0);
+        }
+        else
+        {
+            healthBar.SetSize(health / 100);
+        }
     }
 }
