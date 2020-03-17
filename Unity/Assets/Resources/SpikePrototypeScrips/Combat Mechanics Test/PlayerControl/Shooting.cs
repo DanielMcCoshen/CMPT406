@@ -70,54 +70,80 @@ public class Shooting : MonoBehaviour
 
     private void UpdateWeaponEquipMenu()
     {
-        foreach (GameObject weapon in weaponEquipSymbols)
+        void InstantiateMenuSymbols(int prev, int next, Transform menuTransform, Vector3 menuPosition)
         {
-            if (weapon != null && !weapon.Equals(null))
-            {
-                Destroy(weapon);
-            }
-                
-        }
-        deactivateMenu = true;
-        deactivationTime = Time.time + 3f;
-        weaponEquipMenu.SetActive(true);
-        Transform menuTransform = weaponEquipMenu.transform;
-        Vector3 menuPosition = menuTransform.position;
-        int prev = equippedWeaponIndex - 1;
-        int next = equippedWeaponIndex + 1;
-        if (prev == -1)
-        {
-            prev = weapons.Count-1;
-        }
-        if (next == weapons.Count)
-        {
-            next = 0;
-        }
-        weaponEquipSymbols[0] = Instantiate(weapons[prev].GetComponent<Weapon>().GetWeaponMenuPrefab(), 
+            weaponEquipSymbols[0] = Instantiate(weapons[prev].GetComponent<Weapon>().GetWeaponMenuPrefab(),
             new Vector3(menuPosition.x - 0.75f, menuPosition.y, menuPosition.z), Quaternion.identity, menuTransform);
 
-        weaponEquipSymbols[1] = Instantiate(weapons[equippedWeaponIndex].GetComponent<Weapon>().GetWeaponMenuPrefab(), 
-            new Vector3(menuPosition.x, menuPosition.y, menuPosition.z), Quaternion.identity, menuTransform);
+            weaponEquipSymbols[1] = Instantiate(weapons[equippedWeaponIndex].GetComponent<Weapon>().GetWeaponMenuPrefab(),
+                new Vector3(menuPosition.x, menuPosition.y, menuPosition.z), Quaternion.identity, menuTransform);
 
-        weaponEquipSymbols[2] = Instantiate(weapons[next].GetComponent<Weapon>().GetWeaponMenuPrefab(), 
-            new Vector3(menuPosition.x + 0.75f, menuPosition.y, menuPosition.z), Quaternion.identity, menuTransform);
+            weaponEquipSymbols[2] = Instantiate(weapons[next].GetComponent<Weapon>().GetWeaponMenuPrefab(),
+                new Vector3(menuPosition.x + 0.75f, menuPosition.y, menuPosition.z), Quaternion.identity, menuTransform);
 
-        weaponEquipSymbols[0].transform.localScale = menuSmallWeaponScale;
-        weaponEquipSymbols[1].transform.localScale = menuWeaponScale;
-        weaponEquipSymbols[2].transform.localScale = menuSmallWeaponScale;
+            weaponEquipSymbols[0].transform.localScale = menuSmallWeaponScale;
+            weaponEquipSymbols[1].transform.localScale = menuWeaponScale;
+            weaponEquipSymbols[2].transform.localScale = menuSmallWeaponScale;
+        }
+
+        int[] GetIndices()
+        {
+            int prev = equippedWeaponIndex - 1;
+            int next = equippedWeaponIndex + 1;
+            if (prev == -1)
+            {
+                prev = weapons.Count - 1;
+            }
+            if (next == weapons.Count)
+            {
+                next = 0;
+            }
+            return new int[] { prev, next };
+        }
+
+        void DestroyOldWeaponIcons()
+        {
+            foreach (GameObject weapon in weaponEquipSymbols)
+            {
+                if (weapon != null && !weapon.Equals(null))
+                {
+                    Destroy(weapon);
+                }
+            }
+        }
+
+        void SetupWeaponMenu()
+        {
+            deactivateMenu = true;
+            deactivationTime = Time.time + 3f;
+            weaponEquipMenu.SetActive(true);
+            Transform menuTransform = weaponEquipMenu.transform;
+            Vector3 menuPosition = menuTransform.position;
+
+            int[] indices = GetIndices();
+            InstantiateMenuSymbols(indices[0], indices[1], menuTransform, menuPosition);
+        }
+
+        DestroyOldWeaponIcons();
+        SetupWeaponMenu();
+        
     }
 
-    private void EquipWeapon(int index)
+    private void EquipWeapon(int indx)
     {
+        void ChangeWeapon(int index)
+        {
+            weaponEquipped = weapons[index];
+            weaponEquipped.SetActive(true);
+            weaponEquipped.GetComponent<PlayerWeaponAnimations>().Equipped(playerAnimationManager.direction);
+            equippedWeaponIndex = index;
+        }
+
         if (HasWeaponEquipped())
         {
             weaponEquipped.SetActive(false);
         }
-
-        weaponEquipped = weapons[index];
-        weaponEquipped.SetActive(true);
-        weaponEquipped.GetComponent<PlayerWeaponAnimations>().Equipped(playerAnimationManager.direction);
-        equippedWeaponIndex = index;
+        ChangeWeapon(indx);
         UpdateWeaponEquipMenu();
     }
 
@@ -126,6 +152,11 @@ public class Shooting : MonoBehaviour
         if(Input.GetButtonDown("Fire1"))
         {
             Shoot();
+        }
+
+        if (GetMouseInput.GetButtonDown("G"))
+        {
+
         }
 
         for(int index = 0; index < weapons.Count; index++)
@@ -165,17 +196,12 @@ public class Shooting : MonoBehaviour
 
         void RotateWithMouse()
         {
-
-            //Get the Screen positions of the object
             Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(aimPoint.position);
 
-            //Get the Screen position of the mouse
             Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
-            //Get the angle between the points
             float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
 
-            //Ta Daaa
             aimPoint.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle+90f));
 
         }
