@@ -5,12 +5,12 @@ using UnityEngine;
 public class HealthBar : MonoBehaviour
 {
 
-    private Transform bar;
+    public Transform bar;
 
     // Start is called before the first frame update
     private void Start()
     {
-        Transform bar = transform.Find("Bar");
+        
     }
 
     // Update is called once per frame
