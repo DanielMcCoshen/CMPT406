@@ -154,7 +154,7 @@ public class Shooting : MonoBehaviour
             Shoot();
         }
 
-        if (GetMouseInput.GetButtonDown("G"))
+        if (Input.GetButtonDown("G"))
         {
 
         }
