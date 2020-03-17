@@ -68,9 +68,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 92428915
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e7f7d4f0450b3d04ba8a348c95f829c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -186,9 +186,11 @@ MonoBehaviour:
   cooldownTimer: 1
   onCooldown: 0
   firePoint: {fileID: 0}
-  aimPoint: {fileID: 0}
+  aimPoint: {fileID: 3772832039952160389}
   firesBeforeCooldown: 0
   numberOfShotsFired: 0
+  weaponMenuPrefab: {fileID: 5225770660028333721, guid: e0853aa1f01141e4d8a7e9d571184b6a,
+    type: 3}
 --- !u!114 &5913857580186596599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb7a4acee3b86064c9a75c1d13b8015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aimPoint: {fileID: 0}
+  aimPoint: {fileID: 3772832039952160389}
   northSouthSprite: {fileID: 2444267886291724620}
   eastWestSprite: {fileID: 5859967925141897762}
   weapon: {fileID: 3772832039952160391}
@@ -275,9 +277,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 92428915
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e7f7d4f0450b3d04ba8a348c95f829c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

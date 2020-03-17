@@ -100,7 +100,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 92428915
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: fb6a6c183e4ab554b9f3cc1ebb88aab0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -183,7 +183,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 92428915
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 79f0ae39d2f52164f9df639e578eb00a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -333,6 +333,8 @@ MonoBehaviour:
   aimPoint: {fileID: 8917361828605797050}
   firesBeforeCooldown: 0
   numberOfShotsFired: 0
+  weaponMenuPrefab: {fileID: 2683814466051038887, guid: 06dcda9f468d8d24090ed56601f0a70c,
+    type: 3}
   numberOfProjectiles: 5
   rotationRate: 3
   numberOfWaves: 2

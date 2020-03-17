@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     public Transform aimPoint = null;
     public int firesBeforeCooldown;
     public int numberOfShotsFired = 0;
+    public GameObject weaponMenuPrefab;
     // Deletes bullet if it touches a Collider2D that is not the player.
 
     public void SetFirePoint(Transform fp)
@@ -40,6 +41,11 @@ public class Weapon : MonoBehaviour
             StartCoroutine(WeaponCooldown());
         }
         
+    }
+
+    public GameObject GetWeaponMenuPrefab()
+    {
+        return weaponMenuPrefab;
     }
 
     void OnEnable()
