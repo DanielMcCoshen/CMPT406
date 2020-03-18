@@ -7,7 +7,11 @@ TagManager:
   - Projectile
   - DeathPit
   - Weapon
+<<<<<<< HEAD
   - Hydra
+=======
+  - Souls
+>>>>>>> 24e92be27f16e231cfd9b3e4925b5422e3143e0a
   layers:
   - Default
   - TransparentFX
@@ -45,9 +49,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: PLayer
-    uniqueID: 92428915
-    locked: 0
   - name: SkellyLayer
     uniqueID: 3847660121
+    locked: 0
+  - name: PLayer
+    uniqueID: 92428915
     locked: 0
