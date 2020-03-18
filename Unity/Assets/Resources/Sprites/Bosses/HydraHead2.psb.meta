@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 12de01bca2b2d404282c442f95ab29f8
+=======
+guid: d90452382cd70b147b8eb6debf18270f
+>>>>>>> cf036b9f8e3621da4b3be2a90fa1a9318c32cbe7
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -99,6 +103,7 @@ ScriptedImporter:
       y: 4747
       width: 1858
       height: 2403
+<<<<<<< HEAD
     spriteID: 39e66c09f718c0f439f58c97f75fa92d
     internalID: 0
     spriteBone:
@@ -746,6 +751,16 @@ ScriptedImporter:
     - {x: 16, y: 55}
     - {x: 53, y: 56}
     - {x: 57, y: 27}
+=======
+    spriteID: 1257f77da62079c45a1a2a34be8dd744
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+>>>>>>> cf036b9f8e3621da4b3be2a90fa1a9318c32cbe7
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -1894, y: 1627}
@@ -760,6 +775,7 @@ ScriptedImporter:
       y: 4747
       width: 1590
       height: 2242
+<<<<<<< HEAD
     spriteID: 2c4de42bc6d925245ba669688436838f
     internalID: 0
     spriteBone:
@@ -1648,6 +1664,16 @@ ScriptedImporter:
     - {x: 77, y: 70}
     - {x: 23, y: 78}
     - {x: 79, y: 73}
+=======
+    spriteID: faf756907169a4b498285c8d218766f4
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+>>>>>>> cf036b9f8e3621da4b3be2a90fa1a9318c32cbe7
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -162, y: 2602}
@@ -1662,6 +1688,7 @@ ScriptedImporter:
       y: 4
       width: 2348
       height: 4735
+<<<<<<< HEAD
     spriteID: 8d25952cd92feae488c507695f0b2749
     internalID: 0
     spriteBone:
@@ -2360,6 +2387,16 @@ ScriptedImporter:
     - {x: 53, y: 52}
     - {x: 54, y: 53}
     - {x: 0, y: 54}
+=======
+    spriteID: 84cc64c65b9932b48b8808449e9bf09d
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+>>>>>>> cf036b9f8e3621da4b3be2a90fa1a9318c32cbe7
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -540, y: -388}
@@ -2386,20 +2423,29 @@ ScriptedImporter:
     spriteName: Head Outline
     isGroup: 0
     parentIndex: -1
+<<<<<<< HEAD
     spriteID: 39e66c09f718c0f439f58c97f75fa92d
+=======
+    spriteID: 1257f77da62079c45a1a2a34be8dd744
+>>>>>>> cf036b9f8e3621da4b3be2a90fa1a9318c32cbe7
     layerID: 10
     mosaicPosition: {x: 4, y: 4747}
   - name: Jaw Outline
     spriteName: Jaw Outline
     isGroup: 0
     parentIndex: -1
+<<<<<<< HEAD
     spriteID: 2c4de42bc6d925245ba669688436838f
+=======
+    spriteID: faf756907169a4b498285c8d218766f4
+>>>>>>> cf036b9f8e3621da4b3be2a90fa1a9318c32cbe7
     layerID: 7
     mosaicPosition: {x: 1870, y: 4747}
   - name: Body Outline
     spriteName: Body Outline
     isGroup: 0
     parentIndex: -1
+<<<<<<< HEAD
     spriteID: 8d25952cd92feae488c507695f0b2749
     layerID: 5
     mosaicPosition: {x: 4, y: 4}
@@ -2478,6 +2524,14 @@ ScriptedImporter:
       bones: 000000000100000002000000030000000400000005000000060000000800000007000000
       parentGroup: 0
       order: 0
+=======
+    spriteID: 84cc64c65b9932b48b8808449e9bf09d
+    layerID: 5
+    mosaicPosition: {x: 4, y: 4}
+  characterData:
+    bones: []
+    parts: []
+>>>>>>> cf036b9f8e3621da4b3be2a90fa1a9318c32cbe7
     dimension: {x: 0, y: 0}
     characterGroups: []
   generateGOHierarchy: 0

@@ -123,6 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1001 &229700597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2628,6 +2629,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+=======
+>>>>>>> cf036b9f8e3621da4b3be2a90fa1a9318c32cbe7
 --- !u!1 &1770660534
 GameObject:
   m_ObjectHideFlags: 0
