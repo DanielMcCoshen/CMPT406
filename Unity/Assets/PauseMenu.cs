@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
+    public bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject defeatUI;
+    public GameObject victoryUI;
 
     // Update is called once per frame
     void Update()
@@ -24,7 +26,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    void Resume()
+    public void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -42,5 +44,20 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void PlayerDefeat()
+    {
+        defeatUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+
+    }
+
+    public void HydraDefeated()
+    {
+        victoryUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
     }
 }

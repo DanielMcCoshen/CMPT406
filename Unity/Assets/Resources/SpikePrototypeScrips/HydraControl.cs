@@ -7,6 +7,9 @@ public class HydraControl : MonoBehaviour
     public int hydraHeads;
     public enum attackPattern { SNIPE, BIG, SPREAD };
     public attackPattern currentAttackPattern;
+    public PauseMenu menuManager;
+    public GameObject gameOverUI;
+    public GameObject victoryUI;
 
     // Start is called before the first frame update
     void Start()

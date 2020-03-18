@@ -100,7 +100,10 @@ public class HydraBehavior : MonoBehaviour
                 hydraControl.setAttackPattern(HydraControl.attackPattern.BIG);
                 Debug.Log("Attack pattern changed");
             }
-            Debug.Log(hydraControl.hydraHeads);
+            if(hydraControl.hydraHeads <= 0)
+            {
+                hydraControl.menuManager.HydraDefeated();
+            }
             Destroy(gameObject);
         }
 
@@ -110,8 +113,11 @@ public class HydraBehavior : MonoBehaviour
         }
     }
 
-    public void Defeated()
+    public void OnMouseOver()
     {
-        //Do game over stuff. 
+        if (Input.GetMouseButtonDown(0))
+        {
+            SetHealth(100.0f);
+        }
     }
 }
