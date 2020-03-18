@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Projectile
   - DeathPit
+  - Weapon
+  - Souls
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - 
   - Enemy Projectiles
   - Player Projectiles
-  - 
+  - PlayerPickups
   - 
   - 
   - 
@@ -43,9 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: PLayer
-    uniqueID: 92428915
-    locked: 0
   - name: SkellyLayer
     uniqueID: 3847660121
+    locked: 0
+  - name: PLayer
+    uniqueID: 92428915
     locked: 0

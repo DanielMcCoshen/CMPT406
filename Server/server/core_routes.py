@@ -10,7 +10,7 @@ import random
 
 @app.route('/', methods=['GET'])
 def index():
-    return "Home Page", status.HTTP_200_OK
+    return render_template("index.html"), status.HTTP_200_OK
 
 @app.route('/game', methods=['POST'])
 def create_game():
@@ -54,8 +54,14 @@ def create_job(game_id):
     if valid is not None:
         return valid
     current_room = rooms.get_map().get(game_id, None)
+
+    request_json = request.json
+    job_type = request_json['type']
+    job_filter = request_json['filter_id']
     
-    options = random.sample(optionlist.get(), app.config["VOTE_OPTIONS"])
+    if job_type == 0 : 
+        options = random.sample(optionlist.get().get(job_filter), app.config["VOTE_OPTIONS"])
+    
     new_job = job(options)
     current_room.add_job(new_job)
 

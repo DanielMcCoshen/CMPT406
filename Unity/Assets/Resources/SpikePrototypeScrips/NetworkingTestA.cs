@@ -27,7 +27,7 @@ public class Test : MonoBehaviour
             }
             catch (Exception e)
             {
-                Debug.Log("Failed");
+                Debug.Log(e.Message);
             }
 
             Debug.Log(position);
