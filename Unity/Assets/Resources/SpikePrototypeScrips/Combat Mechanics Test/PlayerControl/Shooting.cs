@@ -9,6 +9,12 @@ public class Shooting : MonoBehaviour
     public Rigidbody2D rb;
     public Camera mainCam;
 
+    [Header("Item Usage")]
+    private List<string> itemNames;
+    public Dictionary<string, GameObject> items;
+    public GameObject itemEquipped;
+
+    [Header("Weapon Firing")]
     public Transform firePoint;
     public Transform aimPoint;
     public List<GameObject> weapons;
@@ -35,18 +41,30 @@ public class Shooting : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Weapon")
+        void ReceiveWeapon()
         {
-            GameObject obj = Instantiate(col.gameObject.GetComponent<ItemPickup>().GetItem(), firePoint.position, 
+            GameObject obj = Instantiate(col.gameObject.GetComponent<ItemPickup>().GetItem(), firePoint.position,
                 firePoint.rotation, firePoint);
             weapons.Add(obj.gameObject);
             col.gameObject.GetComponent<ItemPickup>().DestroySelf();
             obj.SetActive(false);
+            if (weaponEquipped != null && !weaponEquipped.Equals(null))
+            {
+                EquipWeapon(0);
+            }
+        }
+        if (col.gameObject.tag == "Weapon")
+        {
+            
         }
         else if(col.gameObject.tag == "Souls")
         {
             playersDeathTrap.AddLife();
             col.gameObject.GetComponent<ItemPickup>().DestroySelf();
+        }
+        else if(col.gameObject.tag == "Item")
+        {
+
         }
     }
 
@@ -67,6 +85,20 @@ public class Shooting : MonoBehaviour
         }
     }
 
+    private int[] GetSurroundingIndices()
+    {
+        int prev = equippedWeaponIndex - 1;
+        int next = equippedWeaponIndex + 1;
+        if (prev == -1)
+        {
+            prev = weapons.Count - 1;
+        }
+        if (next == weapons.Count)
+        {
+            next = 0;
+        }
+        return new int[] { prev, next };
+    }
 
     private void UpdateWeaponEquipMenu()
     {
@@ -84,21 +116,6 @@ public class Shooting : MonoBehaviour
             weaponEquipSymbols[0].transform.localScale = menuSmallWeaponScale;
             weaponEquipSymbols[1].transform.localScale = menuWeaponScale;
             weaponEquipSymbols[2].transform.localScale = menuSmallWeaponScale;
-        }
-
-        int[] GetIndices()
-        {
-            int prev = equippedWeaponIndex - 1;
-            int next = equippedWeaponIndex + 1;
-            if (prev == -1)
-            {
-                prev = weapons.Count - 1;
-            }
-            if (next == weapons.Count)
-            {
-                next = 0;
-            }
-            return new int[] { prev, next };
         }
 
         void DestroyOldWeaponIcons()
@@ -120,7 +137,7 @@ public class Shooting : MonoBehaviour
             Transform menuTransform = weaponEquipMenu.transform;
             Vector3 menuPosition = menuTransform.position;
 
-            int[] indices = GetIndices();
+            int[] indices = GetSurroundingIndices();
             InstantiateMenuSymbols(indices[0], indices[1], menuTransform, menuPosition);
         }
 
@@ -154,18 +171,30 @@ public class Shooting : MonoBehaviour
             Shoot();
         }
 
-        if (Input.GetButtonDown("G"))
+        if (Input.GetButtonDown("Fire2"))
         {
-
+            UseItem();
         }
 
-        for(int index = 0; index < weapons.Count; index++)
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            if(Input.GetKeyDown("" + (index+1)))
+            EquipWeapon(GetSurroundingIndices()[0]);
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            EquipWeapon(GetSurroundingIndices()[1]);
+        }
+        else
+        {
+            for (int index = 0; index < weapons.Count; index++)
             {
-                EquipWeapon(index);
+                if (Input.GetKeyDown("" + (index + 1)))
+                {
+                    EquipWeapon(index);
+                }
             }
         }
+        
 
         void GetMouseInput()
         {
@@ -225,6 +254,21 @@ public class Shooting : MonoBehaviour
         }
     }
 
+    void UseItem()
+    {
+        if(itemEquipped != null && !itemEquipped.Equals(null))
+        {
+            itemEquipped.GetComponent<UsableItems>().UseItem();
+        }
+    }
+
+    public void ItemUsedUp(string itemName)
+    {
+        itemNames.Remove(itemName);
+        Destroy(items[itemName]);
+        items[itemName] = null;
+    }
+
     void Shoot()
     {
         if (HasWeaponEquipped())
@@ -241,5 +285,15 @@ public class Shooting : MonoBehaviour
     public bool HasWeaponEquipped()
     {
         return (weaponEquipped != null && !weaponEquipped.Equals(null));
+    }
+
+    public Transform GetFirePoint()
+    {
+        return firePoint;
+    }
+
+    public Transform GetAimPoint()
+    {
+        return aimPoint;
     }
 }
