@@ -10660,9 +10660,9 @@ MonoBehaviour:
   - {fileID: 8306064853223678856}
   - {fileID: 8306064855262325135}
   - {fileID: 8306064854952180634}
-  size: {x: 30, y: 30}
   loot: {fileID: 0}
   room: {fileID: 0}
+  bridges: {fileID: 479320989807360363}
   dynamicDanger: {fileID: 5368176661806572901}
 --- !u!1001 &6123336483372166373
 PrefabInstance:

@@ -52,9 +52,9 @@ MonoBehaviour:
   - {fileID: 989777646229701574}
   - {fileID: 989777644459493825}
   - {fileID: 989777644769909716}
-  size: {x: 30, y: 30}
   loot: {fileID: 0}
   room: {fileID: 0}
+  bridges: {fileID: 3724108877116220749}
   dynamicDanger: {fileID: 3784972326964036907}
 --- !u!1 &2939270563970634484
 GameObject:

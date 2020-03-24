@@ -566,9 +566,9 @@ MonoBehaviour:
   enemies:
   - {fileID: 4675391711230956417}
   - {fileID: 4675391710819362471}
-  size: {x: 30, y: 30}
   loot: {fileID: 0}
   room: {fileID: 0}
+  bridges: {fileID: 5506131946655668706}
   dynamicDanger: {fileID: 8384645249088922834}
 --- !u!1 &7448166609340681045
 GameObject:

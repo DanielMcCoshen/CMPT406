@@ -61,7 +61,7 @@ Transform:
   - {fileID: 3121688728999565335}
   - {fileID: 3121688729604459202}
   - {fileID: 3121688730257512464}
-  - {fileID: 4841655673443861338}
+  - {fileID: 223015207499414725}
   - {fileID: 1423679047476210780}
   m_Father: {fileID: 7908033854938457286}
   m_RootOrder: 0
@@ -9744,7 +9744,7 @@ CompositeCollider2D:
     m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
---- !u!1 &5366317819822275759
+--- !u!1 &3333385713383865780
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9752,64 +9752,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7908033854938457286}
-  - component: {fileID: 3835740041276046020}
-  m_Layer: 0
-  m_Name: 30x30 W Curve
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7908033854938457286
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5366317819822275759}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 622002301011248614}
-  - {fileID: 1762165621507061908}
-  - {fileID: 1588341939127249263}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3835740041276046020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5366317819822275759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65dbf5d93cdd72c43a9b2fce695539fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnLocation: {fileID: 1762165621507061908}
-  enemies:
-  - {fileID: 931419049893077316}
-  - {fileID: 931419050125589668}
-  - {fileID: 931419049720149452}
-  size: {x: 30, y: 30}
-  loot: {fileID: 0}
-  room: {fileID: 0}
-  dynamicDanger: {fileID: 7678097866293881377}
---- !u!1 &6076387837056287711
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4841655673443861338}
-  - component: {fileID: 409457785517634750}
-  - component: {fileID: 797287686701609030}
+  - component: {fileID: 223015207499414725}
+  - component: {fileID: 8430256951214145534}
+  - component: {fileID: 6864297731397032018}
   m_Layer: 0
   m_Name: Bridges
   m_TagString: Untagged
@@ -9817,13 +9762,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4841655673443861338
+--- !u!4 &223015207499414725
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6076387837056287711}
+  m_GameObject: {fileID: 3333385713383865780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -9831,13 +9776,13 @@ Transform:
   m_Father: {fileID: 622002301011248614}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1839735485 &409457785517634750
+--- !u!1839735485 &8430256951214145534
 Tilemap:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6076387837056287711}
+  m_GameObject: {fileID: 3333385713383865780}
   m_Enabled: 1
   m_Tiles:
   - first: {x: -4, y: 14, z: 0}
@@ -10006,8 +9951,8 @@ Tilemap:
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -30, y: -37, z: 0}
-  m_Size: {x: 65, y: 68, z: 1}
+  m_Origin: {x: -29, y: -32, z: 0}
+  m_Size: {x: 60, y: 62, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -10027,13 +9972,13 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!483693784 &797287686701609030
+--- !u!483693784 &6864297731397032018
 TilemapRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6076387837056287711}
+  m_GameObject: {fileID: 3333385713383865780}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -10075,6 +10020,61 @@ TilemapRenderer:
   m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 2
+--- !u!1 &5366317819822275759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7908033854938457286}
+  - component: {fileID: 3835740041276046020}
+  m_Layer: 0
+  m_Name: 30x30 W Curve
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7908033854938457286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5366317819822275759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 622002301011248614}
+  - {fileID: 1762165621507061908}
+  - {fileID: 1588341939127249263}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3835740041276046020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5366317819822275759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65dbf5d93cdd72c43a9b2fce695539fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnLocation: {fileID: 1762165621507061908}
+  enemies:
+  - {fileID: 931419049893077316}
+  - {fileID: 931419050125589668}
+  - {fileID: 931419049720149452}
+  loot: {fileID: 0}
+  room: {fileID: 0}
+  bridges: {fileID: 3333385713383865780}
+  dynamicDanger: {fileID: 7678097866293881377}
 --- !u!1 &7678097866293881377
 GameObject:
   m_ObjectHideFlags: 0
@@ -10096,7 +10096,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1423679047476210780
 Transform:
   m_ObjectHideFlags: 0

@@ -492,9 +492,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnLocation: {fileID: 982200779403110771}
   enemies: []
-  size: {x: 30, y: 30}
   loot: {fileID: 0}
   room: {fileID: 0}
+  bridges: {fileID: 6563399172612014345}
   dynamicDanger: {fileID: 9176954471809022918}
 --- !u!1 &7140343126899600409
 GameObject:
