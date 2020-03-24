@@ -8,6 +8,7 @@ TagManager:
   - DeathPit
   - Weapon
   - Souls
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -50,4 +51,7 @@ TagManager:
     locked: 0
   - name: PLayer
     uniqueID: 92428915
+    locked: 0
+  - name: Menu Elements
+    uniqueID: 2810267329
     locked: 0

@@ -13,7 +13,7 @@ public class Grenade : UsableItems
         GameObject projectile = Instantiate(grenadeShellPrefab, position, rotation);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         Vector3 direction = new Vector3(projectile.transform.up.x, projectile.transform.up.y * .5f, projectile.transform.up.z);
-        rb.AddForce(direction * 5f, ForceMode2D.Impulse);
+        rb.AddForce(direction * 8f, ForceMode2D.Impulse);
     }
 
     public override void ItemActivation()

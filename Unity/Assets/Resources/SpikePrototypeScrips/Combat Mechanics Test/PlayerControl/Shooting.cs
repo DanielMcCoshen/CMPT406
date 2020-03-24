@@ -10,8 +10,15 @@ public class Shooting : MonoBehaviour
     public Camera mainCam;
 
     [Header("Item Usage")]
-    private List<string> itemNames;
-    public Dictionary<string, GameObject> items;
+    private Vector3 smallMenuItemScale = new Vector3(.2f, .2f, 1f);
+    private Vector3 normalMenuItemScale = new Vector3(.3f, .3f, 1f);
+    public GameObject itemEquipMenu;
+    private GameObject[] itemEquipSymbols = new GameObject[3];
+    private bool deactivateItemMenu = false;
+    private float itemDeactivationTime = 0f;
+    public int equippedItemIndex;
+    private List<string> itemNames = new List<string>();
+    public Dictionary<string, GameObject> items = new Dictionary<string, GameObject>();
     public GameObject itemEquipped;
 
     [Header("Weapon Firing")]
@@ -47,15 +54,33 @@ public class Shooting : MonoBehaviour
                 firePoint.rotation, firePoint);
             weapons.Add(obj.gameObject);
             col.gameObject.GetComponent<ItemPickup>().DestroySelf();
+            
             obj.SetActive(false);
-            if (weaponEquipped != null && !weaponEquipped.Equals(null))
+            if (!HasWeaponEquipped())
             {
                 EquipWeapon(0);
             }
         }
+
+        void ReceiveItem()
+        {
+            GameObject obj = Instantiate(col.gameObject.GetComponent<ItemPickup>().GetItem(), firePoint.position,
+                firePoint.rotation, firePoint);
+            string name = obj.gameObject.GetComponent<UsableItems>().GetItemType();
+            itemNames.Add(name);
+            obj.GetComponent<UsableItems>().SetUpItem(gameObject);
+            items.Add(name, obj.gameObject);
+            col.gameObject.GetComponent<ItemPickup>().DestroySelf();
+            obj.SetActive(false);
+            if (!HasItemEquipped())
+            {
+                EquipItem(0);
+            }
+        }
+
         if (col.gameObject.tag == "Weapon")
         {
-            
+            ReceiveWeapon();
         }
         else if(col.gameObject.tag == "Souls")
         {
@@ -64,7 +89,7 @@ public class Shooting : MonoBehaviour
         }
         else if(col.gameObject.tag == "Item")
         {
-
+            ReceiveItem();
         }
     }
 
@@ -85,19 +110,65 @@ public class Shooting : MonoBehaviour
         }
     }
 
-    private int[] GetSurroundingIndices()
+    private int[] GetSurroundingIndices(int index, int size)
     {
-        int prev = equippedWeaponIndex - 1;
-        int next = equippedWeaponIndex + 1;
+        int prev = index - 1;
+        int next = index + 1;
         if (prev == -1)
         {
-            prev = weapons.Count - 1;
+            prev = size - 1;
         }
-        if (next == weapons.Count)
+        if (next == size)
         {
             next = 0;
         }
         return new int[] { prev, next };
+    }
+
+    private void UpdateItemEquipMenu()
+    {
+        void InstantiateMenuSymbols(int prev, int next, Transform menuTransform, Vector3 menuPosition)
+        {
+            itemEquipSymbols[0] = Instantiate(items[itemNames[prev]].GetComponent<UsableItems>().GetItemMenuPrefab(),
+            new Vector3(menuPosition.x - 0.75f, menuPosition.y, menuPosition.z), Quaternion.identity, menuTransform);
+
+            itemEquipSymbols[1] = Instantiate(items[itemNames[equippedItemIndex]].GetComponent<UsableItems>().GetItemMenuPrefab(),
+                new Vector3(menuPosition.x, menuPosition.y, menuPosition.z), Quaternion.identity, menuTransform);
+
+            itemEquipSymbols[2] = Instantiate(items[itemNames[next]].GetComponent<UsableItems>().GetItemMenuPrefab(),
+                new Vector3(menuPosition.x + 0.75f, menuPosition.y, menuPosition.z), Quaternion.identity, menuTransform);
+
+            itemEquipSymbols[0].transform.localScale = smallMenuItemScale;
+            itemEquipSymbols[1].transform.localScale = normalMenuItemScale;
+            itemEquipSymbols[2].transform.localScale = smallMenuItemScale;
+        }
+
+        void DestroyOldItemIcons()
+        {
+            foreach (GameObject item in itemEquipSymbols)
+            {
+                if (item != null && !item.Equals(null))
+                {
+                    Destroy(item);
+                }
+            }
+        }
+
+        void SetupItemMenu()
+        {
+            deactivateItemMenu = true;
+            itemDeactivationTime = Time.time + 3f;
+            itemEquipMenu.SetActive(true);
+            Transform menuTransform = itemEquipMenu.transform;
+            Vector3 menuPosition = menuTransform.position;
+
+            int[] indices = GetSurroundingIndices(equippedItemIndex,itemNames.Count);
+            InstantiateMenuSymbols(indices[0], indices[1], menuTransform, menuPosition);
+        }
+
+        DestroyOldItemIcons();
+        SetupItemMenu();
+
     }
 
     private void UpdateWeaponEquipMenu()
@@ -137,13 +208,34 @@ public class Shooting : MonoBehaviour
             Transform menuTransform = weaponEquipMenu.transform;
             Vector3 menuPosition = menuTransform.position;
 
-            int[] indices = GetSurroundingIndices();
+            int[] indices = GetSurroundingIndices(equippedWeaponIndex, weapons.Count);
             InstantiateMenuSymbols(indices[0], indices[1], menuTransform, menuPosition);
         }
 
         DestroyOldWeaponIcons();
         SetupWeaponMenu();
         
+    }
+
+    public bool HasItemEquipped()
+    {
+        return itemEquipped != null && !itemEquipped.Equals(null);
+    }
+
+    private void EquipItem(int indx)
+    {
+        void ChangeItem(int index)
+        {
+            itemEquipped = items[itemNames[index]];
+            itemEquipped.SetActive(true);
+            equippedItemIndex = index;
+        }
+        if (HasItemEquipped())
+        {
+            itemEquipped.SetActive(false);
+        }
+        ChangeItem(indx);
+        UpdateItemEquipMenu();
     }
 
     private void EquipWeapon(int indx)
@@ -178,11 +270,11 @@ public class Shooting : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            EquipWeapon(GetSurroundingIndices()[0]);
+            EquipWeapon(GetSurroundingIndices(equippedWeaponIndex, weapons.Count)[0]);
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            EquipWeapon(GetSurroundingIndices()[1]);
+            EquipWeapon(GetSurroundingIndices(equippedWeaponIndex, weapons.Count)[1]);
         }
         else
         {
@@ -194,7 +286,15 @@ public class Shooting : MonoBehaviour
                 }
             }
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            EquipItem(GetSurroundingIndices(equippedItemIndex, itemNames.Count)[0]);
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            EquipItem(GetSurroundingIndices(equippedItemIndex, itemNames.Count)[1]);
+        }
 
         void GetMouseInput()
         {
@@ -212,6 +312,15 @@ public class Shooting : MonoBehaviour
                     Destroy(weapon);
                 }
                 weaponEquipMenu.SetActive(false);
+            }
+        }
+        if (deactivateItemMenu)
+        {
+            if(itemDeactivationTime < Time.time)
+            {
+                deactivateItemMenu = false;
+                Destroy(itemEquipSymbols[0]);
+                Destroy(itemEquipSymbols[2]);
             }
         }
     }
@@ -256,7 +365,7 @@ public class Shooting : MonoBehaviour
 
     void UseItem()
     {
-        if(itemEquipped != null && !itemEquipped.Equals(null))
+        if(HasItemEquipped())
         {
             itemEquipped.GetComponent<UsableItems>().UseItem();
         }

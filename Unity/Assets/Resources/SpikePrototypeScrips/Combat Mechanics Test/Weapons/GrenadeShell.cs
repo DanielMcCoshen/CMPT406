@@ -7,8 +7,6 @@ public class GrenadeShell : MonoBehaviour
     public float rotationRate = 10.5f;
     public int numberOfProjectiles = 17;
     public GameObject projectilePrefab;
-    public float force;
-    public float destroyTimer = 10;
 
     public void FireProjectile(Vector3 position, Quaternion rotation)
     {
@@ -28,13 +26,14 @@ public class GrenadeShell : MonoBehaviour
 
     void Start()
     {
-        Destroy(gameObject, destroyTimer);
+        StartCoroutine(DestroyAndSpawnProjectiles());
     }
 
     IEnumerator DestroyAndSpawnProjectiles()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.5f);
         FireInASpread();
         yield return new WaitForSeconds(.1f);
+        Destroy(gameObject);
     }
 }
