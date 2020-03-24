@@ -193,26 +193,101 @@ class optionlist(object):
     @classmethod
     def get(cls):
         if cls._instance is None:
-            print("populating opions list")
+            print("populating options list")
             cls._instance = {
-                0:  [],
-                1:  [],
-                2:  [],
-                3:  [],
-                4:  [],
-                5:  [],
-                6:  [],
-                7:  [],
-                8:  [],
-                9:  [],
-                10: [],
-                11: [],
-                13: [   
-                        option(0, "Bean", 0), 
-                        option(1, "T Junction", 0), 
-                        option(2, "Donut", 0),
-                        option(3, "Island", 0)
+                # All
+                0:  [
+                        option(0, "Paved Holes", 0)
                     ],
-                14: []
+                # N
+                1:  [
+                        option(32, "Ice Room", 0),
+                        option(33, "Skinny Path", 0),
+                        option(34, "Straight Islands", 0),
+                        option(35, "Paved Hole", 0)
+                    ],
+                # E
+                2:  [
+                        option(27, "Curve", 0),
+                        option(28, "Ice Room", 0),
+                        option(29, "Skinny Path", 0),
+                        option(30, "Straight Islands", 0),
+                        option(31, "Paved Hole", 0)
+                    ],
+                # S
+                3:  [
+                        option(36, "Ice Room", 0),
+                        option(37, "Skinny Path", 0),
+                        option(38, "Straight Islands", 0),
+                        option(39, "Paved Hole", 0)
+                    ],
+                # W
+                4:  [
+                        option(40, "Curve", 0),
+                        option(41, "Ice Room", 0),
+                        option(42, "Skinny Path", 0),
+                        option(43, "Straight Islands", 0),
+                        option(44, "Paved Hole", 0)
+                    ],
+                # N-E
+                5:  [
+                        option(1, "Curve Islands", 0),
+                        option(2, "Ice Room", 0),
+                        option(3, "Skinny Path", 0),
+                        option(4, "Paved Hole", 0)
+                    ],
+                # S-E
+                6:  [
+                        option(5, "Curve Islands", 0),
+                        option(6, "Ice Room", 0),
+                        option(7, "Skinny Path", 0),
+                        option(8, "Paved Hole", 0)
+                    ],
+                # W-S
+                7:  [
+                        option(14, "Curve Islans", 0),
+                        option(15, "Ice Room", 0),
+                        option(16, "Skinny Path", 0),
+                        option(17, "Paved Hole", 0)
+                    ],
+                # W-N
+                8:  [
+                        option(9, "Corner Islands", 0),
+                        option(10, "Curve Islands", 0),
+                        option(11, "Ice Room", 0),
+                        option(12, "Skinny Path", 0),
+                        option(13, "Paved Hole", 0)
+                    ],
+                # N-S
+                9:  [
+                        option(18, "Ice Room", 0),
+                        option(19, "Skinny Path", 0),
+                        option(20, "Straight Islands", 0),
+                        option(21, "Paved Hole", 0)
+                    ],
+                # W-E
+                10: [
+                        option(22, "Ice Room", 0),
+                        option(23, "Ice Strips", 0),
+                        option(24, "Skinny Path", 0),
+                        option(25, "Straight Islands", 0),
+                        option(26, "Paved Holes", 0)
+                    ],
+                # N-T
+                11: [
+                        option(46, "Paved Holes", 0)
+                    ],
+                # E-T
+                12: [
+                        option(45, "Paved Holes", 0)
+                    ],
+                # S-T
+                13: [   
+                        option(47, "Paved Holes", 0)
+                    ],
+                # W-T
+                14: [
+                        option(48, "Paved Holes", 0)
+                    ]
             }
         return cls._instance

@@ -17,6 +17,8 @@ public class RoomMap : MonoBehaviour
 
     public Transform SpawnLocation { get => spawnLocation; }
 
+    [Header("Tilemap References")]
+    public GameObject bridges;
     public GameObject dynamicDanger;
 
     public void spawnEnemies()
@@ -41,9 +43,10 @@ public class RoomMap : MonoBehaviour
         return enemies.Count == 0;
     }
 
-    public void setDynamicDanger(bool option)
+    public void switchDynamicDanger(bool option)
     {
         dynamicDanger.SetActive(option);
+        bridges.SetActive(!option);
     }
 
     public void activateRoom(GameObject playerDeathTrigger)
