@@ -4634,6 +4634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5371079274604825528}
   mainCam: {fileID: 0}
+  itemEquipped: {fileID: 0}
   firePoint: {fileID: 5371079275251287474}
   aimPoint: {fileID: 5371079275251287474}
   weapons: []

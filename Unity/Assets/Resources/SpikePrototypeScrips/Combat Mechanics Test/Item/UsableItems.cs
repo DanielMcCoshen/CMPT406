@@ -6,15 +6,42 @@ public class UsableItems : MonoBehaviour
 {
     public string itemType;
     public int numberOfUses;
-    // Start is called before the first frame update
-    void Start()
+    public Shooting playerShooting;
+
+    public Transform firePoint;
+    public Transform aimPoint;
+    public GameObject ItemMenuPrefab;
+
+    public GameObject GetItemMenuPrefab()
     {
-        
+        return ItemMenuPrefab;
     }
 
-    // Update is called once per frame
-    void Update()
+    public string GetItemType()
     {
-        
+        return itemType;
+    }
+
+    public virtual void SetUpItem(GameObject player)
+    {
+        playerShooting = player.GetComponent<Shooting>();
+        firePoint = playerShooting.GetFirePoint();
+        aimPoint = playerShooting.GetAimPoint();
+    }
+
+    public virtual void ItemActivation()
+    {
+
+    }
+
+    public virtual void UseItem()
+    {
+        ItemActivation();
+
+        numberOfUses-=1;
+        if(numberOfUses <= 0)
+        {
+            playerShooting.ItemUsedUp(itemType);
+        }
     }
 }
