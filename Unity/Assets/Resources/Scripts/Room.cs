@@ -10,8 +10,6 @@ public class Room : MonoBehaviour
     
     
     protected GameObject roomLayoutObj;
-
-    // public List<GameObject> bridges = new List<GameObject>();
     
     private bool votingCommenced = false;
     private bool votingComplete = false;
@@ -22,7 +20,8 @@ public class Room : MonoBehaviour
     protected RoomMap roomLayout;
     private int jobId;
 
-    private Filter filter;
+    [SerializeField]
+    private Filter filter = null;
     public Filter Filter { get => filter; set => filter = value; }
 
     public GameObject RoomLayout {
@@ -41,7 +40,6 @@ public class Room : MonoBehaviour
             DestroyImmediate(roomTemp);
             roomLayoutObj = Instantiate(value, gameObject.transform);
             roomLayout = roomLayoutObj.GetComponent<RoomMap>();
-            //roomLayout.room = this;
             votingComplete = true;
         }
     }
@@ -91,10 +89,6 @@ public class Room : MonoBehaviour
         {
             locked = true;
             roomLayout.switchDynamicDanger(true);
-            // foreach (GameObject bridge in bridges)
-            // {
-            //     bridge.SetActive(false);
-            // }
             roomLayout.spawnEnemies();   
         }
         foreach (Room r in neighbours)
@@ -113,11 +107,6 @@ public class Room : MonoBehaviour
                 locked = false;
                 roomLayout.spawnLoot();
                 roomLayout.switchDynamicDanger(false);
-                // foreach (GameObject bridge in bridges)
-                // {
-                //     bridge.SetActive(true);
-
-                // }
                 Debug.Log("All Enemies Dead");
             }
         }

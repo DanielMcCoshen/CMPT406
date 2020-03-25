@@ -1,74 +1,78 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+[System.Serializable]
 public class Filter
 {
-    public int Id { get; }
+    [SerializeField]
+    private int id = -1;
+    public int Id { get => id; }
 
     public Filter(bool North, bool South, bool East, bool West){
         //all doors
         if (North && East && South && West)
         {
-            Id = 0;
+            id = 0;
         }
         //one door
         else if (North && !East && !South && !West)
         {
-            Id = 1;
-        }
-        else if (!North && East && !South && !West)
-        {
-            Id = 2;
-        }
-        else if (!North && !East && South && !West)
-        {
-            Id = 3;
+            id = 1;
         }
         else if (!North && !East && !South && West)
         {
-            Id = 4;
+            id = 2;
+        }
+        else if (!North && !East && South && !West)
+        {
+            id = 3;
+        }
+        else if (!North && East && !South && !West)
+        {
+            id = 4;
         }
         //two doors
-        else if (North && East && !South && !West)
+        else if (North && !East && !South && West)
         {
-            Id = 5;
-        }
-        else if (!North && East && South && !West)
-        {
-            Id = 6;
+            id = 5;
         }
         else if (!North && !East && South && West)
         {
-            Id = 7;
+            id = 6;
         }
-        else if (North && !East && !South && West)
+        else if (!North && East && South && !West)
         {
-            Id = 8;
+            id = 7;
+        }
+        else if (North && East && !South && !West)
+        {
+            id = 8;
         }
         else if (North && !East && South && !West)
         {
-            Id = 9;
+            id = 9;
         }
         else if (!North && East && !South && West)
         {
-            Id = 10;
+            id = 10;
         }
         //three doors
         else if (North && East && !South && West)
         {
-            Id = 11;
-        }
-        else if (North && East && South && !West)
-        {
-            Id = 12;
-        }
-        else if (!North && East && South && West)
-        {
-            Id = 13;
+            id = 11;
         }
         else if (North && !East && South && West)
         {
-            Id = 1;
+            id = 12;
+        }
+        else if (!North && East && South && West)
+        {
+            id = 13;
+        }
+        else if (North && East && South && !West)
+        {
+            id = 1;
         }
         else
         {

@@ -14,7 +14,7 @@ public class FloorGenerator : MonoBehaviour
     public int startRoomX;
     public int startRoomY;
     public RectInt floorSize;
-    public List<List<Room>> rooms;
+    public List<ListWrapper> rooms;
 
     void Start()
     {
@@ -23,12 +23,21 @@ public class FloorGenerator : MonoBehaviour
         {
             writetext.WriteLine(layout);
         }
-        layout.Apply(rooms);
+        layout.Apply(constructLists(rooms));
+    }
+    private List<List<Room>> constructLists(List<ListWrapper> whyDoYouMakeMeDoThisUnity)
+    {
+        List<List<Room>> res = new List<List<Room>>();
+        foreach(ListWrapper l in whyDoYouMakeMeDoThisUnity)
+        {
+            res.Add(l.list);
+        }
+        return res;
     }
 
-    // Update is called once per frame
-    void Update()
+    [System.Serializable]
+    public class ListWrapper
     {
-
+        public List<Room> list;
     }
 }
