@@ -143,3 +143,9 @@ def close_room(game_id):
     else:
         rooms.get_map().pop(game_id, None) 
         return "", status.HTTP_200_OK
+
+@app.after_request
+def add_headers(response):
+	response.headers.add('Access-Control-Allow-Origin', '*')
+	response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+	return response

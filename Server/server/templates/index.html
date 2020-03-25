@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head lang="en">
-    <meta charset="UTF-8">
-    <title>Flask React</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- styles -->
-  </head>
-  <body>
-    <div class="container">
-      <h1>Streams of Fate </h1>
-      <br>
-      <div id="info"></div>
-      <div id="content"> 
-      </div>
-      <div id='root'></div>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Flask React</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- styles -->
+</head>
+
+<body>
+  <div class="container">
+    <h1>Streams of Fate </h1>
+    <br>
+    <div id="info"></div>
+    <div id="content">
     </div>
-    <!-- scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
-    
-    <script src="static/js/home.js"></script>
-    <script type="text/jsx">
+    <div id='root'></div>
+  </div>
+  <!-- scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+
+  <script src="static/js/home.js"></script>
+  <script type="text/jsx">
 
       /*** @jsx React.DOM */
       
+      // === Global Variables ===
+
       var game_room_id = '';
       var name_value = '';
       var player_token = '';
       var infoText = 'Welcome Streams of Fate. Please fill out your room info';
       var question = '';
-      var option1 = '';
-      var option2 = '';
-      var option1ID = '';
-      var option2ID = '';
+      var options = [];
       var resendTimer = 5000;
+      var hostname = 'http://localhost:5000';
+
+      // === React Classes as Variables ===
 
       var information = React.createClass({
         render: function() {
@@ -48,11 +52,13 @@
         }
       });
 
+      // == Global Functions ===
+
       function refresh() {
         resendTimer = 5000;
-        
         console.log(player_token);
-        fetch("/game/" + game_room_id + "/jobs", {
+
+        fetch(hostname + "/game/" + game_room_id + "/jobs", {
           method: "GET",
           mode: 'cors',
           headers: {
@@ -61,6 +67,7 @@
           }
         ).then(function(response){
           console.log("refreshing??");
+
           if(response.status !== 200){
             response.json().then(function(data){
               infoText = 'Something has gone wrong, the reason was ' + data.error;
@@ -69,16 +76,16 @@
               document.getElementById('content')
             )}
           );
-          }
-          else{
+          } else {
             response.json().then(function(data){
               if(data.hasOwnProperty('options')){
 
-                option1 = data.options[0].icon;
-                option2 = data.options[1].icon;
-
-                option1ID = data.options[0].id;
-                option2ID = data.options[1].id;
+                options = [];
+                
+                for(var i = 0; i < data.options.length; i++) {
+                  var tupleToPush = [data.options[i].icon, data.options[i].id];
+                  options.push(tupleToPush);
+                }
                 
                 ReactDOM.render(
                 React.createElement(VoterEntryForm, null),
@@ -97,6 +104,10 @@
         // ...
       }
 
+      // === React Classes ===
+
+      // ==== Vote Form ====
+
       class VoterEntryForm extends React.Component{
         constructor(props) {
           super(props);
@@ -106,18 +117,18 @@
           this.handleSubmit = this.handleSubmit.bind(this);
         }
 
+      // == Class Functions ==
+
         handleChange(event){
             this.setState({ choice: event.target.value });
             console.log("set worked")
         }
 
-
         handleSubmit(event){
 
           event.preventDefault();
           
-
-          fetch("/game/" + game_room_id + "/jobs/vote", {
+          fetch(hostname + "/game/" + game_room_id + "/jobs/vote", {
             method: "POST",
             mode: 'cors',
             headers: {
@@ -129,30 +140,53 @@
               'choice': this.state.choice,
               'mp_spent': '0'
             })
-            }
-          )
+            })
+
         }
 
+      // == Render Functions ==
 
-        render(){
-          return(
+      renderVoteButtons() {
+        let buttons = [];
+
+        for (let i = 0; i < options.length; i++) {
+
+            var picture = options[i][1];
+            var id = options[i][0];
+
+            buttons.push(
+                <label>
+                <input type="radio" name="vote" onChange={this.handleChange} 
+                checked={ this.state.choice==={picture}}  value={picture} />{id}
+                </label>
+            );
+        }
+        return buttons;
+      }
+
+      renderVoteForm() {
+        return (
           <form onSubmit={this.handleSubmit}>
             <p>
               {question}
-              <label>
-              <input type="radio" name="vote" onChange={this.handleChange} 
-              checked={ this.state.choice==={option1ID}}  value={option1ID} />{option1}
-              </label><label>
-              <input type="radio" name="vote" onChange={this.handleChange} 
-              checked={ this.state.choice==={option2ID}} value={option2ID} />{option2}
-              </label>
+              {this.renderVoteButtons()}
             </p>
-            
             <input type="submit" value="Submit" />
           </form>
-          )
-        }
+        );
       }
+
+      render(){
+        return(
+        <div>
+          {this.renderVoteForm()}
+        </div>
+        )
+      }
+
+      }
+
+      // ==== Join Room ====
 
       class JoinRoomForm extends React.Component {
         constructor(props) {
@@ -163,6 +197,8 @@
           this.handleSubmit = this.handleSubmit.bind(this);
         }
       
+      // == Class Functions ==
+
         handleChange(event) {
           this.setState({[event.target.name]: event.target.value});
         }
@@ -171,7 +207,7 @@
           event.preventDefault();
           game_room_id = this.state.gameRoomValue;
           name_value = this.state.nameVale;
-          fetch("/game/" + this.state.gameRoomValue + "/join", {
+          fetch(hostname + "/game/" + this.state.gameRoomValue + "/join", {
             method: "POST",
             mode: 'cors',
             headers: {
@@ -213,7 +249,9 @@
           })
         }
       
-        render() {
+        // == Render Functions ==
+
+        renderJoinForm() {
           return (
             <form onSubmit={this.handleSubmit}>
               <label>
@@ -228,7 +266,17 @@
             </form>
           );
         }
+
+        render() {
+          return (
+            <div className="Join Form">
+            {this.renderJoinForm()}
+            </div>
+          );
+        }
       }
+
+    // =============================================
 
       ReactDOM.render(
         React.createElement(information, null),
@@ -239,5 +287,6 @@
         document.getElementById('root'));
 
     </script>
-  </body>
+</body>
+
 </html>
