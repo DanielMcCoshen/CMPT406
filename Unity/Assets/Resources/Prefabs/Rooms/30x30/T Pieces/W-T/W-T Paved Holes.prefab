@@ -967,6 +967,8 @@ GameObject:
   - component: {fileID: 8678185741294655038}
   - component: {fileID: 5502627004647874236}
   - component: {fileID: 3738877620731347150}
+  - component: {fileID: 2701036937449228694}
+  - component: {fileID: 6663019885692939734}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -7874,6 +7876,35 @@ TilemapRenderer:
   m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 2
+--- !u!19719996 &2701036937449228694
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3431319066482316047}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
+--- !u!114 &6663019885692939734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3431319066482316047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6a36f7ce6e4bf4ba9ebf633c08aeca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomMap: {fileID: 8410798216453099778}
 --- !u!1 &3981458351821674040
 GameObject:
   m_ObjectHideFlags: 0

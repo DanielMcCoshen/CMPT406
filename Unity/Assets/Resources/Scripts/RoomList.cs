@@ -1,5 +1,4 @@
 ﻿using System.Resources;
-
 using System.Runtime.Versioning;
 using UnityEngine;
 using System.Collections;
@@ -83,7 +82,9 @@ public class RoomList
             Resources.Load("Prefabs/Rooms/30x30/T Pieces/E-T/E-T Paved Holes") as GameObject,
             Resources.Load("Prefabs/Rooms/30x30/T Pieces/N-T/N-T Paved Holes") as GameObject,
             Resources.Load("Prefabs/Rooms/30x30/T Pieces/S-T/S-T Paved Holes") as GameObject,
-            Resources.Load("Prefabs/Rooms/30x30/T Pieces/W-T/W-T Paved Holes") as GameObject
+            Resources.Load("Prefabs/Rooms/30x30/T Pieces/W-T/W-T Paved Holes") as GameObject,
+            // === Start Room (49) ===
+            Resources.Load("Prefabs/Rooms/30x30/Generic Starting Room/30x30 Generic Starting Room") as GameObject
         };
         Debug.Log("RoomList Creation");
     }

@@ -197,7 +197,8 @@ class optionlist(object):
             cls._instance = {
                 # All
                 0:  [
-                        option(0, "Paved Holes", 0)
+                        option(0, "Paved Holes", 0),
+                        option(49, "Starting Room", 0)
                     ],
                 # N
                 1:  [
