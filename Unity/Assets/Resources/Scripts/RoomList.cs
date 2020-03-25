@@ -1,5 +1,9 @@
 ﻿using System.Resources;
+<<<<<<< HEAD
 //using System.Reflection.PortableExecutable;
+=======
+
+>>>>>>> 7867e1474118cbac46ef761b0869f701de0b12e3
 using System.Runtime.Versioning;
 using UnityEngine;
 using System.Collections;
