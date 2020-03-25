@@ -24,9 +24,8 @@ public class Room : MonoBehaviour
     protected RoomMap roomLayout;
     private int jobId;
 
-    [SerializeField]
-    private int filter;
-    public int Filter { get => filter; set => filter = value; }
+    private Filter filter;
+    public Filter Filter { get => filter; set => filter = value; }
 
     public GameObject RoomLayout {
         get {
