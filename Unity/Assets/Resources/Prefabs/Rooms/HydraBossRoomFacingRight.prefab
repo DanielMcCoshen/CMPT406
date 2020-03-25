@@ -2040,7 +2040,7 @@ GameObject:
   - component: {fileID: 4233688441060307798}
   - component: {fileID: 5318832863581023994}
   m_Layer: 0
-  m_Name: HydraBossRoom
+  m_Name: HydraBossRoomFacingRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
