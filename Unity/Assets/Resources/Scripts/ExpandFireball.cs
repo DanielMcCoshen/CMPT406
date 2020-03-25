@@ -17,11 +17,11 @@ public class ExpandFireball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.localScale.x <= 5.0f)
+        if (transform.localScale.x <= 4.0f)
         {
-            projectileTransform.localScale *= 1.005f;
-            projectile.GetComponent<CircleCollider2D>().radius *= 1.005f;
+            projectileTransform.localScale *= 1.03f;
+            //projectile.GetComponent<CircleCollider2D>().radius *= 1.05f;
         }
-        projectile.force += 0.5f;
+        projectile.force += 3f;
     }
 }

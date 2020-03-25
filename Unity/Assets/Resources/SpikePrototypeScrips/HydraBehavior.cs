@@ -101,9 +101,14 @@ public class HydraBehavior : MonoBehaviour
                 Debug.Log("hydraControl not found");
             }
             hydraControl.hydraHeads -= 1;
-            if(hydraControl.hydraHeads == 3)
+            if(hydraControl.hydraHeads == 4)
             {
                 hydraControl.setAttackPattern(HydraControl.attackPattern.BIG);
+                Debug.Log("Attack pattern changed");
+            }
+            else if(hydraControl.hydraHeads == 2)
+            {
+                hydraControl.setAttackPattern(HydraControl.attackPattern.SPREAD);
                 Debug.Log("Attack pattern changed");
             }
             if(hydraControl.hydraHeads <= 0)
