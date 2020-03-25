@@ -74,7 +74,7 @@ public class NetworkManager
         VoteOptions options = new VoteOptions();
         options.level = 1;
         options.type = 0;
-        options.filter_id = room.Filter;
+        options.filter_id = room.Filter.Id;
 
         try
         {
