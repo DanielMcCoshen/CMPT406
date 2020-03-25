@@ -17,7 +17,7 @@ public class HydraControl : MonoBehaviour
         hydraHeads = 6;
 
         //set initial attack pattern based on vote
-        currentAttackPattern = attackPattern.SNIPE;
+        currentAttackPattern = attackPattern.SPREAD;
     }
 
     // Update is called once per frame

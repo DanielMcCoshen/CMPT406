@@ -80,7 +80,7 @@ SpriteRenderer:
   m_Size: {x: 18.58, y: 24.03}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3316228344544971121
@@ -163,7 +163,7 @@ SpriteRenderer:
   m_Size: {x: 15.9, y: 22.42}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3951651589605954179
@@ -246,7 +246,7 @@ SpriteRenderer:
   m_Size: {x: 23.48, y: 47.35}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7726657218593768217
@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 4807172482979439558}
   - component: {fileID: 5144933122550608896}
   - component: {fileID: 5144933122550608897}
+  - component: {fileID: 7665658405961360236}
   - component: {fileID: 5144933122550608902}
   m_Layer: 0
   m_Name: HydraHead6
@@ -324,6 +325,32 @@ CircleCollider2D:
   m_Offset: {x: -10, y: 30}
   serializedVersion: 2
   m_Radius: 20
+--- !u!114 &7665658405961360236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7726657218593768217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2767635faa6a6b94aa355071755fb1eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 619597399905580419, guid: 0291c528b5bfda64e9cce6a3348dedc3,
+    type: 3}
+  projectileForce: 20
+  cooldownTimer: 0
+  onCooldown: 0
+  firePoint: {fileID: 2793454432654053959}
+  aimPoint: {fileID: 1031286671830358343}
+  firesBeforeCooldown: 0
+  numberOfShotsFired: 0
+  weaponMenuPrefab: {fileID: 0}
+  numberOfProjectiles: 0
+  rotationRate: 0
+  numberOfWaves: 0
+  timeBetweenWaves: 0
 --- !u!114 &5144933122550608902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootWaitTime: 2
+  health: 0
   player: {fileID: 0}
   rb: {fileID: 5144933122550608896}
   aimPoint: {fileID: 1031286671830358343}
@@ -347,10 +375,12 @@ MonoBehaviour:
     type: 3}
   spreadProjectilePrefab: {fileID: 619597399905580419, guid: 0291c528b5bfda64e9cce6a3348dedc3,
     type: 3}
+  healthBar: {fileID: 0}
+  hydraControl: {fileID: 0}
   snipeProjectileForce: 40
   bigProjectileForce: 8
   spreadProjectileForce: 15
-  currentAttackPattern: 0
+  waveSpread: {fileID: 7665658405961360236}
 --- !u!1001 &5144933120630424466
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 624370488522832731}
   - component: {fileID: 5375412806850926137}
   - component: {fileID: 5375412806850926136}
+  - component: {fileID: 72311900732244490}
   - component: {fileID: 5375412806850926139}
   m_Layer: 0
   m_Name: HydraHead2
@@ -75,6 +76,32 @@ CircleCollider2D:
   m_Offset: {x: -10, y: 30}
   serializedVersion: 2
   m_Radius: 20
+--- !u!114 &72311900732244490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4410552023001104911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2767635faa6a6b94aa355071755fb1eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 619597399905580419, guid: 0291c528b5bfda64e9cce6a3348dedc3,
+    type: 3}
+  projectileForce: 20
+  cooldownTimer: 0
+  onCooldown: 0
+  firePoint: {fileID: 5375412807714006012}
+  aimPoint: {fileID: 5375412807251125734}
+  firesBeforeCooldown: 0
+  numberOfShotsFired: 0
+  weaponMenuPrefab: {fileID: 0}
+  numberOfProjectiles: 6
+  rotationRate: 4
+  numberOfWaves: 1
+  timeBetweenWaves: 0
 --- !u!114 &5375412806850926139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootWaitTime: 2
+  health: 0
   player: {fileID: 0}
   rb: {fileID: 5375412806850926137}
   aimPoint: {fileID: 5375412807251125734}
@@ -98,9 +126,12 @@ MonoBehaviour:
     type: 3}
   spreadProjectilePrefab: {fileID: 619597399905580419, guid: 0291c528b5bfda64e9cce6a3348dedc3,
     type: 3}
+  healthBar: {fileID: 0}
+  hydraControl: {fileID: 0}
   snipeProjectileForce: 40
   bigProjectileForce: 8
   spreadProjectileForce: 15
+  waveSpread: {fileID: 0}
 --- !u!1 &5375412807251125729
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,7 +289,7 @@ SpriteRenderer:
   m_Size: {x: 18.58, y: 24.03}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7352493062350968578
@@ -341,7 +372,7 @@ SpriteRenderer:
   m_Size: {x: 15.9, y: 22.42}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8402948900996042466
@@ -424,6 +455,6 @@ SpriteRenderer:
   m_Size: {x: 23.48, y: 47.35}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

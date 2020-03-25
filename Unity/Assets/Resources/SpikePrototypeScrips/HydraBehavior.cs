@@ -27,6 +27,7 @@ public class HydraBehavior : MonoBehaviour
     public float snipeProjectileForce;
     public float bigProjectileForce;
     public float spreadProjectileForce;
+    public WaveSpread waveSpread;
 
     private enum states { NOTHING, SHOOTING };
     private states currentState;
@@ -70,6 +71,11 @@ public class HydraBehavior : MonoBehaviour
             GameObject projectile = Instantiate(bigProjectilePrefab, position, rotation);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.AddForce(projectile.transform.up * bigProjectileForce, ForceMode2D.Impulse);
+        }
+
+        else if (hydraControl.currentAttackPattern == HydraControl.attackPattern.SPREAD)
+        {
+            waveSpread.FireWeapon();
         }
     }
 
