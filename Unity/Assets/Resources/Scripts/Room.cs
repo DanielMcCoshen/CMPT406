@@ -11,10 +11,8 @@ public class Room : MonoBehaviour
     
     protected GameObject roomLayoutObj;
 
-    public List<GameObject> bridges = new List<GameObject>();
+    // public List<GameObject> bridges = new List<GameObject>();
     
-
-
     private bool votingCommenced = false;
     private bool votingComplete = false;
     private bool enemiesDefeated = false;
@@ -93,12 +91,11 @@ public class Room : MonoBehaviour
         if (!enemiesDefeated)
         {
             locked = true;
-            roomLayout.setDynamicDanger(true);
-            foreach (GameObject bridge in bridges)
-            {
-                bridge.SetActive(false);
-
-            }
+            roomLayout.switchDynamicDanger(true);
+            // foreach (GameObject bridge in bridges)
+            // {
+            //     bridge.SetActive(false);
+            // }
             roomLayout.spawnEnemies();   
         }
         foreach (Room r in neighbours)
@@ -116,12 +113,12 @@ public class Room : MonoBehaviour
                 enemiesDefeated = true;
                 locked = false;
                 roomLayout.spawnLoot();
-                roomLayout.setDynamicDanger(false);
-                foreach (GameObject bridge in bridges)
-                {
-                    bridge.SetActive(true);
+                roomLayout.switchDynamicDanger(false);
+                // foreach (GameObject bridge in bridges)
+                // {
+                //     bridge.SetActive(true);
 
-                }
+                // }
                 Debug.Log("All Enemies Dead");
             }
         }
