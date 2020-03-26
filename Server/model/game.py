@@ -197,7 +197,8 @@ class optionlist(object):
             cls._instance = {
                 # All
                 0:  [
-                        option(0, "Paved Holes", 0)
+                        option(0, "Paved Holes", 0),
+                        option(49, "Ice Room", 0)
                     ],
                 # N
                 1:  [
@@ -275,19 +276,23 @@ class optionlist(object):
                     ],
                 # N-T
                 11: [
-                        option(46, "Paved Holes", 0)
+                        option(46, "Paved Holes", 0),
+                        option(51, "Ice Room", 0)
                     ],
                 # E-T
                 12: [
-                        option(45, "Paved Holes", 0)
+                        option(45, "Paved Holes", 0),
+                        option(50, "Ice Room", 0)
                     ],
                 # S-T
                 13: [   
-                        option(47, "Paved Holes", 0)
+                        option(47, "Paved Holes", 0),
+                        option(52, "Ice Room", 0)
                     ],
                 # W-T
                 14: [
-                        option(48, "Paved Holes", 0)
+                        option(48, "Paved Holes", 0),
+                        option(53, "Ice Room", 0)
                     ]
             }
         return cls._instance

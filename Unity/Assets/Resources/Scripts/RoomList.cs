@@ -82,7 +82,13 @@ public class RoomList
             Resources.Load("Prefabs/Rooms/30x30/T Pieces/E-T/E-T Paved Holes") as GameObject,
             Resources.Load("Prefabs/Rooms/30x30/T Pieces/N-T/N-T Paved Holes") as GameObject,
             Resources.Load("Prefabs/Rooms/30x30/T Pieces/S-T/S-T Paved Holes") as GameObject,
-            Resources.Load("Prefabs/Rooms/30x30/T Pieces/W-T/W-T Paved Holes") as GameObject
+            Resources.Load("Prefabs/Rooms/30x30/T Pieces/W-T/W-T Paved Holes") as GameObject,
+            // === Room Expansion A (49-53) ===
+            Resources.Load("Prefabs/Rooms/30x30/All/Large Paneled Ice Room") as GameObject,
+            Resources.Load("Prefabs/Rooms/30x30/T Pieces/E-T/E-T Large Paneled Ice Room") as GameObject,
+            Resources.Load("Prefabs/Rooms/30x30/T Pieces/N-T/N-T Large Paneled Ice Room") as GameObject,
+            Resources.Load("Prefabs/Rooms/30x30/T Pieces/S-T/S-T Large Paneled Ice Room") as GameObject,
+            Resources.Load("Prefabs/Rooms/30x30/T Pieces/W-T/W-T Large Paneled Ice Room") as GameObject
         };
         Debug.Log("RoomList Creation");
     }
