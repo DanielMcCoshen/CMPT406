@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hellhound Bite
       objectReference: {fileID: 0}
+    - target: {fileID: 2036025442289341679, guid: 4977b408ae858b84eb5907d8607d481b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2036025442289341683, guid: 4977b408ae858b84eb5907d8607d481b,
         type: 3}
       propertyPath: m_LocalPosition.x

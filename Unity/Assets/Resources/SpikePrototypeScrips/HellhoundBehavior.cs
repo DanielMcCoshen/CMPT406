@@ -12,7 +12,7 @@ public class HellhoundBehavior : MonoBehaviour
     public float projectileForce;
     public float attackDistance;
     public float biteRecoveryTime;
-    private bool didAttack = false;
+    private bool canAttack = false;
 
 
     [Header("Object References")]
@@ -74,15 +74,15 @@ public class HellhoundBehavior : MonoBehaviour
                     break;
                 case states.ATTACKING:
                     currentState = states.RECOVERING;
-                    if (didAttack == false) {
-                        didAttack = true;
+                    if (canAttack == false) {
+                        canAttack = true;
                         BiteAttack(firePoint.position, aimPoint.rotation);
                     }
                     break;
                 case states.RECOVERING:
-                    if (didAttack == true)
+                    if (canAttack == true)
                     {
-                        didAttack = false;
+                        canAttack = false;
                         StartCoroutine(WaitToRecover());
                     }
                     break;
@@ -98,7 +98,7 @@ public class HellhoundBehavior : MonoBehaviour
         // Stop in place.
         rb.velocity = Vector3.zero;
         // Do the bite thing
-        Debug.Log("Biting");
+        //Debug.Log("Biting");
         GameObject projectile = Instantiate(projectilePrefab, position, rotation);
         Rigidbody2D projRb = projectile.GetComponent<Rigidbody2D>();
         projRb.AddForce(projectile.transform.up * projectileForce, ForceMode2D.Impulse);
@@ -106,7 +106,7 @@ public class HellhoundBehavior : MonoBehaviour
 
     IEnumerator WaitToRecover()
     {
-        Debug.Log("Recovering");
+        //Debug.Log("Recovering");
         yield return new WaitForSeconds(biteRecoveryTime);
         currentState = states.CHASING;
     }
