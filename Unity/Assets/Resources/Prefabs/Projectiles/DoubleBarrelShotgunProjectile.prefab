@@ -17,6 +17,17 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Projectile
       objectReference: {fileID: 0}
+    - target: {fileID: 2036025442289341680, guid: 4977b408ae858b84eb5907d8607d481b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e39e3bb7b06b8da449d128b123ad0aaa,
+        type: 3}
+    - target: {fileID: 2036025442289341681, guid: 4977b408ae858b84eb5907d8607d481b,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2036025442289341683, guid: 4977b408ae858b84eb5907d8607d481b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -71,6 +82,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036025442289341683, guid: 4977b408ae858b84eb5907d8607d481b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036025442289341683, guid: 4977b408ae858b84eb5907d8607d481b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 2625634147330260367, guid: 4977b408ae858b84eb5907d8607d481b,
         type: 3}
