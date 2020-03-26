@@ -6,6 +6,7 @@
   <title>Flask React</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- styles -->
+  <link rel="stylesheet" href="../static/css/index.css">
 </head>
 
 <body>
@@ -13,8 +14,7 @@
     <h1>Streams of Fate </h1>
     <br>
     <div id="info"></div>
-    <div id="content">
-    </div>
+    <div id="content"></div>
     <div id='root'></div>
   </div>
   <!-- scripts -->
@@ -32,7 +32,7 @@
       var game_room_id = '';
       var name_value = '';
       var player_token = '';
-      var infoText = 'Welcome Streams of Fate. Please fill out your room info';
+      var infoText = 'Welcome to Streams of Fate. Please fill out your room info:';
       var question = '';
       var options = [];
       var resendTimer = 5000;
@@ -156,7 +156,7 @@
 
             buttons.push(
                 <label>
-                <input type="radio" name="vote" onChange={this.handleChange} 
+                <input className="voteButton" type="radio" name="vote" onChange={this.handleChange} 
                 checked={ this.state.choice==={picture}}  value={picture} />{id}
                 </label>
             );
@@ -171,7 +171,7 @@
               {question}
               {this.renderVoteButtons()}
             </p>
-            <input type="submit" value="Submit" />
+            <input className="submit" type="submit" value="Submit" />
           </form>
         );
       }
@@ -256,13 +256,13 @@
             <form onSubmit={this.handleSubmit}>
               <label>
                 Room ID:
-                <input type="text" name = "gameRoomValue" value={this.state.gameRoomValue} onChange={this.handleChange} />
+                <input className="textInput" type="text" name = "gameRoomValue" value={this.state.gameRoomValue} onChange={this.handleChange} />
               </label>
               <label>
                 User Name:
-                <input type="text" name = "nameValue" value={this.state.nameValue} onChange={this.handleChange} />
+                <input className="textInput" type="text" name = "nameValue" value={this.state.nameValue} onChange={this.handleChange} />
               </label>
-              <input type="submit" value="Submit" />
+              <input className="submit" type="submit" value="Submit" />
             </form>
           );
         }
