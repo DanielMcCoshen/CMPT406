@@ -1946,7 +1946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 619597399905580419, guid: 0291c528b5bfda64e9cce6a3348dedc3,
     type: 3}
-  projectileForce: 20
+  projectileForce: 10
   cooldownTimer: 0
   onCooldown: 0
   firePoint: {fileID: 4984489277526740452}
@@ -1954,9 +1954,9 @@ MonoBehaviour:
   firesBeforeCooldown: 0
   numberOfShotsFired: 0
   weaponMenuPrefab: {fileID: 0}
-  numberOfProjectiles: 0
-  rotationRate: 0
-  numberOfWaves: 0
+  numberOfProjectiles: 3
+  rotationRate: 20
+  numberOfWaves: 1
   timeBetweenWaves: 0
 --- !u!114 &4984489277412308595
 MonoBehaviour:
@@ -2386,7 +2386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 619597399905580419, guid: 0291c528b5bfda64e9cce6a3348dedc3,
     type: 3}
-  projectileForce: 20
+  projectileForce: 10
   cooldownTimer: 0
   onCooldown: 0
   firePoint: {fileID: 4984489277709596496}
@@ -2394,8 +2394,8 @@ MonoBehaviour:
   firesBeforeCooldown: 0
   numberOfShotsFired: 0
   weaponMenuPrefab: {fileID: 0}
-  numberOfProjectiles: 6
-  rotationRate: 4
+  numberOfProjectiles: 3
+  rotationRate: 20
   numberOfWaves: 1
   timeBetweenWaves: 0
 --- !u!114 &4984489277565547536
@@ -2669,7 +2669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 619597399905580419, guid: 0291c528b5bfda64e9cce6a3348dedc3,
     type: 3}
-  projectileForce: 20
+  projectileForce: 10
   cooldownTimer: 0
   onCooldown: 0
   firePoint: {fileID: 4984489276399293569}
@@ -2677,8 +2677,8 @@ MonoBehaviour:
   firesBeforeCooldown: 0
   numberOfShotsFired: 1
   weaponMenuPrefab: {fileID: 0}
-  numberOfProjectiles: 6
-  rotationRate: 4
+  numberOfProjectiles: 3
+  rotationRate: 20
   numberOfWaves: 1
   timeBetweenWaves: 0
 --- !u!58 &4984489277615245050
@@ -3138,7 +3138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 619597399905580419, guid: 0291c528b5bfda64e9cce6a3348dedc3,
     type: 3}
-  projectileForce: 20
+  projectileForce: 10
   cooldownTimer: 0
   onCooldown: 0
   firePoint: {fileID: 4984489277048997873}
@@ -3146,8 +3146,8 @@ MonoBehaviour:
   firesBeforeCooldown: 0
   numberOfShotsFired: 0
   weaponMenuPrefab: {fileID: 0}
-  numberOfProjectiles: 6
-  rotationRate: 4
+  numberOfProjectiles: 3
+  rotationRate: 20
   numberOfWaves: 1
   timeBetweenWaves: 0
 --- !u!114 &4984489277735368808
@@ -5057,7 +5057,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 619597399905580419, guid: 0291c528b5bfda64e9cce6a3348dedc3,
     type: 3}
-  projectileForce: 20
+  projectileForce: 10
   cooldownTimer: 0
   onCooldown: 0
   firePoint: {fileID: 4984489277977523091}
@@ -5065,8 +5065,8 @@ MonoBehaviour:
   firesBeforeCooldown: 0
   numberOfShotsFired: 0
   weaponMenuPrefab: {fileID: 0}
-  numberOfProjectiles: 6
-  rotationRate: 4
+  numberOfProjectiles: 3
+  rotationRate: 20
   numberOfWaves: 1
   timeBetweenWaves: 0
 --- !u!114 &4984489278181779044
@@ -7430,7 +7430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 619597399905580419, guid: 0291c528b5bfda64e9cce6a3348dedc3,
     type: 3}
-  projectileForce: 20
+  projectileForce: 10
   cooldownTimer: 0
   onCooldown: 0
   firePoint: {fileID: 4984489277926125760}
@@ -7438,9 +7438,9 @@ MonoBehaviour:
   firesBeforeCooldown: 0
   numberOfShotsFired: 0
   weaponMenuPrefab: {fileID: 0}
-  numberOfProjectiles: 0
-  rotationRate: 0
-  numberOfWaves: 0
+  numberOfProjectiles: 3
+  rotationRate: 20
+  numberOfWaves: 1
   timeBetweenWaves: 0
 --- !u!114 &4984489278399699908
 MonoBehaviour:
