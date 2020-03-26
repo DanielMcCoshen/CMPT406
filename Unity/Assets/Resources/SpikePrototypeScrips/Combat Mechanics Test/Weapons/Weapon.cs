@@ -25,7 +25,7 @@ public class Weapon : MonoBehaviour
         aimPoint = fp;
     }
 
-    public void FireProjectile(Vector3 position, Quaternion rotation)
+    public virtual void FireProjectile(Vector3 position, Quaternion rotation)
     {
         GameObject projectile = Instantiate(projectilePrefab, position, rotation );
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();

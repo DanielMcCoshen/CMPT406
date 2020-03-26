@@ -12,6 +12,7 @@ public class MoveInAHalfCircle : MonoBehaviour
     private float angle = 90f;
 
     private float forcePerUnit = 0f;
+    private float startTime = 0f;
 
     public Rigidbody2D rb;
 
@@ -23,6 +24,7 @@ public class MoveInAHalfCircle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startTime = Time.deltaTime;
         forcePerUnit = 15.384615384615384615384615384615f * (5f / moveTime);
     }
 
@@ -33,30 +35,21 @@ public class MoveInAHalfCircle : MonoBehaviour
         {
             moving = true;
             endTime = Time.time + moveTime;
-            switchTime = Time.time + moveTime/2;
-        }
-
-        if (!switched && Time.time > switchTime)
-        {
-            switched = true;
-            
         }
 
         if (Time.time < endTime )
         {
             float adj = Time.deltaTime / moveTime;
-            Vector3 dir = new Vector3(0, 200f, 0);
-            if (switched)
-            {
-                rb.AddForce(dir * adj * -1);
-            }
-            else
-            {
-                rb.AddForce(dir * adj);
-            }
-            
+            Debug.Log(adj);
+            angle += (180f * adj);
+            Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
+            rb.AddForce(dir * (forcePerUnit * units * adj));
+
         }
-        
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
         
     }
 }
