@@ -1,4 +1,12 @@
+@font-face {
+    font-family: 'opendyslexic';
+	src: url('http://dyslexicfonts.com/fonts/OpenDyslexic-Regular.otf');
+	font-style: normal;
+	font-weight: normal;
+}
+
 body {
+    font-family: 'opendyslexic';
     background-color: #4B4453;
 }
 
@@ -8,7 +16,6 @@ div {
     background-color: #373836;
     color: white;
     padding: 40px;
-    font-family: Arial;
     text-align: center;
 }
 
