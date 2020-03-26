@@ -17,6 +17,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2036025442289341680, guid: 4977b408ae858b84eb5907d8607d481b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2036025442289341683, guid: 4977b408ae858b84eb5907d8607d481b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -76,6 +81,11 @@ PrefabInstance:
         type: 3}
       propertyPath: force
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2625634147330260367, guid: 4977b408ae858b84eb5907d8607d481b,
+        type: 3}
+      propertyPath: destroyTimer
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4977b408ae858b84eb5907d8607d481b, type: 3}
