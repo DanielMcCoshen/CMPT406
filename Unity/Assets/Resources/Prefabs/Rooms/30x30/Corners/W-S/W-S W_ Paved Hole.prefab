@@ -7087,6 +7087,8 @@ GameObject:
   - component: {fileID: 675211508126043678}
   - component: {fileID: 6291368795100968904}
   - component: {fileID: 7230356933225758624}
+  - component: {fileID: 7942131525556860954}
+  - component: {fileID: 8796425145738971782}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -10142,6 +10144,35 @@ TilemapRenderer:
   m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 2
+--- !u!19719996 &7942131525556860954
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7698161074659490031}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
+--- !u!114 &8796425145738971782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7698161074659490031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6a36f7ce6e4bf4ba9ebf633c08aeca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomMap: {fileID: 4510028689272844086}
 --- !u!1 &8912092405501759645
 GameObject:
   m_ObjectHideFlags: 0
@@ -10690,15 +10721,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c6f6913415e935478f7c048267ff2a2, type: 3}
---- !u!4 &6293755951297425697 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2864122154467151720, guid: 3c6f6913415e935478f7c048267ff2a2,
-    type: 3}
-  m_PrefabInstance: {fileID: 8135909259583045193}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6293755951297425700 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2864122154467151725, guid: 3c6f6913415e935478f7c048267ff2a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8135909259583045193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6293755951297425697 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2864122154467151720, guid: 3c6f6913415e935478f7c048267ff2a2,
     type: 3}
   m_PrefabInstance: {fileID: 8135909259583045193}
   m_PrefabAsset: {fileID: 0}
