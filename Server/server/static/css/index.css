@@ -27,7 +27,6 @@ div {
 	display:inline-block;
 	cursor:pointer;
 	color: white;
-	font-family:Arial;
 	/* font-size:15px; */
 	/* font-weight:bold; */
 	padding:5px 5px;
@@ -44,7 +43,6 @@ div {
 	display:inline-block;
 	cursor:pointer;
 	color: white;
-	font-family:Arial;
 	/* font-size:15px; */
 	/* font-weight:bold; */
 	padding:5px 5px;
