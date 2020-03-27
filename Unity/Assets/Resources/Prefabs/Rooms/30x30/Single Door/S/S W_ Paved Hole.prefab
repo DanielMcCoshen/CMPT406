@@ -7456,12 +7456,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocation: {fileID: 7071172052258287333}
+  filterID: 3
   enemies:
   - {fileID: 184311088288440120}
   - {fileID: 2836832336372847261}
   - {fileID: 2296266340646038285}
   loot: {fileID: 0}
-  filterID: 3
   room: {fileID: 0}
   bridges: {fileID: 825419587920944589}
   dynamicDanger: {fileID: 1214763104717683792}
@@ -7730,6 +7730,8 @@ GameObject:
   - component: {fileID: 3274432618399137211}
   - component: {fileID: 8289021130834353917}
   - component: {fileID: 8485473179193831406}
+  - component: {fileID: 7721462966335787417}
+  - component: {fileID: 4178776585328385298}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -10471,7 +10473,7 @@ TilemapCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -10490,6 +10492,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomMap: {fileID: 5723768298266635445}
+--- !u!50 &7721462966335787417
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7913428974267035581}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &4178776585328385298
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7913428974267035581}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths: []
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!1 &8268093689824258998
 GameObject:
   m_ObjectHideFlags: 0

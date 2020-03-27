@@ -22,6 +22,14 @@ public class RoomMap : MonoBehaviour
     public GameObject bridges;
     public GameObject dynamicDanger;
 
+    void Start()
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.SetActive(false);
+        }
+    }
+
     public void spawnEnemies()
     {
         Debug.Log("Spawning Enemies");

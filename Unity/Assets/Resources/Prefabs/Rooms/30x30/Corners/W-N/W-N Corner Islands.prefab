@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 8715102506743085583}
   - component: {fileID: 880072560842160314}
   - component: {fileID: 6004000633111630939}
+  - component: {fileID: 7031000278373456441}
+  - component: {fileID: 1838529043426162775}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -2280,7 +2282,7 @@ TilemapCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2299,6 +2301,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomMap: {fileID: 3591071111832708566}
+--- !u!50 &7031000278373456441
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334609442082520901}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &1838529043426162775
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334609442082520901}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths: []
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!1 &1404445595280160113
 GameObject:
   m_ObjectHideFlags: 0
@@ -9890,13 +9935,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocation: {fileID: 2060745731419006854}
+  filterID: 8
   enemies:
   - {fileID: 8556707425142140063}
   - {fileID: 8556707425115742434}
   - {fileID: 8556707424041188248}
   - {fileID: 8556707425310637412}
   loot: {fileID: 0}
-  filterID: 8
   room: {fileID: 0}
   bridges: {fileID: 1520495778295526249}
   dynamicDanger: {fileID: 7954289657768129843}

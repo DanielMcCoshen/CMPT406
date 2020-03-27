@@ -1677,6 +1677,8 @@ GameObject:
   - component: {fileID: 2374437294082868445}
   - component: {fileID: 2120952024384809577}
   - component: {fileID: 5431610440293554638}
+  - component: {fileID: 1426549827257095282}
+  - component: {fileID: 6301614080426851589}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -6978,7 +6980,7 @@ TilemapCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -6997,6 +6999,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomMap: {fileID: 2260426160168940773}
+--- !u!50 &1426549827257095282
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5432914802066136577}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &6301614080426851589
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5432914802066136577}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths: []
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!1 &6009571446885753103
 GameObject:
   m_ObjectHideFlags: 0
@@ -10844,13 +10889,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocation: {fileID: 8218065333605259283}
+  filterID: 12
   enemies:
   - {fileID: 3793135179598876209}
   - {fileID: 4720196103869523352}
   - {fileID: 7685445569498413857}
   - {fileID: 3700303207739368698}
   loot: {fileID: 0}
-  filterID: 12
   room: {fileID: 0}
   bridges: {fileID: 461324654159468768}
   dynamicDanger: {fileID: 1160702310029946113}
@@ -11085,15 +11130,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c6f6913415e935478f7c048267ff2a2, type: 3}
---- !u!1 &7685445569498413857 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2864122154467151725, guid: 3c6f6913415e935478f7c048267ff2a2,
-    type: 3}
-  m_PrefabInstance: {fileID: 5555005328134386764}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7685445569498413860 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2864122154467151720, guid: 3c6f6913415e935478f7c048267ff2a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5555005328134386764}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7685445569498413857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2864122154467151725, guid: 3c6f6913415e935478f7c048267ff2a2,
     type: 3}
   m_PrefabInstance: {fileID: 5555005328134386764}
   m_PrefabAsset: {fileID: 0}

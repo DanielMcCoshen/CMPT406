@@ -3685,6 +3685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocation: {fileID: 155702359516089357}
+  filterID: 0
   enemies:
   - {fileID: 4937819588187167279}
   - {fileID: 3577201435324494214}
@@ -3707,6 +3708,8 @@ GameObject:
   - component: {fileID: 5825114450480599235}
   - component: {fileID: 7875219294966120055}
   - component: {fileID: 4271013830804098512}
+  - component: {fileID: 7314933083953029243}
+  - component: {fileID: 7706081903321078591}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -9008,7 +9011,7 @@ TilemapCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -9027,6 +9030,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomMap: {fileID: 8033261769487376635}
+--- !u!50 &7314933083953029243
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4269645147736033823}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &7706081903321078591
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4269645147736033823}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths: []
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!1 &6935226768086579487
 GameObject:
   m_ObjectHideFlags: 0
@@ -11327,15 +11373,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c6f6913415e935478f7c048267ff2a2, type: 3}
---- !u!1 &4863705835371557092 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2864122154467151725, guid: 3c6f6913415e935478f7c048267ff2a2,
-    type: 3}
-  m_PrefabInstance: {fileID: 7259870067000065929}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4863705835371557089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2864122154467151720, guid: 3c6f6913415e935478f7c048267ff2a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7259870067000065929}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4863705835371557092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2864122154467151725, guid: 3c6f6913415e935478f7c048267ff2a2,
     type: 3}
   m_PrefabInstance: {fileID: 7259870067000065929}
   m_PrefabAsset: {fileID: 0}
