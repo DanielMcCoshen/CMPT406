@@ -18,9 +18,14 @@ public class NetworkManager
             response = await client.PostAsync(ServerInfo.Instance.Hostname + "/game", null);
             json = JsonUtility.FromJson<RoomConfig>(await response.Content.ReadAsStringAsync());
         }
+        catch(HttpRequestException)
+        {
+            Debug.LogWarning("Error Connecting to server. Starting offline mode");
+            return;
+        }
         catch(Exception e)
         {
-            Debug.LogError(e.Message);
+            Debug.LogError(e);
             return;
         }
         ServerInfo.Instance.RoomCode = json.room_id;
@@ -51,9 +56,14 @@ public class NetworkManager
             json = JsonUtility.FromJson<PlayerList>(await response.Content.ReadAsStringAsync());
 
         }
+        catch (System.InvalidOperationException)
+        {
+            Debug.LogWarning("Server Offline");
+            return;
+        }
         catch (Exception e)
         {
-            Debug.LogError(e.Message);
+            Debug.LogError(e);
             return;
         }
         if (json.users != null)
@@ -114,5 +124,20 @@ public class NetworkManager
             room.RoomLayout = RoomList.Instance.AllRooms[json.result];
         }
         
+    }
+
+    public static bool Online //this is gross and probably should be reworked. just getting it working for now -Dan
+    {
+        get {
+            try
+            {
+                _ = ServerInfo.Instance.RoomCode;
+                return true;
+            }
+            catch (System.InvalidOperationException)
+            {
+                return false;
+            }
+        }
     }
 }

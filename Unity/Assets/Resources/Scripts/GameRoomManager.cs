@@ -19,14 +19,20 @@ public class GameRoomManager : MonoBehaviour
 
     async void OnApplicationQuit()
     {
-        await NetworkManager.KillGame();
+        if (NetworkManager.Online)
+        {
+            await NetworkManager.KillGame();
+        }
     }
     private IEnumerator UpdateRoomMembersLoop()
     {
         while (true)
         {
             yield return new WaitForSeconds(pollTimer);
-            _ = NetworkManager.UpdateRoomMembers();
+            if (NetworkManager.Online)
+            {
+                _ = NetworkManager.UpdateRoomMembers();
+            }
         }
     }
 }

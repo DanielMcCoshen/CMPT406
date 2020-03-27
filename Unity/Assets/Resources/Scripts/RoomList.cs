@@ -109,5 +109,17 @@ public class RoomList
     
     public List<GameObject> AllRooms { get => allRooms; }
 
+    public GameObject getRandomWithFilter(Filter f)
+    {
+        List<GameObject> options = new List<GameObject>();
+        foreach (GameObject room in allRooms)
+        {
+            if(room.GetComponent<RoomMap>().filterID == f.Id)
+            {
+                options.Add(room);
+            }
+        }
+        return allRooms[Random.Range(0, allRooms.Count)];
+    }
     
 }
