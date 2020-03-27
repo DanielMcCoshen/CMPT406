@@ -7,11 +7,12 @@ public class RoomMap : MonoBehaviour
     [SerializeField]
     private Transform spawnLocation = null;
 
+    public int filterID;
+
     public List<GameObject> enemies = new List<GameObject>();
 
     [SerializeField]
     private GameObject loot = null;
-
 
     public Room room;
 
