@@ -73,6 +73,10 @@ public class Room : MonoBehaviour
             {
                 await NetworkManager.BeginRoomVote(this);
             }
+            else
+            {
+                votingCommenced = true;
+            }
             StartCoroutine(verifyRoom());
         }
     }

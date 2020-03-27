@@ -14,8 +14,6 @@ public class RoomMap : MonoBehaviour
     [SerializeField]
     private GameObject loot = null;
 
-    public int filterID;
-
     public Room room;
 
     public Transform SpawnLocation { get => spawnLocation; }
