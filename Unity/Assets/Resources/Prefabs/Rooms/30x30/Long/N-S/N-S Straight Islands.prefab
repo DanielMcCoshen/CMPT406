@@ -1095,6 +1095,7 @@ MonoBehaviour:
   - {fileID: 515653575787013049}
   - {fileID: 515653574102590789}
   loot: {fileID: 0}
+  filterID: 9
   room: {fileID: 0}
   bridges: {fileID: 983730256539454936}
   dynamicDanger: {fileID: 2304471283511389458}
