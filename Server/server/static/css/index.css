@@ -1,0 +1,68 @@
+@font-face {
+    font-family: 'opendyslexic';
+	src: url('http://dyslexicfonts.com/fonts/OpenDyslexic-Regular.otf');
+	font-style: normal;
+	font-weight: normal;
+}
+
+body {
+    font-family: 'opendyslexic';
+    background-color: #4B4453;
+}
+
+div {
+    /* font-size:15px; */
+    font-size:18px;
+    background-color: #373836;
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+.textInput {
+    height:25px;
+    border-radius:5px;
+    border:1px solid #566963;
+}
+
+.voteButton{
+    box-shadow:inset 0px 1px 3px 0px #728582;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	background-color:#565a51;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color: white;
+	/* font-size:15px; */
+	/* font-weight:bold; */
+	padding:5px 5px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+
+.submit {
+    box-shadow:inset 0px 1px 3px 0px #728582;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	background-color:#565a51;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color: white;
+	/* font-size:15px; */
+	/* font-weight:bold; */
+	padding:5px 5px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+
+.submit:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	background-color:#6c7c7c;
+}
+
+.submit:active {
+	position:relative;
+	top:1px;
+}
