@@ -12,10 +12,6 @@ public class StartingRoom : Room
         JobId = -1;
         RoomLayout = startingRoomMap;
 
-        GameObject instatiatedPlayer = Instantiate(player, roomLayout.SpawnLocation);
-        instatiatedPlayer.GetComponent<Player>().mainCam = mainCamera.GetComponent<Camera>();
-        mainCamera.GetComponent<CameraController>().player = instatiatedPlayer.transform;
-
         enterRoom();
     }
 
