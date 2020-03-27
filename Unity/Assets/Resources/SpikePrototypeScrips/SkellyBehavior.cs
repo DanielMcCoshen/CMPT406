@@ -121,7 +121,6 @@ public class SkellyBehavior : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("movement");
                     angle += (180f * adj);
                     Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
                     rb.AddForce(dir * (forcePerUnit * units * adj));

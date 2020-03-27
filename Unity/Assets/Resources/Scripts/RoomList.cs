@@ -119,7 +119,7 @@ public class RoomList
                 options.Add(room);
             }
         }
-        return allRooms[Random.Range(0, allRooms.Count)];
+        return options[Random.Range(0, options.Count)];
     }
     
 }

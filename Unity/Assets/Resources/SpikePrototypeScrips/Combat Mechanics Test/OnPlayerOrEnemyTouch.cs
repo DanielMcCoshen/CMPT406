@@ -24,9 +24,9 @@ public class OnPlayerOrEnemyTouch : MonoBehaviour
         try
         {
             entities[col.gameObject.GetComponent<OnDeathTrapEnter>().NameForDeathTrap()] = false;
-        }catch(Exception e)
+        }catch(Exception)
         {
-            Debug.Log(e);
+            
         }
     }
 
@@ -34,8 +34,16 @@ public class OnPlayerOrEnemyTouch : MonoBehaviour
     {
         if (col.tag != "DeathPit")
         {
-            entities[col.gameObject.GetComponent<OnDeathTrapEnter>().NameForDeathTrap()] = true;
-            StartCoroutine(ActivateTrap(col.gameObject));
+            try
+            {
+                entities[col.gameObject.GetComponent<OnDeathTrapEnter>().NameForDeathTrap()] = true;
+                StartCoroutine(ActivateTrap(col.gameObject));
+            }
+            catch (Exception)
+            {
+                
+            }
+            
         }
     }
 
