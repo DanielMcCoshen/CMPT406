@@ -22,6 +22,8 @@ public class Portal : MonoBehaviour
         Debug.Log("Collision detected!");
         if (collision.gameObject.tag == "Player")
         {
+            GameObject player = GameObject.FindWithTag("Player");
+            DontDestroyOnLoad(player);
             SceneManager.LoadScene("BossFight");
         }
     }
