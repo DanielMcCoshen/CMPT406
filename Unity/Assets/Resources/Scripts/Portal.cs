@@ -25,6 +25,7 @@ public class Portal : MonoBehaviour
             GameObject player = GameObject.FindWithTag("Player");
             DontDestroyOnLoad(player);
             SceneManager.LoadScene("BossFight");
+            player.transform.position = new Vector2(0, 0);
         }
     }
 }
