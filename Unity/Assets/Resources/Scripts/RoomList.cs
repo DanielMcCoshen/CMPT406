@@ -82,7 +82,13 @@ public class RoomList
             Resources.Load("Prefabs/Rooms/30x30/T Pieces/E-T/E-T Paved Holes") as GameObject,
             Resources.Load("Prefabs/Rooms/30x30/T Pieces/N-T/N-T Paved Holes") as GameObject,
             Resources.Load("Prefabs/Rooms/30x30/T Pieces/S-T/S-T Paved Holes") as GameObject,
-            Resources.Load("Prefabs/Rooms/30x30/T Pieces/W-T/W-T Paved Holes") as GameObject
+            Resources.Load("Prefabs/Rooms/30x30/T Pieces/W-T/W-T Paved Holes") as GameObject,
+            // === Room Expansion A (49-53) ===
+            Resources.Load("Prefabs/Rooms/30x30/All/Large Paneled Ice Room") as GameObject,
+            Resources.Load("Prefabs/Rooms/30x30/T Pieces/E-T/E-T Large Paneled Ice Room") as GameObject,
+            Resources.Load("Prefabs/Rooms/30x30/T Pieces/N-T/N-T Large Paneled Ice Room") as GameObject,
+            Resources.Load("Prefabs/Rooms/30x30/T Pieces/S-T/S-T Large Paneled Ice Room") as GameObject,
+            Resources.Load("Prefabs/Rooms/30x30/T Pieces/W-T/W-T Large Paneled Ice Room") as GameObject
         };
         Debug.Log("RoomList Creation");
     }
@@ -103,5 +109,17 @@ public class RoomList
     
     public List<GameObject> AllRooms { get => allRooms; }
 
+    public GameObject getRandomWithFilter(Filter f)
+    {
+        List<GameObject> options = new List<GameObject>();
+        foreach (GameObject room in allRooms)
+        {
+            if(room.GetComponent<RoomMap>().filterID == f.Id)
+            {
+                options.Add(room);
+            }
+        }
+        return options[Random.Range(0, options.Count)];
+    }
     
 }

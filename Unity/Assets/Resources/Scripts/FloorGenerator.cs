@@ -16,6 +16,8 @@ public class FloorGenerator : MonoBehaviour
     public RectInt floorSize;
     public List<ListWrapper> rooms;
 
+    public StartingRoom startRoom;
+
     void Start()
     {
         layout = new FloorLayout(floorSize, new Point(startRoomX, startRoomY), new RangeInt(minRooms,maxRooms));
@@ -24,6 +26,7 @@ public class FloorGenerator : MonoBehaviour
             writetext.WriteLine(layout);
         }
         layout.Apply(constructLists(rooms));
+        startRoom.StartGame();
     }
     private List<List<Room>> constructLists(List<ListWrapper> whyDoYouMakeMeDoThisUnity)
     {

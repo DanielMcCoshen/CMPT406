@@ -69,17 +69,31 @@ public class Room : MonoBehaviour
     {
         if (!votingCommenced)
         {
-            await NetworkManager.BeginRoomVote(this);
+            if (NetworkManager.Online)
+            {
+                await NetworkManager.BeginRoomVote(this);
+            }
+            else
+            {
+                votingCommenced = true;
+            }
             StartCoroutine(verifyRoom());
         }
     }
     private IEnumerator verifyRoom()
     {
         yield return new WaitForSeconds(10);
-        while (!votingComplete)
+        if (NetworkManager.Online)
         {
-            _ = NetworkManager.CheckVote(this);
-            yield return new WaitForSeconds(10);
+            while (!votingComplete)
+            {
+                _ = NetworkManager.CheckVote(this);
+                yield return new WaitForSeconds(10);
+            }
+        }
+        else
+        {
+            RoomLayout = RoomList.Instance.getRandomWithFilter(filter);
         }
     }
 

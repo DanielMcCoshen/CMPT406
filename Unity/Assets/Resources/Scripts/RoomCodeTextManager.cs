@@ -11,6 +11,13 @@ public class RoomCodeTextManager : MonoBehaviour
 
     public void updateRoomId()
     {
-        gameIDText.SetText("Room Code: " + ServerInfo.Instance.RoomCode);
+        try
+        {
+            gameIDText.SetText("Room Code: " + ServerInfo.Instance.RoomCode);
+        }
+        catch (System.InvalidOperationException)
+        {
+            gameIDText.SetText("Room Code: Offline");
+        }
     }
 }

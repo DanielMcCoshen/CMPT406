@@ -8,6 +8,7 @@ public class SkellyBehavior : MonoBehaviour
     public float shootWaitTime = 1f;
     public float jumpWait;
     public float moveTime;
+    private float startTime = 0f;
     public float units;
     private float angle = 90f;
     private float forcePerUnit = 0f;
@@ -33,7 +34,7 @@ public class SkellyBehavior : MonoBehaviour
     void Start()
     {
         currentState = states.NOTHING;
-        forcePerUnit = 15.384615384615384615384615384615f * (5f / moveTime);
+        forcePerUnit = 15.384615384615384615384615384615f * 2 * (5f / moveTime);
         player = GameObject.FindWithTag("Player");
     }
 
@@ -157,6 +158,7 @@ public class SkellyBehavior : MonoBehaviour
 
     private IEnumerator Jump(float timeTotal)
     {
+        startTime = Time.deltaTime;
         yield return new WaitForSeconds(timeTotal);
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         switched = false;

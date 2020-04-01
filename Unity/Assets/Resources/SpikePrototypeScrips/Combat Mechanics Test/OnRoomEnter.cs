@@ -7,8 +7,9 @@ public class OnRoomEnter : MonoBehaviour
     public RoomMap roomMap;
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag != "DeathPit")
+        if (col.tag == "Player")
         {
+            Debug.Log("Player");
             roomMap.activateRoom(col.gameObject);
         }
     }

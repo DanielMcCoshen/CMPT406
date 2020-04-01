@@ -3,18 +3,20 @@ using System.Collections;
 
 public class StartingRoom : Room
 {
-    public GameObject player;
     public GameObject startingRoomMap;
-    public GameObject mainCamera;
+
+    public GameObject player;
 
     void Start()
     {
+        player.SetActive(false);
+    }
+
+    public void StartGame()
+    {
+        player.SetActive(true);
         JobId = -1;
         RoomLayout = startingRoomMap;
-
-        GameObject instatiatedPlayer = Instantiate(player, roomLayout.SpawnLocation);
-        instatiatedPlayer.GetComponent<Player>().mainCam = mainCamera.GetComponent<Camera>();
-        mainCamera.GetComponent<CameraController>().player = instatiatedPlayer.transform;
 
         enterRoom();
     }

@@ -7,11 +7,12 @@ public class RoomMap : MonoBehaviour
     [SerializeField]
     private Transform spawnLocation = null;
 
+    public int filterID;
+
     public List<GameObject> enemies = new List<GameObject>();
 
     [SerializeField]
     private GameObject loot = null;
-
 
     public Room room;
 
@@ -20,6 +21,14 @@ public class RoomMap : MonoBehaviour
     [Header("Tilemap References")]
     public GameObject bridges;
     public GameObject dynamicDanger;
+
+    void Start()
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.SetActive(false);
+        }
+    }
 
     public void spawnEnemies()
     {
