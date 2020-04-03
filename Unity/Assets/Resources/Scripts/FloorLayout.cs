@@ -12,6 +12,9 @@ public class FloorLayout
     private Point startRoomLocation;
     private RangeInt numRooms;
 
+    protected int numberOfRooms;
+    public int NumberOfRooms { get => numberOfRooms;}
+
     public FloorLayout(RectInt size, Point startRoom, RangeInt numRooms)
     {
         this.numRooms = numRooms;
@@ -69,6 +72,7 @@ public class FloorLayout
         SortedSet<Edge> potentialEdges = new SortedSet<Edge>(new Edge.CompareByWeight());
         potentialEdges.UnionWith(startRoom.AllEdges);
         int rooms = Random.Range(numRooms.start, numRooms.end);
+        numberOfRooms = rooms;
         for (int i = 1; i < rooms; i++)
         {
             Edge nextEdge = potentialEdges.Max;
@@ -142,13 +146,13 @@ public class FloorLayout
                 Room currentRoom = rooms[x][y];
                 if (currentNode.Included)
                 {
-                    if (notNullAndIncluded(currentNode.Left))
-                    {
-                        currentRoom.neighbours.Add(rooms[x - 1][y]);
-                    }
                     if (notNullAndIncluded(currentNode.Right))
                     {
                         currentRoom.neighbours.Add(rooms[x + 1][y]);
+                    }
+                    if (notNullAndIncluded(currentNode.Left))
+                    {
+                        currentRoom.neighbours.Add(rooms[x - 1][y]);
                     }
                     if (notNullAndIncluded(currentNode.Up))
                     {
@@ -200,7 +204,7 @@ public class FloorLayout
                 }
                 else
                 {
-                    l1 += "   ";
+                    l1 += "** ";
                     l2 += "   ";
                 }
             }

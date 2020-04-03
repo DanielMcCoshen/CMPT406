@@ -12,6 +12,7 @@ public class RoomList
 
     private static readonly object padlock = new object();
     private static RoomList instance;
+    private GameObject bossRoom = null;
 
     private List<GameObject> allRooms;
 
@@ -91,6 +92,8 @@ public class RoomList
             Resources.Load("Prefabs/Rooms/30x30/T Pieces/W-T/W-T Large Paneled Ice Room") as GameObject
         };
         Debug.Log("RoomList Creation");
+
+        bossRoom =  Resources.Load("Prefabs/Rooms/30x30/BossPortal") as GameObject;
     }
 
     public static RoomList Instance {
@@ -120,6 +123,11 @@ public class RoomList
             }
         }
         return options[Random.Range(0, options.Count)];
+    }
+
+    public GameObject getBossRoom()
+    {
+        return bossRoom;
     }
     
 }

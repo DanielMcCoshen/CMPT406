@@ -1,9 +1,54 @@
 fileFormatVersion: 2
 guid: ffb20e535e340b945ba22b4bc68f80f1
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1338749480736452202
+    second: Blunderbuss_0
+  - first:
+      213: -8814273896826706940
+    second: Blunderbuss_1
+  - first:
+      213: -2885229433811041807
+    second: Blunderbuss_2
+  - first:
+      213: -2019258173382272157
+    second: Blunderbuss_3
+  - first:
+      213: 8290299225513766091
+    second: Blunderbuss_4
+  - first:
+      213: -2923100508933863436
+    second: Blunderbuss_5
+  - first:
+      213: -6783023842058600166
+    second: Blunderbuss_6
+  - first:
+      213: -5544374240044695247
+    second: Blunderbuss_7
+  - first:
+      213: 1522621116615117857
+    second: Blunderbuss_8
+  - first:
+      213: -6395045553513336901
+    second: Blunderbuss_9
+  - first:
+      213: 6492016622367485557
+    second: Blunderbuss_10
+  - first:
+      213: 7121345902796754935
+    second: Blunderbuss_11
+  - first:
+      213: -2657142379572372304
+    second: Blunderbuss_12
+  - first:
+      213: 3209359464867029709
+    second: Blunderbuss_13
+  - first:
+      213: 290584706260811808
+    second: Blunderbuss_14
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -41,7 +86,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -59,6 +104,7 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -72,9 +118,339 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Blunderbuss_0
+      rect:
+        serializedVersion: 2
+        x: 2769
+        y: 2381
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6911775b07ecb6de0800000000000000
+      internalID: -1338749480736452202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blunderbuss_1
+      rect:
+        serializedVersion: 2
+        x: 4445
+        y: 486
+        width: 387
+        height: 1956
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40465a247986da580800000000000000
+      internalID: -8814273896826706940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blunderbuss_2
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 1174
+        width: 3789
+        height: 946
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f10136dd1b95f7d0800000000000000
+      internalID: -2885229433811041807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blunderbuss_3
+      rect:
+        serializedVersion: 2
+        x: 3920
+        y: 1853
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36bdeb9c3672af3e0800000000000000
+      internalID: -2019258173382272157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blunderbuss_4
+      rect:
+        serializedVersion: 2
+        x: 3915
+        y: 1819
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcca172c83f0d0370800000000000000
+      internalID: 8290299225513766091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blunderbuss_5
+      rect:
+        serializedVersion: 2
+        x: 1502
+        y: 1048
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f7cb3a039f0f67d0800000000000000
+      internalID: -2923100508933863436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blunderbuss_6
+      rect:
+        serializedVersion: 2
+        x: 1516
+        y: 1030
+        width: 39
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a11871fe0cbddd1a0800000000000000
+      internalID: -6783023842058600166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blunderbuss_7
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 1031
+        width: 10
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1314f48010d6e03b0800000000000000
+      internalID: -5544374240044695247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blunderbuss_8
+      rect:
+        serializedVersion: 2
+        x: 1496
+        y: 1042
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12c4a5f96df612510800000000000000
+      internalID: 1522621116615117857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blunderbuss_9
+      rect:
+        serializedVersion: 2
+        x: 1491
+        y: 1031
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbf656493fb3047a0800000000000000
+      internalID: -6395045553513336901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blunderbuss_10
+      rect:
+        serializedVersion: 2
+        x: 2310
+        y: 995
+        width: 22
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57e252cc8b6481a50800000000000000
+      internalID: 6492016622367485557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blunderbuss_11
+      rect:
+        serializedVersion: 2
+        x: 2332
+        y: 973
+        width: 39
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ff42ea3e5a14d260800000000000000
+      internalID: 7121345902796754935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blunderbuss_12
+      rect:
+        serializedVersion: 2
+        x: 2388
+        y: 1031
+        width: 13
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bcd3fb751fef1bd0800000000000000
+      internalID: -2657142379572372304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blunderbuss_13
+      rect:
+        serializedVersion: 2
+        x: 2773
+        y: 800
+        width: 13
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc2efebed6fe98c20800000000000000
+      internalID: 3209359464867029709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
