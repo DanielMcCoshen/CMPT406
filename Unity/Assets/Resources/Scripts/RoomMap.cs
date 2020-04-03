@@ -49,7 +49,15 @@ public class RoomMap : MonoBehaviour
 
    public bool isComplete()
     {
-        return enemies.Count == 0;
+        int counter = 0;
+        foreach (GameObject enemy in enemies)
+        {
+            if(enemy != null && !enemy.Equals(null))
+            {
+                counter++;
+            }
+        }
+        return 0 == counter;
     }
 
     public void switchDynamicDanger(bool option)
@@ -58,9 +66,10 @@ public class RoomMap : MonoBehaviour
         bridges.SetActive(!option);
     }
 
-    public void activateRoom(GameObject playerDeathTrigger)
+    public void activateRoom(OnDeathTrapEnterPlayer playerDeathTrigger)
     {
-        playerDeathTrigger.GetComponent<OnDeathTrapEnterPlayer>().SetRespawnPosition(spawnLocation);
+        
+        playerDeathTrigger.SetRespawnPosition(spawnLocation);
         room.enterRoom();
     }
 }

@@ -2593,7 +2593,7 @@ GameObject:
   - component: {fileID: 4635480507957668492}
   m_Layer: 0
   m_Name: DeathCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4634,6 +4634,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5371079274604825528}
   mainCam: {fileID: 0}
+  itemEquipMenu: {fileID: 0}
+  equippedItemIndex: 0
   itemEquipped: {fileID: 0}
   firePoint: {fileID: 5371079275251287474}
   aimPoint: {fileID: 5371079275251287474}

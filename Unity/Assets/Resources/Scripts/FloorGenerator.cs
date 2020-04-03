@@ -15,6 +15,8 @@ public class FloorGenerator : MonoBehaviour
     public int startRoomY;
     public RectInt floorSize;
     public List<ListWrapper> rooms;
+    public int numberOfRooms;
+    public int totalNumberOfRooms;
 
     public StartingRoom startRoom;
 
@@ -25,9 +27,26 @@ public class FloorGenerator : MonoBehaviour
         {
             writetext.WriteLine(layout);
         }
+        numberOfRooms = layout.NumberOfRooms;
+        totalNumberOfRooms = layout.NumberOfRooms;
         layout.Apply(constructLists(rooms));
+        updateRoomsFloorGeneratorField(rooms);
+        
         startRoom.StartGame();
     }
+
+    private void updateRoomsFloorGeneratorField(List<ListWrapper> rooms)
+    {
+        foreach (ListWrapper l in rooms)
+        {
+            foreach (Room r in l.list)
+            {
+                r.SetFloorGenerator(gameObject.GetComponent<FloorGenerator>());
+            }
+        }
+        
+    }
+
     private List<List<Room>> constructLists(List<ListWrapper> whyDoYouMakeMeDoThisUnity)
     {
         List<List<Room>> res = new List<List<Room>>();
@@ -35,6 +54,7 @@ public class FloorGenerator : MonoBehaviour
         {
             res.Add(l.list);
         }
+        res.Reverse();
         return res;
     }
 
@@ -42,5 +62,24 @@ public class FloorGenerator : MonoBehaviour
     public class ListWrapper
     {
         public List<Room> list;
+    }
+
+    public bool ReadyForBossRoom()
+    {
+        return false;
+        numberOfRooms--;
+        float roomsTravelledPercent = numberOfRooms / totalNumberOfRooms;
+        if(numberOfRooms == 1)
+        {
+            return true;
+        }
+        else if(roomsTravelledPercent <= .666666667 && Random.Range(0.0f, 1.0f) >= roomsTravelledPercent+.30)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
