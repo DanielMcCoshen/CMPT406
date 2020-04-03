@@ -1893,7 +1893,13 @@ MonoBehaviour:
   - {fileID: 5371079275086723839}
   - {fileID: 5371079274857789893}
   - {fileID: 5371079274603324138}
+  directionalAnimators:
+  - {fileID: 7323148791238148894}
+  - {fileID: 3043587720086141241}
+  - {fileID: 4876986583616153749}
+  - {fileID: 2657568641915629725}
   direction: 0
+  currentMovementDirection: -1
   weaponManager: {fileID: 6644164564882290101}
 --- !u!1 &3957185042881825439
 GameObject:
