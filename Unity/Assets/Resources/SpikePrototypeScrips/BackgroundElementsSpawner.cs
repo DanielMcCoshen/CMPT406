@@ -10,6 +10,7 @@ public class BackgroundElementsSpawner : MonoBehaviour
     public float[] spawnPositions;
     public int[] initialPositions;
     public int initialLayer;
+    public bool layerVariance = false;
     public Vector2 spawnVariance;
 
     void Start()
@@ -22,9 +23,18 @@ public class BackgroundElementsSpawner : MonoBehaviour
                 GameObject element = Instantiate(smokeElements[index], new Vector3(Camera.position.x + initialPosition + Random.Range(-1.0f, 1.0f),
                 Camera.position.y + spawnPositions[x] + Random.Range(-0.5f, 0.5f), 0), Quaternion.identity);
 
-                element.GetComponent<ScrollAcrossThenDestroy>().SetVelocityAndLayer(Random.Range(speeds[x].x, speeds[x].y), x+initialLayer);
-
-                StartCoroutine(Spawner(Random.Range(0.1f, 2.1f), spawnPositions[x], x, speeds[x]));
+                
+                if (layerVariance)
+                {
+                    StartCoroutine(Spawner(Random.Range(0.1f, 2.1f), spawnPositions[x], x, speeds[x]));
+                    element.GetComponent<ScrollAcrossThenDestroy>().SetVelocityAndLayer(Random.Range(speeds[x].x, speeds[x].y), x+initialLayer);
+                }
+                else
+                {
+                    StartCoroutine(Spawner(Random.Range(0.1f, 2.1f), spawnPositions[x], 0, speeds[x]));
+                    element.GetComponent<ScrollAcrossThenDestroy>().SetVelocityAndLayer(Random.Range(speeds[x].x, speeds[x].y), 0 + initialLayer);
+                }
+                
             }
             
         }

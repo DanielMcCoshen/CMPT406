@@ -17,6 +17,7 @@ public class FloorGenerator : MonoBehaviour
     public List<ListWrapper> rooms;
     public int numberOfRooms;
     public int totalNumberOfRooms;
+    private bool bossRoomNotSpawned = false;
 
     public StartingRoom startRoom;
 
@@ -33,6 +34,11 @@ public class FloorGenerator : MonoBehaviour
         updateRoomsFloorGeneratorField(rooms);
         
         startRoom.StartGame();
+    }
+
+    public void ReduceNumberOfRooms()
+    {
+        totalNumberOfRooms -= 1;
     }
 
     private void updateRoomsFloorGeneratorField(List<ListWrapper> rooms)
@@ -66,15 +72,21 @@ public class FloorGenerator : MonoBehaviour
 
     public bool ReadyForBossRoom()
     {
-        numberOfRooms--;
-        float roomsTravelledPercent = numberOfRooms / totalNumberOfRooms;
-        if(numberOfRooms == 1)
+        if (bossRoomNotSpawned)
         {
-            return true;
-        }
-        else if(roomsTravelledPercent <= .666666667 && Random.Range(0.0f, 1.0f) >= roomsTravelledPercent+.30)
-        {
-            return true;
+            float roomsTravelledPercent = numberOfRooms / totalNumberOfRooms;
+            if (numberOfRooms == 1)
+            {
+                return true;
+            }
+            else if (roomsTravelledPercent <= .666666667 && Random.Range(0.0f, 1.0f) >= roomsTravelledPercent + .30)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {

@@ -52,6 +52,7 @@ public class Room : MonoBehaviour
             roomLayoutObj = Instantiate(value, gameObject.transform);
             roomLayout = roomLayoutObj.GetComponent<RoomMap>();
             votingComplete = true;
+            floorGenerator.ReduceNumberOfRooms();
             roomLayout.room = gameObject.GetComponent<Room>();
         }
     }
