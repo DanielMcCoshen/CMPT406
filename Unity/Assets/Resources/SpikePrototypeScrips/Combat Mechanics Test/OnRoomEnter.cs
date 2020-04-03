@@ -7,10 +7,9 @@ public class OnRoomEnter : MonoBehaviour
     public RoomMap roomMap;
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Player")
+        if(col != null && !col.Equals(null) && col.gameObject.tag == "Player")
         {
-            Debug.Log("Player");
-            roomMap.activateRoom(col.gameObject);
+                roomMap.activateRoom(col.gameObject.GetComponent<OnDeathTrapEnterPlayer>());
         }
     }
 }
