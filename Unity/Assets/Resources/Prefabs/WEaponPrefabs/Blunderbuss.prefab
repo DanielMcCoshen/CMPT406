@@ -185,7 +185,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 9203907932596247675, guid: c2edb97bb05e6d9438679158955ab754,
     type: 3}
   projectileForce: 10
-  cooldownTimer: 3
+  cooldownTimer: 2
   onCooldown: 0
   firePoint: {fileID: 0}
   aimPoint: {fileID: 2510783386632213588}

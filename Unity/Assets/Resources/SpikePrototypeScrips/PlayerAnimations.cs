@@ -13,61 +13,63 @@ public class PlayerAnimations : EntityAnimation
 
     void Start()
     {
-        for(int index = 1; index < 4; index++)
+        directionalAnimators[0].SetBool("BeingUsed", true);
+        for (int index = 1; index < 4; index++)
         {
-            directionalObjects[index].SetActive(false);
+            directionalAnimators[index].SetBool("BeingUsed", false);
         }
     }
 
     
     public override void FaceNorth()
     {
-        directionalObjects[0].SetActive(true);
-        directionalObjects[direction].SetActive(false);
+        directionalAnimators[direction].SetBool("BeingUsed", false);
+        directionalAnimators[0].SetBool("BeingUsed", true);
+        
         direction = 0;
         if (weaponManager.HasWeaponEquipped())
         {
             weaponManager.CurrentWeapon().GetComponent<PlayerWeaponAnimations>().FaceNorth();
         }
-        directionalAnimators[0].CrossFade("NorthFacingIdle", 0.1f, -1, 0.0f);
     }
 
     public override void FaceEast()
     {
-        directionalObjects[1].SetActive(true);
-        directionalObjects[direction].SetActive(false);
+        directionalAnimators[direction].SetBool("BeingUsed", false);
+        directionalAnimators[1].SetBool("BeingUsed", true);
+        
         direction = 1;
         if (weaponManager.HasWeaponEquipped())
         {
             weaponManager.CurrentWeapon().GetComponent<PlayerWeaponAnimations>().FaceEast();
         }
-        directionalAnimators[1].CrossFade("EastFacingIdle", 0.1f, -1, 0.0f);
     }
 
     public override void FaceSouth()
     {
+        directionalAnimators[direction].SetBool("BeingUsed", false);
+
+        directionalAnimators[2].SetBool("BeingUsed", true);
+
         
-        directionalObjects[2].SetActive(true);
-        directionalObjects[direction].SetActive(false);
         direction = 2;
         if (weaponManager.HasWeaponEquipped())
         {
             weaponManager.CurrentWeapon().GetComponent<PlayerWeaponAnimations>().FaceSouth();
         }
-        directionalAnimators[2].CrossFade("SouthFacingIdle", 0.1f, -1, 0.0f);
     }
 
     public override void FaceWest()
     {
+        directionalAnimators[direction].SetBool("BeingUsed", false);
+
+        directionalAnimators[3].SetBool("BeingUsed", true);
         
-        directionalObjects[3].SetActive(true);
-        directionalObjects[direction].SetActive(false);
         direction = 3;
         if (weaponManager.HasWeaponEquipped())
         {
             weaponManager.CurrentWeapon().GetComponent<PlayerWeaponAnimations>().FaceWest();
         }
-        directionalAnimators[3].CrossFade("WestFacingIdle", 0.1f, -1, 0.0f);
     }
 
     public override void CheckRotation()
@@ -75,7 +77,6 @@ public class PlayerAnimations : EntityAnimation
         if (((aimPoint.rotation.eulerAngles.z >= 0 && aimPoint.rotation.eulerAngles.z <= 45) 
             || (aimPoint.rotation.eulerAngles.z > 315 && aimPoint.rotation.eulerAngles.z < 360)) && direction != 0)
         {
-            Debug.Log(direction);
             FaceNorth();
         }
         else if (aimPoint.rotation.eulerAngles.z > 225 && aimPoint.rotation.eulerAngles.z <= 315 && direction != 1)
@@ -124,7 +125,6 @@ public class PlayerAnimations : EntityAnimation
         if(directionalObjects[direction].active)
         {
             int dir = UpdateMovementDirection();
-            Debug.Log(dir);
             directionalAnimators[direction].SetInteger("CurrentDirection", dir);
         }
 
