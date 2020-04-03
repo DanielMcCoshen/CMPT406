@@ -9,7 +9,7 @@ public class Filter
     private int id = -1;
     public int Id { get => id; }
 
-    public Filter(bool North, bool South, bool East, bool West){
+    public Filter(bool North, bool South, bool West, bool East){
         //all doors
         if (North && East && South && West)
         {

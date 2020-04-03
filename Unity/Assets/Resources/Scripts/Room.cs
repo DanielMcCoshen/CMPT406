@@ -10,6 +10,7 @@ public class Room : MonoBehaviour
     
     
     protected GameObject roomLayoutObj;
+    public FloorGenerator floorGenerator = null;
     
     private bool votingCommenced = false;
     private bool votingComplete = false;
@@ -23,6 +24,16 @@ public class Room : MonoBehaviour
     [SerializeField]
     private Filter filter = null;
     public Filter Filter { get => filter; set => filter = value; }
+
+    void Start()
+    {
+        floorGenerator = GameObject.FindWithTag("MainCamera").GetComponent<FloorGenerator>();
+    }
+
+    public void SetFloorGenerator(FloorGenerator fgen)
+    {
+        floorGenerator = fgen;
+    }
 
     public GameObject RoomLayout {
         get {
@@ -41,6 +52,7 @@ public class Room : MonoBehaviour
             roomLayoutObj = Instantiate(value, gameObject.transform);
             roomLayout = roomLayoutObj.GetComponent<RoomMap>();
             votingComplete = true;
+            roomLayout.room = gameObject.GetComponent<Room>();
         }
     }
 
@@ -67,17 +79,26 @@ public class Room : MonoBehaviour
 
     public async void beginVote()
     {
+        
         if (!votingCommenced)
         {
-            if (NetworkManager.Online)
+            if (floorGenerator.ReadyForBossRoom())
             {
-                await NetworkManager.BeginRoomVote(this);
+                votingCommenced = true;
+                RoomLayout = RoomList.Instance.getBossRoom();
             }
             else
             {
-                votingCommenced = true;
+                if (NetworkManager.Online)
+                {
+                    await NetworkManager.BeginRoomVote(this);
+                }
+                else
+                {
+                    votingCommenced = true;
+                }
+                StartCoroutine(verifyRoom());
             }
-            StartCoroutine(verifyRoom());
         }
     }
     private IEnumerator verifyRoom()

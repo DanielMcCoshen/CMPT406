@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48686942b301d5449a963e256de222a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScene: AlphaGamePlay
+  gameScene: BetaGameplayScene
   rosterText: {fileID: 1878348511}
 --- !u!4 &286665710
 Transform:
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 244558857}
   m_Direction: 2
   m_Value: 0.9815694
-  m_Size: 0.048477247
+  m_Size: 0.04847724
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1650,7 +1650,7 @@ MonoBehaviour:
   - {x: 2, y: 3}
   spawnPositions:
   - -3
-  - -4
+  - -5
   - -6
   - -8
   initialPositions: fcffffff0000000004000000
