@@ -7,20 +7,22 @@ public class ExpandFireball : MonoBehaviour
     private Transform projectileTransform;
     private Projectile projectile;
 
+    public float maxSize;
+
     // Start is called before the first frame update
     void Start()
     {
+        maxSize = 3.0f;
         projectileTransform = gameObject.GetComponent<Transform>();
         projectile = gameObject.GetComponent<Projectile>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        if (transform.localScale.x <= 4.0f)
+        if (transform.localScale.x <= maxSize)
         {
             projectileTransform.localScale *= 1.03f;
-            //projectile.GetComponent<CircleCollider2D>().radius *= 1.05f;
         }
         projectile.force += 3f;
     }
