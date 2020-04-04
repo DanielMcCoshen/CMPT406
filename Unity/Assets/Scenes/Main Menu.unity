@@ -1655,6 +1655,7 @@ MonoBehaviour:
   - -8
   initialPositions: fcffffff0000000004000000
   initialLayer: 5
+  layerVariance: 1
   spawnVariance: {x: 5, y: 13}
 --- !u!4 &1516816198
 Transform:
@@ -1885,6 +1886,7 @@ MonoBehaviour:
   - -5
   initialPositions: fafffffffdffffff000000000300000006000000
   initialLayer: 0
+  layerVariance: 1
   spawnVariance: {x: 2, y: 5}
 --- !u!4 &2135602751
 Transform:

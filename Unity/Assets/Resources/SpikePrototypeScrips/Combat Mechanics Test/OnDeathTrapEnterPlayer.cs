@@ -10,6 +10,7 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
     public int souls;
     public GameObject soulPrefab;
     private List<GameObject> soulObjects;
+    public Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
     public override void OnDeathTrapTrigger(string trapType)
     {
         gameObject.transform.parent.gameObject.transform.position = respawnPosition;
+        rb.velocity = new Vector3(0,0,0);
         souls -= 1;
         Destroy(soulObjects[souls]);
         soulObjects.RemoveAt(souls);

@@ -3477,7 +3477,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: playerfront_10/bone_1/bone_3
+    path: playerfront_9/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3487,7 +3487,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: playerfront_10/bone_1/bone_3
+    path: playerfront_9/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3497,7 +3497,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: playerfront_10/bone_1/bone_3
+    path: playerfront_9/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3627,7 +3627,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: playerfront_9/bone_1/bone_2
+    path: playerfront_10/bone_1/bone_3
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3637,7 +3637,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: playerfront_9/bone_1/bone_2
+    path: playerfront_10/bone_1/bone_3
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3647,7 +3647,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: playerfront_9/bone_1/bone_2
+    path: playerfront_10/bone_1/bone_3
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

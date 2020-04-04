@@ -72,8 +72,9 @@ public class FloorLayout
         SortedSet<Edge> potentialEdges = new SortedSet<Edge>(new Edge.CompareByWeight());
         potentialEdges.UnionWith(startRoom.AllEdges);
         int rooms = Random.Range(numRooms.start, numRooms.end);
-        numberOfRooms = rooms;
-        for (int i = 1; i < rooms; i++)
+        numberOfRooms = 1;
+        Debug.Log("number of rooms" + numberOfRooms);
+        while(numberOfRooms < rooms)
         {
             Edge nextEdge = potentialEdges.Max;
             if (!nextEdge.Included)
@@ -90,6 +91,7 @@ public class FloorLayout
                 else if (nextEdge.A.Included)
                 {
                     Node newRoom = nextEdge.B;
+                    numberOfRooms++;
                     newRoom.Included = true;
                     nextEdge.Included = true;
                     potentialEdges.UnionWith(newRoom.AllEdges);
@@ -97,12 +99,14 @@ public class FloorLayout
                 else if (nextEdge.B.Included)
                 {
                     Node newRoom = nextEdge.A;
+                    numberOfRooms++;
                     newRoom.Included = true;
                     nextEdge.Included = true;
                     potentialEdges.UnionWith(newRoom.AllEdges);
                 }
                 else
                 {
+                    Debug.Log("wealkjg");
                     throw new System.InvalidOperationException("What the actual fuck just happened");
                 }
             }

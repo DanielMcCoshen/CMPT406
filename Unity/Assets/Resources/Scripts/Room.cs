@@ -11,6 +11,7 @@ public class Room : MonoBehaviour
     
     protected GameObject roomLayoutObj;
     public FloorGenerator floorGenerator = null;
+    private bool reducedNumberOfRooms = false;
     
     private bool votingCommenced = false;
     private bool votingComplete = false;
@@ -82,6 +83,12 @@ public class Room : MonoBehaviour
         
         if (!votingCommenced)
         {
+            if (!reducedNumberOfRooms)
+            {
+                reducedNumberOfRooms = true;
+                floorGenerator.ReduceNumberOfRooms();
+                Debug.Log("reduced");
+            }
             if (floorGenerator.ReadyForBossRoom())
             {
                 votingCommenced = true;
@@ -99,6 +106,7 @@ public class Room : MonoBehaviour
                 }
                 StartCoroutine(verifyRoom());
             }
+            
         }
     }
     private IEnumerator verifyRoom()

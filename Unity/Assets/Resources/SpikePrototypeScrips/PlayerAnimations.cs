@@ -5,35 +5,39 @@ using UnityEngine;
 public class PlayerAnimations : EntityAnimation
 {
     public GameObject[] directionalObjects;
-    public int direction =0;
+    public Animator[] directionalAnimators;
+    public int direction = 0;
+    public int currentMovementDirection = -1;
 
     public Shooting weaponManager;
 
     void Start()
     {
-        for(int index = 1; index < 4; index++)
+        directionalAnimators[0].SetBool("BeingUsed", true);
+        for (int index = 1; index < 4; index++)
         {
-            directionalObjects[index].SetActive(false);
+            directionalAnimators[index].SetBool("BeingUsed", false);
         }
     }
 
     
     public override void FaceNorth()
     {
-        directionalObjects[0].SetActive(true);
-        directionalObjects[direction].SetActive(false);
+        directionalAnimators[direction].SetBool("BeingUsed", false);
+        directionalAnimators[0].SetBool("BeingUsed", true);
+        
         direction = 0;
         if (weaponManager.HasWeaponEquipped())
         {
             weaponManager.CurrentWeapon().GetComponent<PlayerWeaponAnimations>().FaceNorth();
         }
-        
     }
 
     public override void FaceEast()
     {
-        directionalObjects[1].SetActive(true);
-        directionalObjects[direction].SetActive(false);
+        directionalAnimators[direction].SetBool("BeingUsed", false);
+        directionalAnimators[1].SetBool("BeingUsed", true);
+        
         direction = 1;
         if (weaponManager.HasWeaponEquipped())
         {
@@ -43,8 +47,11 @@ public class PlayerAnimations : EntityAnimation
 
     public override void FaceSouth()
     {
-        directionalObjects[2].SetActive(true);
-        directionalObjects[direction].SetActive(false);
+        directionalAnimators[direction].SetBool("BeingUsed", false);
+
+        directionalAnimators[2].SetBool("BeingUsed", true);
+
+        
         direction = 2;
         if (weaponManager.HasWeaponEquipped())
         {
@@ -54,8 +61,10 @@ public class PlayerAnimations : EntityAnimation
 
     public override void FaceWest()
     {
-        directionalObjects[3].SetActive(true);
-        directionalObjects[direction].SetActive(false);
+        directionalAnimators[direction].SetBool("BeingUsed", false);
+
+        directionalAnimators[3].SetBool("BeingUsed", true);
+        
         direction = 3;
         if (weaponManager.HasWeaponEquipped())
         {
@@ -65,7 +74,8 @@ public class PlayerAnimations : EntityAnimation
 
     public override void CheckRotation()
     {
-        if (((aimPoint.rotation.eulerAngles.z >= 0 && aimPoint.rotation.eulerAngles.z <= 45) || (aimPoint.rotation.eulerAngles.z > 315 && aimPoint.rotation.eulerAngles.z < 360)) && direction != 0)
+        if (((aimPoint.rotation.eulerAngles.z >= 0 && aimPoint.rotation.eulerAngles.z <= 45) 
+            || (aimPoint.rotation.eulerAngles.z > 315 && aimPoint.rotation.eulerAngles.z < 360)) && direction != 0)
         {
             FaceNorth();
         }
@@ -83,10 +93,40 @@ public class PlayerAnimations : EntityAnimation
         }
     }
 
+    private int UpdateMovementDirection()
+    {
+        if (Input.GetAxis("Horizontal") < Input.GetAxis("Vertical") && 0 < Input.GetAxis("Vertical"))
+        {
+            return 0;
+        }
+        else if (Input.GetAxis("Horizontal") > Input.GetAxis("Vertical") && 0 < Input.GetAxis("Horizontal"))
+        {
+            return 1;
+        }
+        else if (Input.GetAxis("Horizontal") > Input.GetAxis("Vertical") && 0 > Input.GetAxis("Vertical"))
+        {
+            return 2;
+        }
+        else if (Input.GetAxis("Horizontal") < Input.GetAxis("Vertical") && 0 > Input.GetAxis("Horizontal"))
+        {
+            return 3;
+        }
+        else
+        {
+            return -1;
+        }
+
+    }
+
     // Update is called once per frame
     void Update()
     {
         CheckRotation();
+        if(directionalObjects[direction].active)
+        {
+            int dir = UpdateMovementDirection();
+            directionalAnimators[direction].SetInteger("CurrentDirection", dir);
+        }
 
     }
 }
