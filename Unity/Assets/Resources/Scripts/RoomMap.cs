@@ -21,9 +21,14 @@ public class RoomMap : MonoBehaviour
     [Header("Tilemap References")]
     public GameObject bridges;
     public GameObject dynamicDanger;
+    public GameObject clutter;
 
     void Start()
     {
+        if (clutter != null)
+        {
+            clutter.SetActive(false);
+        }
         foreach (GameObject enemy in enemies)
         {
             enemy.SetActive(false);
@@ -47,12 +52,12 @@ public class RoomMap : MonoBehaviour
         }
     }
 
-   public bool isComplete()
+    public bool isComplete()
     {
         int counter = 0;
         foreach (GameObject enemy in enemies)
         {
-            if(enemy != null && !enemy.Equals(null))
+            if (enemy != null && !enemy.Equals(null))
             {
                 counter++;
             }
@@ -68,7 +73,7 @@ public class RoomMap : MonoBehaviour
 
     public void activateRoom(OnDeathTrapEnterPlayer playerDeathTrigger)
     {
-        
+
         playerDeathTrigger.SetRespawnPosition(spawnLocation);
         room.enterRoom();
     }
