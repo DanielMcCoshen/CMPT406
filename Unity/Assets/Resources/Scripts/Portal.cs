@@ -22,7 +22,7 @@ public class Portal : MonoBehaviour
         Debug.Log("Collision detected!");
         if (collision.gameObject.tag == "Player")
         {
-            GameObject player = GameObject.FindWithTag("Player");
+            GameObject player = GameObject.FindWithTag("DontDestroy");
             DontDestroyOnLoad(player);
             SceneManager.LoadScene("BossFight");
             player.transform.position = new Vector2(0, 0);

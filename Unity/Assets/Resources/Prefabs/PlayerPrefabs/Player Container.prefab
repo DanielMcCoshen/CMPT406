@@ -3880,6 +3880,7 @@ MonoBehaviour:
   souls: 5
   soulPrefab: {fileID: 687268743779879458, guid: ff511181ba3ce0142a56a875b58ce1df,
     type: 3}
+  rb: {fileID: 5371079274604825528}
 --- !u!1 &5371079275086723839
 GameObject:
   m_ObjectHideFlags: 0

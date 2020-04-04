@@ -74,6 +74,7 @@ public class FloorGenerator : MonoBehaviour
 
     public bool ReadyForBossRoom()
     {
+        return false;
         if (!bossRoomSpawned)
         {
             float roomsTravelledPercent = numberOfRooms / totalNumberOfRooms;
