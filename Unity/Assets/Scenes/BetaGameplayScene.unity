@@ -2964,8 +2964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ffc134570d8c054093e109289c5b456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRooms: 5
-  maxRooms: 15
+  minRooms: 4
+  maxRooms: 5
   startRoomX: 3
   startRoomY: 3
   floorSize:
