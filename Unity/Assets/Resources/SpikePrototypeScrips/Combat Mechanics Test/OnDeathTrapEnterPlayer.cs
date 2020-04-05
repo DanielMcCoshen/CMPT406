@@ -53,7 +53,7 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
 
     private void InstantiateNewSoul(int position)
     {
-        soulObjects.Add(Instantiate(soulPrefab, new Vector3(canvas.position.x - 7.5f + (position * 1f), canvas.position.y + 4f, canvas.position.z), Quaternion.identity, canvas));
+        soulObjects.Add(Instantiate(soulPrefab, new Vector3(canvas.position.x - 8f + (position * 1f), canvas.position.y + 4.25f, canvas.position.z), Quaternion.identity, canvas));
     }
 
     public void AddLife()
