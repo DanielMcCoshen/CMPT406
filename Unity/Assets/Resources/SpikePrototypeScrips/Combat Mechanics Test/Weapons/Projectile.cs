@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
             {
                 if (collision.gameObject.tag == "Hydra")
                 {
-                    var damage = this.force / 50.0f;
+                    var damage = System.Math.Abs(this.force / 50.0f);
                     var hydraHealth = collision.gameObject.GetComponent<HydraBehavior>();
                     hydraHealth.SetHealth(damage);
                 }
