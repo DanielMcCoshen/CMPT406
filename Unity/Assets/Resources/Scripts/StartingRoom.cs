@@ -7,14 +7,9 @@ public class StartingRoom : Room
 
     public GameObject player;
 
-    void Start()
-    {
-        player.SetActive(false);
-    }
 
     public void StartGame()
     {
-        player.SetActive(true);
         JobId = -1;
         RoomLayout = startingRoomMap;
 
