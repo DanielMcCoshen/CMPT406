@@ -15,8 +15,8 @@ public class FloorGenerator : MonoBehaviour
     public int startRoomY;
     public RectInt floorSize;
     public List<ListWrapper> rooms;
-    public int numberOfRooms;
-    public int totalNumberOfRooms;
+    private int numberOfRooms;
+    private int totalNumberOfRooms;
     private bool bossRoomSpawned = false;
 
     public StartingRoom startRoom;

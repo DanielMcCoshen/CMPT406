@@ -28,7 +28,7 @@ public class Room : MonoBehaviour
 
     void Start()
     {
-        floorGenerator = GameObject.FindWithTag("MainCamera").GetComponent<FloorGenerator>();
+        floorGenerator = GameObject.Find("Generator").GetComponent<FloorGenerator>();
     }
 
     public void SetFloorGenerator(FloorGenerator fgen)
