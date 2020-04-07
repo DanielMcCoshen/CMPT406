@@ -101,10 +101,11 @@ MonoBehaviour:
   spreadProjectilePrefab: {fileID: 619597399905580419, guid: 0291c528b5bfda64e9cce6a3348dedc3,
     type: 3}
   healthBar: {fileID: 8191802078908731942}
+  hydraControl: {fileID: 0}
   snipeProjectileForce: 20
   bigProjectileForce: 8
   spreadProjectileForce: 15
-  currentAttackPattern: 0
+  waveSpread: {fileID: 0}
 --- !u!1 &2543090671756952123
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +177,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 26516212315010210, guid: 87595b6ab249bda48b59122873d75e81, type: 3}
+  m_Sprite: {fileID: -2224335067183042779, guid: 87595b6ab249bda48b59122873d75e81,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -258,7 +260,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -8500677689003843417, guid: 87595b6ab249bda48b59122873d75e81,
+  m_Sprite: {fileID: -4882228676585134364, guid: 87595b6ab249bda48b59122873d75e81,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -459,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5939df377751f41ad2a8a386ac6d86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bar: {fileID: 0}
 --- !u!1 &6726599601257109117
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,7 +744,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -1371596680695043148, guid: 87595b6ab249bda48b59122873d75e81,
+  m_Sprite: {fileID: -6580992684024993785, guid: 87595b6ab249bda48b59122873d75e81,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
