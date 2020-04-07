@@ -184,7 +184,7 @@ class rooms(object):
             cls._instance = {}
         return cls._instance
 
-class optionlist(object):
+class roomlist(object):
     _instance = None
     
     def __init__(self):
@@ -193,7 +193,7 @@ class optionlist(object):
     @classmethod
     def get(cls):
         if cls._instance is None:
-            print("populating options list")
+            print("populating room list")
             cls._instance = {
                 # All
                 0:  [
@@ -296,3 +296,25 @@ class optionlist(object):
                     ]
             }
         return cls._instance
+        
+class itemlist(object):
+    _instance = None
+    
+    def __init__(self):
+        raise RuntimeError("call get() instead")
+    
+    @classmethod
+    def life(cls):
+        return option(0, "soul", 0)
+
+    @classmethod
+    def item(cls):
+        if cls._instance is None:
+            print("populating object list")
+            cls._instance = [
+                option(1, "grenade", 0),
+                option(2, "bad grenade", 0)
+            ]
+        return cls._instance
+        
+        
