@@ -2,7 +2,7 @@ from server import app
 from flask_api import status
 from flask import render_template, jsonify, request
 from server.forms import position_form
-from model import gameroom, rooms, user, optionlist, job
+from model import gameroom, rooms, user, roomlist, job, itemlist
 from datetime import datetime, timedelta
 from server.helpers import room_not_found, invalid_token, access_denied, user_exists, validate_game, room_exists, validate_user, bad_request, no_current_job
 import jwt
@@ -59,9 +59,14 @@ def create_job(game_id):
     job_type = request_json['type']
     job_filter = request_json['filter_id']
     
-    if job_type == 0 : 
-        options = random.sample(optionlist.get().get(job_filter), app.config["VOTE_OPTIONS"])
-    
+    if job_type == 0: 
+        options = random.sample(roomlist.get().get(job_filter), app.config["VOTE_OPTIONS"])
+    elif job_type == 1:
+        alloptions = itemlist.item().copy()
+        if job_filter <= 6:
+            alloptions.append(itemlist.life())
+        options = random.sample(alloptions, app.config["VOTE_OPTIONS"])
+
     new_job = job(options)
     current_room.add_job(new_job)
 
