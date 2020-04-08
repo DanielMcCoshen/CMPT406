@@ -1,7 +1,8 @@
 from server import app
-from model import rooms, optionlist
+from model import rooms, roomlist, itemlist
 
 print("begining setup")
 rooms.get_map()
-optionlist.get()
+roomlist.get()
+itemlist.item()
 
