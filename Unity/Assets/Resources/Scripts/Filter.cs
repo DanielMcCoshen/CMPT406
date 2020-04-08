@@ -72,7 +72,7 @@ public class Filter
         }
         else if (North && East && South && !West)
         {
-            id = 1;
+            id = 14;
         }
         else
         {
