@@ -12,6 +12,8 @@ public class StartingRoom : Room
     {
         JobId = -1;
         RoomLayout = startingRoomMap;
+        LootJobId = -1;
+        Loot = null;
 
         enterRoom();
     }

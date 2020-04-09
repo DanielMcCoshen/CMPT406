@@ -73,7 +73,6 @@ public class FloorLayout
         potentialEdges.UnionWith(startRoom.AllEdges);
         int rooms = Random.Range(numRooms.start, numRooms.end);
         numberOfRooms = 1;
-        Debug.Log("number of rooms" + numberOfRooms);
         while(numberOfRooms < rooms)
         {
             Edge nextEdge = potentialEdges.Max;
@@ -82,7 +81,6 @@ public class FloorLayout
                 if (nextEdge.A.Included && nextEdge.B.Included)
                 {
                     float chanceOfNewDoor = ((4 - nextEdge.A.NumDoors) * 0.25f) * ((4 - nextEdge.B.NumDoors) * 0.25f);
-                    Debug.Log("Could add edge with probability " + chanceOfNewDoor);
                     if (Random.value <= chanceOfNewDoor)
                     {
                         nextEdge.Included = true;
@@ -106,7 +104,6 @@ public class FloorLayout
                 }
                 else
                 {
-                    Debug.Log("wealkjg");
                     throw new System.InvalidOperationException("What the actual fuck just happened");
                 }
             }

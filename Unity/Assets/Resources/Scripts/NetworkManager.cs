@@ -101,9 +101,56 @@ public class NetworkManager
         room.JobId = json.job_id;
     }
 
-    public static async Task CheckVote(Room room)
+    public static async Task BeginItemVote(Room room, int souls)
     {
-        Debug.Log("Checking Room");
+        HttpResponseMessage response;
+        PostJobResponse json;
+
+        VoteOptions options = new VoteOptions();
+        options.level = 0;
+        options.type = 1;
+        options.filter_id = souls;
+
+        try
+        {
+            StringContent requestContent = new StringContent(JsonUtility.ToJson(options), System.Text.Encoding.UTF8, "application/json");
+            response = await client.PostAsync(ServerInfo.Instance.Hostname + "/game/" + ServerInfo.Instance.RoomCode + "/jobs", requestContent);
+            json = JsonUtility.FromJson<PostJobResponse>(await response.Content.ReadAsStringAsync());
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+            return;
+        }
+
+        room.LootJobId = json.job_id;
+    }
+
+    public static async Task CheckItemVote(Room room)
+    {
+        HttpResponseMessage response;
+        CheckJobResponse json;
+        try
+        {
+            response = await client.GetAsync(ServerInfo.Instance.Hostname + "/game/" + ServerInfo.Instance.RoomCode + "/jobs/" + room.LootJobId);
+            json = JsonUtility.FromJson<CheckJobResponse>(await response.Content.ReadAsStringAsync());
+            response.EnsureSuccessStatusCode();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+            return;
+        }
+
+        if (json.complete)
+        {
+            Debug.Log(json.result);
+            room.RoomLayout = ItemList.Instance.AllItems[json.result];
+        }
+    }
+
+    public static async Task CheckRoomVote(Room room)
+    {
         HttpResponseMessage response;
         CheckJobResponse json;
         try

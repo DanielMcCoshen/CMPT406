@@ -11,9 +11,6 @@ public class RoomMap : MonoBehaviour
 
     public List<GameObject> enemies = new List<GameObject>();
 
-    [SerializeField]
-    private GameObject loot = null;
-
     public Room room;
 
     public Transform SpawnLocation { get => spawnLocation; }
@@ -37,18 +34,17 @@ public class RoomMap : MonoBehaviour
 
     public void spawnEnemies()
     {
-        Debug.Log("Spawning Enemies");
         foreach (GameObject enemy in enemies)
         {
             enemy.SetActive(true);
         }
     }
 
-    public void spawnLoot()
+    public void spawnLoot(GameObject loot)
     {
         if (loot != null)
         {
-            loot.SetActive(true);
+            Instantiate(loot, spawnLocation);
         }
     }
 
