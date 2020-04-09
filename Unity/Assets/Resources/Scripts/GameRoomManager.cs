@@ -9,8 +9,12 @@ public class GameRoomManager : MonoBehaviour
     public float pollTimer;
     async void Start()
     {
-        ServerInfo.Instance.Hostname = "http://" + ServerHostName;
-        await NetworkManager.CreateGame();
+        try
+        {
+            ServerInfo.Instance.Hostname = "http://" + ServerHostName;
+            await NetworkManager.CreateGame();
+        }
+        catch (System.InvalidOperationException) { } //this squelches errors that happen when returning to the main menu. its bad practice but this shit is due in a week
         textManager.updateRoomId();
         DontDestroyOnLoad(gameObject);
         StartCoroutine(UpdateRoomMembersLoop());
