@@ -76,7 +76,7 @@ public class FloorGenerator : MonoBehaviour
     {
         if (!bossRoomSpawned)
         {
-            float roomsTravelledPercent = numberOfRooms / totalNumberOfRooms;
+            float roomsTravelledPercent = (float)(numberOfRooms) / (float)(totalNumberOfRooms);
             if (numberOfRooms <= 1)
             {
                 bossRoomSpawned = true;
@@ -84,7 +84,11 @@ public class FloorGenerator : MonoBehaviour
             }
             else if (roomsTravelledPercent <= .666666667 && Random.Range(0.0f, 1.0f) >= roomsTravelledPercent + .30)
             {
+                Debug.Log(numberOfRooms);
+                Debug.Log(totalNumberOfRooms);
+                Debug.Log(roomsTravelledPercent);
                 bossRoomSpawned = true;
+                Debug.Log(true);
                 return true;
             }
             else
