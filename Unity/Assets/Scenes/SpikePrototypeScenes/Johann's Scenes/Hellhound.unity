@@ -312,7 +312,7 @@ RectTransform:
   - {fileID: 1172008516}
   - {fileID: 675653878}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -620,7 +620,7 @@ Transform:
   - {fileID: 1176582234}
   - {fileID: 2073776317}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &340700426
 GameObject:
@@ -1194,7 +1194,7 @@ Transform:
   - {fileID: 1937419593}
   - {fileID: 5608589679557657292}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &884279520
 GameObject:
@@ -1291,7 +1291,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1002583120
 PrefabInstance:
@@ -1958,7 +1958,7 @@ Transform:
   - {fileID: 397234716}
   - {fileID: 1877583494}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1420786125 stripped
 GameObject:
@@ -4741,6 +4741,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 104573055}
   smooth: 0.1
+  playerCameraSize: 0
+  bossRoomPos: {x: 0, y: 0}
+  bossFightZoomSpeed: 0
+  bossFightCameraSize: 0
 --- !u!81 &1810034948
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4761,7 +4765,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1831596497 stripped
 GameObject:
@@ -4960,6 +4964,150 @@ Transform:
   m_Father: {fileID: 774519471}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1988781011
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3362137518821311221, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137518821311221, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.10385
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137518821311223, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519558767683, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.179999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519558767683, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.113851
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519558767685, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519651095979, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_Name
+      value: HellHound 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519651095983, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519651095983, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519651095983, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -37.12073
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519651095983, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519651095983, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519651095983, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519651095983, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519651095983, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519651095983, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519651095983, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519651095983, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519747570341, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.522294
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519747570341, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.97385
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519747570343, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519847424309, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519847424309, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137519847424311, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137520082658040, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 14.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137520082658040, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.89385
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362137520082658042, guid: 711cf46fbe2f0d54795911af0f72cad3,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 711cf46fbe2f0d54795911af0f72cad3, type: 3}
 --- !u!1 &2073776316
 GameObject:
   m_ObjectHideFlags: 0
@@ -16899,6 +17047,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hellhound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571570368201471348, guid: 2e6b32170bc60b145b58dc9fe22c40d4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e6b32170bc60b145b58dc9fe22c40d4, type: 3}
