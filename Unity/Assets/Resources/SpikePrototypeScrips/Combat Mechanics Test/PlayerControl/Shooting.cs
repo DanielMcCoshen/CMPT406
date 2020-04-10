@@ -289,11 +289,18 @@ public class Shooting : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            EquipItem(GetSurroundingIndices(equippedItemIndex, itemNames.Count)[0]);
+            if(itemNames.Count > 0)
+            {
+                EquipItem(GetSurroundingIndices(equippedItemIndex, itemNames.Count)[0]);
+            }
+            
         }
         else if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            EquipItem(GetSurroundingIndices(equippedItemIndex, itemNames.Count)[1]);
+            if (itemNames.Count > 0)
+            {
+                EquipItem(GetSurroundingIndices(equippedItemIndex, itemNames.Count)[1]);
+            }
         }
 
         void GetMouseInput()
