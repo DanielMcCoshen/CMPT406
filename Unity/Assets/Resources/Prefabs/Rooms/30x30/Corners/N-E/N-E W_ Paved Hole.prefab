@@ -52,7 +52,6 @@ MonoBehaviour:
   enemies:
   - {fileID: 1639041920687117968}
   - {fileID: 115507366125719468}
-  loot: {fileID: 0}
   room: {fileID: 0}
   bridges: {fileID: 7644306622959888428}
   dynamicDanger: {fileID: 2363097983037134951}
@@ -618,7 +617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5724371056989320384
 Transform:
   m_ObjectHideFlags: 0
@@ -3735,7 +3734,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4805049313463095169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.006, y: 2.581, z: 0}
+  m_LocalPosition: {x: 5.15, y: 0.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2881044443486606976}
@@ -11564,12 +11563,12 @@ PrefabInstance:
     - target: {fileID: 2864122154467151720, guid: 3c6f6913415e935478f7c048267ff2a2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: -2.73
       objectReference: {fileID: 0}
     - target: {fileID: 2864122154467151720, guid: 3c6f6913415e935478f7c048267ff2a2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: 1.43
       objectReference: {fileID: 0}
     - target: {fileID: 2864122154467151720, guid: 3c6f6913415e935478f7c048267ff2a2,
         type: 3}
