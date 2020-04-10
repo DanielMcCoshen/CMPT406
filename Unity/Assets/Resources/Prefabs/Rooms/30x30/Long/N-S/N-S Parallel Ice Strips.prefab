@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocation: {fileID: 6694955029087375875}
-  filterID: 10
+  filterID: 9
   enemies:
   - {fileID: 3566276752779947101}
   - {fileID: 2290164568763936175}
