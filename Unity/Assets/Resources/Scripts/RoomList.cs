@@ -89,7 +89,9 @@ public class RoomList
             Resources.Load("Prefabs/Rooms/30x30/T Pieces/E-T/E-T Large Paneled Ice Room") as GameObject,
             Resources.Load("Prefabs/Rooms/30x30/T Pieces/N-T/N-T Large Paneled Ice Room") as GameObject,
             Resources.Load("Prefabs/Rooms/30x30/T Pieces/S-T/S-T Large Paneled Ice Room") as GameObject,
-            Resources.Load("Prefabs/Rooms/30x30/T Pieces/W-T/W-T Large Paneled Ice Room") as GameObject
+            Resources.Load("Prefabs/Rooms/30x30/T Pieces/W-T/W-T Large Paneled Ice Room") as GameObject,
+            // === Room Expansion A1 (54)
+            Resources.Load("Prefabs/Rooms/30x30/Long/N-S/N-S Parallel Ice Strips") as GameObject
         };
         BossRoom =  Resources.Load("Prefabs/Rooms/30x30/BossPortal") as GameObject;
     }
