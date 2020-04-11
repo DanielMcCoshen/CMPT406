@@ -76,7 +76,7 @@ public class FloorGenerator : MonoBehaviour
     {
         if (!bossRoomSpawned)
         {
-            float roomsTravelledPercent = numberOfRooms / totalNumberOfRooms;
+            float roomsTravelledPercent = (float)(numberOfRooms) / (float)(totalNumberOfRooms);
             if (numberOfRooms <= 1)
             {
                 bossRoomSpawned = true;
