@@ -93,7 +93,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2518671140172166739
 Transform:
   m_ObjectHideFlags: 0
@@ -6885,21 +6885,21 @@ Tilemap:
   - first: {x: 5, y: -1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 2147483649
+      m_AllTileFlags: 1073741825
   - first: {x: 6, y: -1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 2147483649
+      m_AllTileFlags: 1073741825
   - first: {x: 7, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -7083,21 +7083,21 @@ Tilemap:
   - first: {x: 5, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 2147483649
+      m_AllTileFlags: 1073741825
   - first: {x: 6, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 2147483649
+      m_AllTileFlags: 1073741825
   - first: {x: 7, y: 0, z: 0}
     second:
       serializedVersion: 2
@@ -9584,22 +9584,22 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 224
+  - m_RefCount: 220
     m_Data: {fileID: 11400000, guid: e4c376f9530dee34bbee5058bee7c496, type: 2}
   - m_RefCount: 168
     m_Data: {fileID: 11400000, guid: 15bf720913aca2542b3499582bb70f62, type: 2}
   - m_RefCount: 144
     m_Data: {fileID: 11400000, guid: f1f8c5913dbd03c4bb4b95389aec508e, type: 2}
-  - m_RefCount: 48
+  - m_RefCount: 52
     m_Data: {fileID: 11400000, guid: df97fc4e708ff8844b450e12eb09f7c4, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 224
+  - m_RefCount: 220
     m_Data: {fileID: 21300000, guid: 644daaf2ec551f1409382e2d97959579, type: 3}
   - m_RefCount: 168
     m_Data: {fileID: 21300000, guid: 12ee2b93598dd4643ad3ccc05f15fc86, type: 3}
   - m_RefCount: 144
     m_Data: {fileID: 21300000, guid: 42f76484dfbf2e24896fa25c19e81db8, type: 3}
-  - m_RefCount: 48
+  - m_RefCount: 52
     m_Data: {fileID: 21300000, guid: 08ef058cd2c4ba54aba62c0aba81c85a, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 584
@@ -10663,7 +10663,6 @@ MonoBehaviour:
   - {fileID: 7774207938504147612}
   - {fileID: 7774207938663188635}
   - {fileID: 7774207938923141774}
-  loot: {fileID: 0}
   room: {fileID: 0}
   bridges: {fileID: 6095898127473821631}
   dynamicDanger: {fileID: 5969804083837207665}

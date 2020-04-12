@@ -72,7 +72,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945410486944226440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.001, y: -1.426, z: 0}
+  m_LocalPosition: {x: 3, y: -1.426, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9199179257118672265}
@@ -132,7 +132,6 @@ MonoBehaviour:
   - {fileID: 4728896958696557955}
   - {fileID: 4728896959326046084}
   - {fileID: 4728896959116367249}
-  loot: {fileID: 0}
   room: {fileID: 0}
   bridges: {fileID: 7445218571707354125}
   dynamicDanger: {fileID: 8690508551636667246}
@@ -10217,7 +10216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5430994464692444713
 Transform:
   m_ObjectHideFlags: 0

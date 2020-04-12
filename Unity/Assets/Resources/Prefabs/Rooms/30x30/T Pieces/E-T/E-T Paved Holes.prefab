@@ -2597,7 +2597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5560962354527503291
 Transform:
   m_ObjectHideFlags: 0
@@ -10293,7 +10293,6 @@ MonoBehaviour:
   - {fileID: 5538316391872447793}
   - {fileID: 2144227602482673129}
   - {fileID: 3750723659116018630}
-  loot: {fileID: 0}
   room: {fileID: 0}
   bridges: {fileID: 8534564052432360956}
   dynamicDanger: {fileID: 5926221937900957491}

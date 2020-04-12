@@ -52,7 +52,6 @@ MonoBehaviour:
   enemies:
   - {fileID: 8750567407567716322}
   - {fileID: 7191940445855878874}
-  loot: {fileID: 0}
   room: {fileID: 0}
   bridges: {fileID: 8262293363731158899}
   dynamicDanger: {fileID: 4213395035052355642}
@@ -10268,7 +10267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4517286757005771757
 Transform:
   m_ObjectHideFlags: 0
