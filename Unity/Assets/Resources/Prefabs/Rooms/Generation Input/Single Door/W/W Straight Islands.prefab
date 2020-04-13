@@ -4699,6 +4699,7 @@ MonoBehaviour:
   - {fileID: 1573389197107055532}
   - {fileID: 1573389195168877904}
   room: {fileID: 0}
+  isTempOrGeneric: 0
   bridges: {fileID: 6665279926943408083}
   dynamicDanger: {fileID: 939305631150097671}
   clutter: {fileID: 8158820435537575357}
@@ -12281,7 +12282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7758327265124496411
 Transform:
   m_ObjectHideFlags: 0

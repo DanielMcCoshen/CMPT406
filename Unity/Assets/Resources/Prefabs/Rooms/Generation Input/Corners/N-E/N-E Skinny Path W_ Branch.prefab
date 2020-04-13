@@ -12048,6 +12048,7 @@ MonoBehaviour:
   - {fileID: 5796119679961442598}
   - {fileID: 7402458115300372771}
   room: {fileID: 0}
+  isTempOrGeneric: 0
   bridges: {fileID: 5182332790174878848}
   dynamicDanger: {fileID: 5047033754339252338}
   clutter: {fileID: 8604615005353177067}
@@ -12067,7 +12068,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4317442531146338986
 Transform:
   m_ObjectHideFlags: 0
@@ -13348,12 +13349,12 @@ PrefabInstance:
     - target: {fileID: 1102553447704552534, guid: 37aab3869a508c84db385e6bcfc9b2ff,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.051
+      value: 5.53
       objectReference: {fileID: 0}
     - target: {fileID: 1102553447704552534, guid: 37aab3869a508c84db385e6bcfc9b2ff,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.771
+      value: -3.54
       objectReference: {fileID: 0}
     - target: {fileID: 1102553447704552534, guid: 37aab3869a508c84db385e6bcfc9b2ff,
         type: 3}
