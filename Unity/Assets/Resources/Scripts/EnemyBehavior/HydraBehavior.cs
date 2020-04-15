@@ -79,6 +79,12 @@ public class HydraBehavior : MonoBehaviour
         }
     }
 
+    private IEnumerator Dying()
+    {
+        yield return new WaitForSeconds(2.0f);
+        gameObject.GetComponent<Animator>().SetTrigger("Dead");
+    }
+
     private IEnumerator Shoot()
     {
         currentState = states.SHOOTING;
@@ -115,7 +121,10 @@ public class HydraBehavior : MonoBehaviour
             {
                 hydraControl.menuManager.HydraDefeated();
             }
-            Destroy(gameObject);
+            StartCoroutine(Dying());
+            gameObject.GetComponent<Animator>().SetTrigger("Dying");
+            gameObject.layer = default;
+            //Destroy(gameObject);
         }
 
         else
