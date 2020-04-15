@@ -15,6 +15,7 @@ public class RoomMap : MonoBehaviour
     public Room room;
 
     public Transform SpawnLocation { get => spawnLocation; }
+    public bool isTempOrGeneric;
 
     [Header("Tilemap References")]
     public GameObject bridges;
@@ -26,14 +27,16 @@ public class RoomMap : MonoBehaviour
     {
         if (clutter != null)
         {
-            clutter.SetActive(false);
+            clutter.SetActive(true);
         }
         
         if (instantStopWall != null) {
             instantStopWall.SetActive(false);
             instantStopWall.transform.localScale = new Vector3(1, 0.95f, 1);
         } else {
-            Debug.LogError(this.gameObject + ": Does not have an instant stop wall.");
+            if (!isTempOrGeneric) {
+                Debug.LogError(this.gameObject + ": Does not have an instant stop wall.");
+            }
         }
         
         foreach (GameObject enemy in enemies)
