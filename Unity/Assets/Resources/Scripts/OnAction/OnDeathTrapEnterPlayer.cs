@@ -27,9 +27,13 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
     {
         if (souls <= 0)
         {
-            SceneManager.LoadScene("Main Menu");
-            DestroyImmediate(GameObject.Find("PlayerCameraAndCanvas"));
-            DestroyImmediate(GameObject.Find("ServerRoomManager"));
+            GameObject menuManager = GameObject.Find("MenuManager");
+            GameObject.Destroy(GameObject.FindWithTag("Player"));
+            menuManager.GetComponent<PauseMenu>().PlayerDefeat();
+            //DestroyImmediate(GameObject.Find("PlayerCameraAndCanvas"));
+            //DestroyImmediate(GameObject.Find("ServerRoomManager"));
+            //SceneManager.LoadScene("Main Menu");
+
         }
     }
 

@@ -44,6 +44,8 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
+        DestroyImmediate(GameObject.Find("PlayerCameraAndCanvas"));
+        DestroyImmediate(GameObject.Find("ServerRoomManager"));
         GameObject.Destroy(GameObject.FindWithTag("Player"));
         SceneManager.LoadScene("Main Menu");
     }
