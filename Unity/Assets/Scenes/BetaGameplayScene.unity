@@ -3251,7 +3251,7 @@ MonoBehaviour:
   player: {fileID: 1926117755}
   smooth: 0.1
   playerCameraSize: 5
-  bossRoomPos: {x: -0.47, y: 2.83}
+  bossRoomPos: {x: 0, y: 0}
   bossFightZoomSpeed: 0.5
   bossFightCameraSize: 12
 --- !u!81 &771502262

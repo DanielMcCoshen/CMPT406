@@ -24,10 +24,10 @@ public class Portal : MonoBehaviour
         {
             GameObject player = GameObject.FindWithTag("DontDestroy");
             CameraController maincam = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
-            maincam.InBossRoom = true;
+            //maincam.InBossRoom = true;
             DontDestroyOnLoad(player);
-            SceneManager.LoadScene("BossFight");
-            player.transform.position = new Vector2(0, 0);
+            SceneManager.LoadScene("BetterBossFight");
+            GameObject.Find("PlayerContainer").transform.position = new Vector2(0, 0);
         }
     }
 }

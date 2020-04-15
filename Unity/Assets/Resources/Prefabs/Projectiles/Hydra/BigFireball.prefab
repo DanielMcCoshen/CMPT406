@@ -28,6 +28,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c56645f5f51ab6c4e811e179c7efa60b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSize: 0
 --- !u!1001 &649995203016297518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114,12 +115,12 @@ PrefabInstance:
     - target: {fileID: 4156037124192145613, guid: 2289589074145ee48ac88cb9a1b6c8ac,
         type: 3}
       propertyPath: force
-      value: 50
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4156037124192145613, guid: 2289589074145ee48ac88cb9a1b6c8ac,
         type: 3}
       propertyPath: destroyTimer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 116108136109980083, guid: 2289589074145ee48ac88cb9a1b6c8ac, type: 3}
