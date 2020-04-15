@@ -369,6 +369,24 @@ Transform:
   m_Father: {fileID: 1199964347}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &113322267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 388756418859640107, guid: be4c30907c4cb014a8e051615914a0aa,
+    type: 3}
+  m_PrefabInstance: {fileID: 184674256}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &113322268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 388756418859640272, guid: be4c30907c4cb014a8e051615914a0aa,
+    type: 3}
+  m_PrefabInstance: {fileID: 184674256}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113322267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f407b31127cf0614d8a95bc8e3ee73e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &149414464
 GameObject:
   m_ObjectHideFlags: 0
@@ -122414,9 +122432,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hydraHeads: 6
   currentAttackPattern: 0
-  menuManager: {fileID: 0}
-  gameOverUI: {fileID: 0}
-  victoryUI: {fileID: 0}
+  menuManager: {fileID: 113322268}
+  gameOverUI: {fileID: 113322267}
+  victoryUI: {fileID: 113322267}
 --- !u!4 &789297052
 Transform:
   m_ObjectHideFlags: 0
@@ -124666,7 +124684,7 @@ MonoBehaviour:
   snipeProjectileForce: 30
   bigProjectileForce: 8
   spreadProjectileForce: 15
-  waveSpread: {fileID: 0}
+  waveSpread: {fileID: 1498593914}
 --- !u!114 &1498593914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137105,8 +137123,8 @@ MonoBehaviour:
   firesBeforeCooldown: 0
   numberOfShotsFired: 0
   weaponMenuPrefab: {fileID: 0}
-  numberOfProjectiles: 0
-  rotationRate: 0
+  numberOfProjectiles: 6
+  rotationRate: 4
   numberOfWaves: 1
   timeBetweenWaves: 0
 --- !u!4 &6922262715183148885
@@ -137523,8 +137541,8 @@ MonoBehaviour:
   firesBeforeCooldown: 0
   numberOfShotsFired: 0
   weaponMenuPrefab: {fileID: 0}
-  numberOfProjectiles: 0
-  rotationRate: 0
+  numberOfProjectiles: 6
+  rotationRate: 4
   numberOfWaves: 1
   timeBetweenWaves: 0
 --- !u!1 &7726657216570653803
