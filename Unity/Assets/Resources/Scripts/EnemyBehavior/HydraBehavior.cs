@@ -58,6 +58,8 @@ public class HydraBehavior : MonoBehaviour
             case states.SHOOTING:
                 break;
         }
+
+        CheckHealth();
     }
 
     public void ShootFireball(Vector3 position, Quaternion rotation)
@@ -102,6 +104,9 @@ public class HydraBehavior : MonoBehaviour
     public void SetHealth(float damage)
     {
         this.health -= damage;
+    }
+
+    public void CheckHealth() {
         if(this.health <= 0)
         {
             healthBar.SetSize(0);
@@ -142,7 +147,6 @@ public class HydraBehavior : MonoBehaviour
             deadHydra.SetActive(true);
             Destroy(gameObject);
         }
-
         else
         {
             healthBar.SetSize(health / maxHealth);
