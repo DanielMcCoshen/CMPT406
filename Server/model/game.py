@@ -264,7 +264,8 @@ class roomlist(object):
                         option(18, "Ice Room", 0),
                         option(19, "Skinny Path", 0),
                         option(20, "Straight Islands", 0),
-                        option(21, "Paved Hole", 0)
+                        option(21, "Paved Hole", 0),
+                        option(54, "Ice Strips", 0)
                     ],
                 # W-E
                 10: [
