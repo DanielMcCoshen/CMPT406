@@ -10,6 +10,7 @@ public class HydraBehavior : MonoBehaviour
     private float angle = 0f;
     private float forcePerUnit = 0f;
     public float health;
+    private float maxHealth;
    
     private bool vertical = false;
     private bool switched = false;
@@ -39,6 +40,7 @@ public class HydraBehavior : MonoBehaviour
         currentState = states.NOTHING;
         health = 100.0f;
         player = GameObject.FindWithTag("Player");
+        maxHealth = health;
     }
 
     void FixedUpdate()
@@ -56,6 +58,8 @@ public class HydraBehavior : MonoBehaviour
             case states.SHOOTING:
                 break;
         }
+
+        CheckHealth();
     }
 
     public void ShootFireball(Vector3 position, Quaternion rotation)
@@ -100,6 +104,9 @@ public class HydraBehavior : MonoBehaviour
     public void SetHealth(float damage)
     {
         this.health -= damage;
+    }
+
+    public void CheckHealth() {
         if(this.health <= 0)
         {
             healthBar.SetSize(0);
@@ -140,10 +147,9 @@ public class HydraBehavior : MonoBehaviour
             deadHydra.SetActive(true);
             Destroy(gameObject);
         }
-
         else
         {
-            healthBar.SetSize(health / 100);
+            healthBar.SetSize(health / maxHealth);
         }
     }
 
