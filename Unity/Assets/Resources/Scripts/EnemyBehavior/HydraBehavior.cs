@@ -28,6 +28,7 @@ public class HydraBehavior : MonoBehaviour
     public float bigProjectileForce;
     public float spreadProjectileForce;
     public WaveSpread waveSpread;
+    public GameObject deadHydra;
 
     private enum states { NOTHING, SHOOTING };
     private states currentState;
@@ -121,10 +122,21 @@ public class HydraBehavior : MonoBehaviour
             {
                 hydraControl.menuManager.HydraDefeated();
             }
-            StartCoroutine(Dying());
-            gameObject.GetComponent<Animator>().SetTrigger("Dying");
-            gameObject.layer = default;
-            //Destroy(gameObject);
+            //StartCoroutine(Dying());
+            //gameObject.GetComponent<Animator>().SetTrigger("New Trigger");
+            //gameObject.layer = default;
+            /*
+            if (deadHydra != null)
+            {
+                GameObject newDeadHydra = Instantiate(deadHydra, this.transform);
+            }
+            else
+            {
+                Debug.Log("No dead hydra object set");
+            }
+            */
+            deadHydra.SetActive(true);
+            Destroy(gameObject);
         }
 
         else
@@ -133,13 +145,14 @@ public class HydraBehavior : MonoBehaviour
         }
     }
 
-    /*
+    
     public void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SetHealth(100.0f);
+            Debug.Log("Hydra clicked");
+            SetHealth(200.0f);
         }
     }
-    */
+    
 }
