@@ -402,6 +402,7 @@ public class Shooting : MonoBehaviour
         itemNames.Remove(itemName);
         Destroy(items[itemName]);
         items[itemName] = null;
+        items.Remove(itemName);
     }
 
     void Shoot()
