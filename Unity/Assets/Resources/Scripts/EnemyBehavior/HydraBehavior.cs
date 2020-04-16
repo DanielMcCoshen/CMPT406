@@ -6,7 +6,7 @@ using System;
 
 public class HydraBehavior : MonoBehaviour
 {
-    public float shootWaitTime = 2f;
+    public float shootWaitTime = 6f;
     private float angle = 0f;
     private float forcePerUnit = 0f;
     public float health;
@@ -28,6 +28,7 @@ public class HydraBehavior : MonoBehaviour
     public float bigProjectileForce;
     public float spreadProjectileForce;
     public WaveSpread waveSpread;
+    public GameObject deadHydra;
 
     private enum states { NOTHING, SHOOTING };
     private states currentState;
@@ -79,6 +80,12 @@ public class HydraBehavior : MonoBehaviour
         }
     }
 
+    private IEnumerator Dying()
+    {
+        yield return new WaitForSeconds(2.0f);
+        gameObject.GetComponent<Animator>().SetTrigger("Dead");
+    }
+
     private IEnumerator Shoot()
     {
         currentState = states.SHOOTING;
@@ -103,11 +110,13 @@ public class HydraBehavior : MonoBehaviour
             hydraControl.hydraHeads -= 1;
             if(hydraControl.hydraHeads == 4)
             {
+                shootWaitTime -= 2.0f;
                 hydraControl.setAttackPattern(HydraControl.attackPattern.BIG);
                 Debug.Log("Attack pattern changed");
             }
             else if(hydraControl.hydraHeads == 2)
             {
+                shootWaitTime -= 2.0f;
                 hydraControl.setAttackPattern(HydraControl.attackPattern.SPREAD);
                 Debug.Log("Attack pattern changed");
             }
@@ -115,6 +124,20 @@ public class HydraBehavior : MonoBehaviour
             {
                 hydraControl.menuManager.HydraDefeated();
             }
+            //StartCoroutine(Dying());
+            //gameObject.GetComponent<Animator>().SetTrigger("New Trigger");
+            //gameObject.layer = default;
+            /*
+            if (deadHydra != null)
+            {
+                GameObject newDeadHydra = Instantiate(deadHydra, this.transform);
+            }
+            else
+            {
+                Debug.Log("No dead hydra object set");
+            }
+            */
+            deadHydra.SetActive(true);
             Destroy(gameObject);
         }
 
@@ -129,7 +152,8 @@ public class HydraBehavior : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SetHealth(100.0f);
+            Debug.Log("Hydra clicked");
+            SetHealth(200.0f);
         }
     }
     */
