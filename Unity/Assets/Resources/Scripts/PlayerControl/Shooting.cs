@@ -46,36 +46,55 @@ public class Shooting : MonoBehaviour
     Vector2 mousePos;
     Vector2 controllerPos;
 
+    /**
+     * Used for collecting weapon and item pickups when they enter the collider on the object this component
+     * is attached to.
+     */
     void OnTriggerEnter2D(Collider2D col)
     {
         void ReceiveWeapon()
         {
             GameObject obj = Instantiate(col.gameObject.GetComponent<ItemPickup>().GetItem(), firePoint.position,
                 firePoint.rotation, firePoint);
+
             weapons.Add(obj.gameObject);
             col.gameObject.GetComponent<ItemPickup>().DestroySelf();
             
             obj.SetActive(false);
-            if (!HasWeaponEquipped())
-            {
-                EquipWeapon(0);
-            }
+            EquipWeapon(weapons.Count-1);
         }
 
         void ReceiveItem()
         {
-            GameObject obj = Instantiate(col.gameObject.GetComponent<ItemPickup>().GetItem(), firePoint.position,
-                firePoint.rotation, firePoint);
-            string name = obj.gameObject.GetComponent<UsableItems>().GetItemType();
-            itemNames.Add(name);
-            obj.GetComponent<UsableItems>().SetUpItem(gameObject);
-            items.Add(name, obj.gameObject);
-            col.gameObject.GetComponent<ItemPickup>().DestroySelf();
-            obj.SetActive(false);
-            if (!HasItemEquipped())
+            void AddItem(GameObject obj, string name)
             {
-                EquipItem(0);
+                itemNames.Add(name);
+                obj.GetComponent<UsableItems>().SetUpItem(gameObject);
+                items.Add(name, obj.gameObject);
+                col.gameObject.GetComponent<ItemPickup>().DestroySelf();
+                obj.SetActive(false);
+                if (!HasItemEquipped())
+                {
+                    EquipItem(itemNames.Count-1);
+                }
             }
+
+            GameObject objt = Instantiate(col.gameObject.GetComponent<ItemPickup>().GetItem(), firePoint.position,
+                firePoint.rotation, firePoint);
+            string nam = objt.gameObject.GetComponent<UsableItems>().GetItemType();
+
+            if (items.ContainsKey(nam))
+            {
+                int usesToAdd = objt.GetComponent<UsableItems>().GetNumberOfUses();
+                items[nam].GetComponent<UsableItems>().AddItemUsages(usesToAdd);
+                col.gameObject.GetComponent<ItemPickup>().DestroySelf();
+                Destroy(objt);
+            }
+            else
+            {
+                AddItem(objt, nam);
+            }
+            
         }
 
         if (col.gameObject.tag == "Weapon")
