@@ -147,7 +147,7 @@ public class HydraBehavior : MonoBehaviour
         }
     }
 
-    
+    /*
     public void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
@@ -156,5 +156,5 @@ public class HydraBehavior : MonoBehaviour
             SetHealth(200.0f);
         }
     }
-    
+    */
 }
