@@ -28,6 +28,7 @@ public class Portal : MonoBehaviour
             DontDestroyOnLoad(player);
             SceneManager.LoadScene("BetterBossFight");
             GameObject.Find("PlayerContainer").transform.position = new Vector2(0, 0);
+            GameObject.Find("PlayerContainer").GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
         }
     }
 }

@@ -42,6 +42,11 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
         respawnPosition = pos.position;
     }
 
+    public IEnumerator iFrames()
+    {
+        yield return new WaitForSeconds(1.5f);
+        GameObject.Find("PlayerContainer").layer = 8;
+    }
 
     public override void OnDeathTrapTrigger(string trapType)
     {
@@ -50,6 +55,8 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
         souls -= 1;
         Destroy(soulObjects[souls]);
         soulObjects.RemoveAt(souls);
+        StartCoroutine(iFrames());
+        GameObject.Find("PlayerContainer").layer = 0;
     }
 
     public override string NameForDeathTrap()
