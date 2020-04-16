@@ -10,6 +10,7 @@ public class HydraBehavior : MonoBehaviour
     private float angle = 0f;
     private float forcePerUnit = 0f;
     public float health;
+    private float maxHealth;
    
     private bool vertical = false;
     private bool switched = false;
@@ -39,6 +40,7 @@ public class HydraBehavior : MonoBehaviour
         currentState = states.NOTHING;
         health = 100.0f;
         player = GameObject.FindWithTag("Player");
+        maxHealth = health;
     }
 
     void FixedUpdate()
@@ -143,7 +145,7 @@ public class HydraBehavior : MonoBehaviour
 
         else
         {
-            healthBar.SetSize(health / 100);
+            healthBar.SetSize(health / maxHealth);
         }
     }
 
