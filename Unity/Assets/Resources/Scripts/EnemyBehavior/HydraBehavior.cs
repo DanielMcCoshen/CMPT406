@@ -6,7 +6,7 @@ using System;
 
 public class HydraBehavior : MonoBehaviour
 {
-    public float shootWaitTime = 2f;
+    public float shootWaitTime = 4f;
     private float angle = 0f;
     private float forcePerUnit = 0f;
     public float health;
@@ -110,11 +110,13 @@ public class HydraBehavior : MonoBehaviour
             hydraControl.hydraHeads -= 1;
             if(hydraControl.hydraHeads == 4)
             {
+                shootWaitTime -= 1.0f;
                 hydraControl.setAttackPattern(HydraControl.attackPattern.BIG);
                 Debug.Log("Attack pattern changed");
             }
             else if(hydraControl.hydraHeads == 2)
             {
+                shootWaitTime -= 1.0f;
                 hydraControl.setAttackPattern(HydraControl.attackPattern.SPREAD);
                 Debug.Log("Attack pattern changed");
             }
