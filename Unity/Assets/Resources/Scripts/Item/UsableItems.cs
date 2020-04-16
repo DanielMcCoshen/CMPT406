@@ -44,4 +44,18 @@ public class UsableItems : MonoBehaviour
             playerShooting.ItemUsedUp(itemType);
         }
     }
+
+    public int GetNumberOfUses()
+    {
+        return numberOfUses;
+    }
+
+    public void AddItemUsages(int numOfUsesToAdd)
+    {
+        if (numOfUsesToAdd > 0)
+        {
+            numberOfUses += numOfUsesToAdd;
+        }
+        
+    }
 }
