@@ -11,6 +11,9 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
     public GameObject soulPrefab;
     private List<GameObject> soulObjects;
     public Rigidbody2D rb;
+    [Header("SFX")]
+    public AudioSource newSoulSFX;
+    public AudioSource deathSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +70,9 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
         }
 
         rb.velocity = new Vector3(0, 0, 0);
+        deathSFX.Play();
+        gameObject.transform.parent.gameObject.transform.position = respawnPosition;
+        rb.velocity = new Vector3(0,0,0);
         souls -= 1;
         Destroy(soulObjects[souls]);
         soulObjects.RemoveAt(souls);
@@ -81,6 +87,7 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
 
     private void InstantiateNewSoul(int position)
     {
+        newSoulSFX.Play();
         soulObjects.Add(Instantiate(soulPrefab, new Vector3(canvas.position.x - 8f + (position * 1f), canvas.position.y + 4.25f, canvas.position.z), Quaternion.identity, canvas));
     }
 

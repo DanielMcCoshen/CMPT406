@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
     public int numberOfShotsFired = 0;
     public GameObject weaponMenuPrefab;
     // Deletes bullet if it touches a Collider2D that is not the player.
+    public AudioSource firingSFX;
 
     public void SetFirePoint(Transform fp)
     {
@@ -37,6 +38,7 @@ public class Weapon : MonoBehaviour
     {
         if (!onCooldown)
         {
+            firingSFX.Play();
             FireProjectile(firePoint.position, aimPoint.rotation);
             StartCoroutine(WeaponCooldown());
         }
