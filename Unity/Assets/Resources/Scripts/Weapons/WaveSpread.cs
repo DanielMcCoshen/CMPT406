@@ -12,6 +12,7 @@ public class WaveSpread : SpreadWeapon
         
         if (!onCooldown)
         {
+            firingSFX.Play();
             FireInASpread();
             if(numberOfWaves > 1)
             {
