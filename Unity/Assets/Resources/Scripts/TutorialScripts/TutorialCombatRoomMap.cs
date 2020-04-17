@@ -152,10 +152,11 @@ public class TutorialCombatRoomMap : MonoBehaviour
 
     public void activateRoom(OnDeathTrapEnterPlayer playerDeathTrigger)
     {
-        playerDeathTrigger.SetRespawnPosition(spawnLocation);
+        
         if (!entered)
         {
             entered = true;
+            playerDeathTrigger.SetRespawnPosition(spawnLocation);
             playerDeathTrigger.MoveToRespawnPosition();
             ActivateNextTutorialMessageSet();
             
