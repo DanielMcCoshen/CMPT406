@@ -2,17 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class TutorialShooting : Shooting
 {
-    // Start is called before the first frame update
-    void Start()
+    private bool mayShoot = false;
+    private bool mayUseItems = false;
+
+    public override void UseItem()
     {
-        
+        if (HasItemEquipped() && mayUseItems)
+        {
+            itemEquipped.GetComponent<UsableItems>().UseItem();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Shoot()
     {
-        
+        if (HasWeaponEquipped() && mayShoot)
+        {
+            weaponEquipped.GetComponent<Weapon>().FireWeapon();
+        }
+    }
+
+    public void SetIfPlayerCanShoot(bool isShootingAllowed)
+    {
+        mayShoot = isShootingAllowed;
+    }
+
+    public void SetIfPlayerCanUseItems(bool isUsingItemsAllowed)
+    {
+        mayUseItems = isUsingItemsAllowed;
+    }
+
+    public bool HasGrenades()
+    {
+        if (items.ContainsKey("Grenade"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

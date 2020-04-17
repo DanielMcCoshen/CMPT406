@@ -42,11 +42,15 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
         respawnPosition = pos.position;
     }
 
+    public void MoveToRespawnPosition()
+    {
+        gameObject.transform.parent.gameObject.transform.position = respawnPosition;
+        rb.velocity = new Vector3(0, 0, 0);
+    }
 
     public override void OnDeathTrapTrigger(string trapType)
     {
-        gameObject.transform.parent.gameObject.transform.position = respawnPosition;
-        rb.velocity = new Vector3(0,0,0);
+        MoveToRespawnPosition();
         souls -= 1;
         Destroy(soulObjects[souls]);
         soulObjects.RemoveAt(souls);

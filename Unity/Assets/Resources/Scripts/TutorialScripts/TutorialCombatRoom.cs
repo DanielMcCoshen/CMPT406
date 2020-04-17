@@ -37,6 +37,7 @@ public class TutorialCombatRoom : MonoBehaviour
             {
                 enemiesDefeated = true;
                 locked = false;
+                roomLayout.ActivateNextTutorialMessageSet();
                 roomLayout.switchDynamicDanger(false);
             }
         }

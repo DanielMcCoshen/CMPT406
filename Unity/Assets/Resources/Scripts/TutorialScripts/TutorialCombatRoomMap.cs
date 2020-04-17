@@ -7,8 +7,21 @@ public class TutorialCombatRoomMap : MonoBehaviour
 {
     [SerializeField]
     private Transform spawnLocation = null;
+    private bool entered = false;
+    public bool spawnedSecondSet = false;
+    public bool passiveSkeletonDead = false;
+    private bool enemiesAreUnspawned = true;
+    private bool grenadeSpawned = false;
+    public GameObject itemPickupPrefab;
+
+    public TutorialShooting playerInventory;
 
     public int filterID;
+
+    public string[] messageSetNames;
+    public bool[] messageSetPlayerControlSettings;
+    private int messageSetIndex = 0;
+    private ActivateTutorialScriptDisplay scriptDisplayActivator = null;
 
     public List<GameObject> enemies = new List<GameObject>();
 
@@ -25,12 +38,13 @@ public class TutorialCombatRoomMap : MonoBehaviour
 
     void Start()
     {
-        if (clutter != null)
+        scriptDisplayActivator = gameObject.GetComponent<ActivateTutorialScriptDisplay>();
+        if (clutter != null && !clutter.Equals(null))
         {
             clutter.SetActive(true);
         }
 
-        if (instantStopWall != null)
+        if (instantStopWall != null && !instantStopWall.Equals(null))
         {
             instantStopWall.SetActive(false);
             instantStopWall.transform.localScale = new Vector3(1, 0.95f, 1);
@@ -42,25 +56,58 @@ public class TutorialCombatRoomMap : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-
-    }
-
     public void spawnEnemies()
     {
-        foreach (GameObject enemy in enemies)
+        GameObject enemy = enemies[0];
+        if (enemy != null && !enemy.Equals(null))
         {
-            if (enemy != null)
-            {
-                enemy.SetActive(true);
-            }
+           enemy.SetActive(true);
         }
+    }
+
+    public void KilledPassiveEnemy()
+    {
+        passiveSkeletonDead = true;
+    }
+
+    private void SpawnGrenadePickup()
+    {
+        grenadeSpawned = true;
+        Instantiate(itemPickupPrefab, new Vector3(18f,7.5f,0f), Quaternion.identity);
+        ActivateNextTutorialMessageSet();
+    }
+
+    void Update()
+    {
+        if (passiveSkeletonDead && !grenadeSpawned)
+        {
+            passiveSkeletonDead = false;
+            SpawnGrenadePickup();
+        }
+        else if (grenadeSpawned && playerInventory.HasGrenades() && enemiesAreUnspawned)
+        {
+            spawnedSecondSet = true;
+            enemiesAreUnspawned = false;
+            foreach(GameObject enemy in enemies)
+            {
+                if (enemy != null && !enemy.Equals(null))
+                {
+                    enemy.SetActive(true);
+                }
+            }
+            ActivateNextTutorialMessageSet();
+        }
+
+        if(grenadeSpawned && !playerInventory.HasGrenades() && !enemiesAreUnspawned)
+        {
+            Instantiate(itemPickupPrefab, spawnLocation.position, Quaternion.identity);
+        }
+
     }
 
     public void spawnLoot(GameObject loot)
     {
-        if (loot != null)
+        if (loot != null && !loot.Equals(null))
         {
             Instantiate(loot, spawnLocation);
         }
@@ -94,10 +141,26 @@ public class TutorialCombatRoomMap : MonoBehaviour
         }
     }
 
+    public void ActivateNextTutorialMessageSet()
+    {
+        scriptDisplayActivator.ActivateMessages(messageSetNames[messageSetIndex],
+            messageSetPlayerControlSettings[messageSetIndex*3], 
+            messageSetPlayerControlSettings[messageSetIndex * 3 + 1],
+            messageSetPlayerControlSettings[messageSetIndex * 3 + 2]);
+        messageSetIndex++;
+    }
+
     public void activateRoom(OnDeathTrapEnterPlayer playerDeathTrigger)
     {
-
         playerDeathTrigger.SetRespawnPosition(spawnLocation);
+        if (!entered)
+        {
+            entered = true;
+            playerDeathTrigger.MoveToRespawnPosition();
+            ActivateNextTutorialMessageSet();
+            
+        }
+        
         room.enterRoom();
     }
 }

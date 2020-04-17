@@ -2289,7 +2289,6 @@ GameObject:
   - component: {fileID: 759717982795866207}
   - component: {fileID: 5658828271127625664}
   - component: {fileID: 1997107837436665720}
-  - component: {fileID: 334114730098804456}
   - component: {fileID: 7528203234774948444}
   - component: {fileID: 2328458922131746958}
   m_Layer: 0
@@ -11667,19 +11666,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &334114730098804456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7718033732414504403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b6a36f7ce6e4bf4ba9ebf633c08aeca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomMap: {fileID: 0}
 --- !u!50 &7528203234774948444
 Rigidbody2D:
   serializedVersion: 4
