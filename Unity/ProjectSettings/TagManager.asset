@@ -10,6 +10,9 @@ TagManager:
   - Souls
   - Item
   - DontDestroy
+  - Hydra
+  - Eye
+  - Head
   layers:
   - Default
   - TransparentFX
