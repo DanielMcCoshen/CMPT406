@@ -42,6 +42,11 @@ public class TutorialCombatRoomMap : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+
+    }
+
     public void spawnEnemies()
     {
         foreach (GameObject enemy in enemies)

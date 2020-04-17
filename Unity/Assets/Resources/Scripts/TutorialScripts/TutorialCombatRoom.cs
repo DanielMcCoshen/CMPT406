@@ -9,6 +9,7 @@ public class TutorialCombatRoom : MonoBehaviour
     private bool reducedNumberOfRooms = false;
 
     private bool enemiesDefeated = false;
+    private bool locked = false;
 
     public TutorialCombatRoomMap roomLayout;
 
@@ -24,10 +25,20 @@ public class TutorialCombatRoom : MonoBehaviour
         {
             roomLayout.switchDynamicDanger(true);
             roomLayout.spawnEnemies();
+            locked = true;
         }
     }
 
     public void FixedUpdate()
     {
+        if (locked)
+        {
+            if (roomLayout.isComplete())
+            {
+                enemiesDefeated = true;
+                locked = false;
+                roomLayout.switchDynamicDanger(false);
+            }
+        }
     }
 }
