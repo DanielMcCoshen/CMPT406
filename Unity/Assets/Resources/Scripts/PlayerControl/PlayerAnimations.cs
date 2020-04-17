@@ -19,7 +19,6 @@ public class PlayerAnimations : EntityAnimation
             directionalAnimators[index].SetBool("BeingUsed", false);
         }
     }
-
     
     public override void FaceNorth()
     {

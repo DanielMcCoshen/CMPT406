@@ -6,10 +6,11 @@ using System;
 
 public class HydraBehavior : MonoBehaviour
 {
-    public float shootWaitTime = 2f;
+    public float shootWaitTime = 6f;
     private float angle = 0f;
     private float forcePerUnit = 0f;
     public float health;
+    private float maxHealth;
    
     private bool vertical = false;
     private bool switched = false;
@@ -28,9 +29,14 @@ public class HydraBehavior : MonoBehaviour
     public float bigProjectileForce;
     public float spreadProjectileForce;
     public WaveSpread waveSpread;
+    public GameObject deadHydra;
 
     private enum states { NOTHING, SHOOTING };
     private states currentState;
+
+    [Header("Sounds")]
+    public AudioSource damageSFX;
+    public AudioSource deathSFX;
     
 
     void Start()
@@ -38,6 +44,7 @@ public class HydraBehavior : MonoBehaviour
         currentState = states.NOTHING;
         health = 100.0f;
         player = GameObject.FindWithTag("Player");
+        maxHealth = health;
     }
 
     void FixedUpdate()
@@ -55,6 +62,8 @@ public class HydraBehavior : MonoBehaviour
             case states.SHOOTING:
                 break;
         }
+
+        CheckHealth();
     }
 
     public void ShootFireball(Vector3 position, Quaternion rotation)
@@ -79,6 +88,12 @@ public class HydraBehavior : MonoBehaviour
         }
     }
 
+    private IEnumerator Dying()
+    {
+        yield return new WaitForSeconds(2.0f);
+        gameObject.GetComponent<Animator>().SetTrigger("Dead");
+    }
+
     private IEnumerator Shoot()
     {
         currentState = states.SHOOTING;
@@ -93,8 +108,13 @@ public class HydraBehavior : MonoBehaviour
     public void SetHealth(float damage)
     {
         this.health -= damage;
+        damageSFX.Play();
+    }
+
+    public void CheckHealth() {
         if(this.health <= 0)
         {
+            deathSFX.Play();
             healthBar.SetSize(0);
             if(hydraControl == null)
             {
@@ -103,11 +123,13 @@ public class HydraBehavior : MonoBehaviour
             hydraControl.hydraHeads -= 1;
             if(hydraControl.hydraHeads == 4)
             {
+                shootWaitTime -= 2.0f;
                 hydraControl.setAttackPattern(HydraControl.attackPattern.BIG);
                 Debug.Log("Attack pattern changed");
             }
             else if(hydraControl.hydraHeads == 2)
             {
+                shootWaitTime -= 2.0f;
                 hydraControl.setAttackPattern(HydraControl.attackPattern.SPREAD);
                 Debug.Log("Attack pattern changed");
             }
@@ -115,12 +137,25 @@ public class HydraBehavior : MonoBehaviour
             {
                 hydraControl.menuManager.HydraDefeated();
             }
+            //StartCoroutine(Dying());
+            //gameObject.GetComponent<Animator>().SetTrigger("New Trigger");
+            //gameObject.layer = default;
+            /*
+            if (deadHydra != null)
+            {
+                GameObject newDeadHydra = Instantiate(deadHydra, this.transform);
+            }
+            else
+            {
+                Debug.Log("No dead hydra object set");
+            }
+            */
+            deadHydra.SetActive(true);
             Destroy(gameObject);
         }
-
         else
         {
-            healthBar.SetSize(health / 100);
+            healthBar.SetSize(health / maxHealth);
         }
     }
 
@@ -129,7 +164,8 @@ public class HydraBehavior : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SetHealth(100.0f);
+            Debug.Log("Hydra clicked");
+            SetHealth(200.0f);
         }
     }
     */

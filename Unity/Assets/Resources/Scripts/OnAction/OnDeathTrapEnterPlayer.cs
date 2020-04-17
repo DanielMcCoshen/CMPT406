@@ -11,6 +11,9 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
     public GameObject soulPrefab;
     private List<GameObject> soulObjects;
     public Rigidbody2D rb;
+    [Header("SFX")]
+    public AudioSource newSoulSFX;
+    public AudioSource deathSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -48,12 +51,21 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
         rb.velocity = new Vector3(0, 0, 0);
     }
 
+    public IEnumerator iFrames()
+    {
+        yield return new WaitForSeconds(1.5f);
+        GameObject.Find("PlayerContainer").layer = 8;
+    }
+
     public override void OnDeathTrapTrigger(string trapType)
     {
         MoveToRespawnPosition();
+        deathSFX.Play();
         souls -= 1;
         Destroy(soulObjects[souls]);
         soulObjects.RemoveAt(souls);
+        StartCoroutine(iFrames());
+        GameObject.Find("PlayerContainer").layer = 0;
     }
 
     public override string NameForDeathTrap()
@@ -63,6 +75,7 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
 
     private void InstantiateNewSoul(int position)
     {
+        newSoulSFX.Play();
         soulObjects.Add(Instantiate(soulPrefab, new Vector3(canvas.position.x - 8f + (position * 1f), canvas.position.y + 4.25f, canvas.position.z), Quaternion.identity, canvas));
     }
 

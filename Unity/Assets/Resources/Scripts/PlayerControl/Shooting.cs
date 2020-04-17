@@ -35,6 +35,7 @@ public class Shooting : MonoBehaviour
     private int equippedWeaponIndex = 0;
     private static Vector3 menuWeaponScale = new Vector3(0.4118056f, 1.235417f, 1.235417f);
     private static Vector3 menuSmallWeaponScale = new Vector3(0.2676736f, 0.803021f, 1.235417f);
+    public AudioSource equipEquipmentSFX;
 
     [Header("Misc")]
     public OnDeathTrapEnterPlayer playersDeathTrap;
@@ -245,6 +246,7 @@ public class Shooting : MonoBehaviour
     {
         void ChangeItem(int index)
         {
+            equipEquipmentSFX.Play();
             itemEquipped = items[itemNames[index]];
             itemEquipped.SetActive(true);
             equippedItemIndex = index;
@@ -261,6 +263,7 @@ public class Shooting : MonoBehaviour
     {
         void ChangeWeapon(int index)
         {
+            equipEquipmentSFX.Play();
             weaponEquipped = weapons[index];
             weaponEquipped.SetActive(true);
             weaponEquipped.GetComponent<PlayerWeaponAnimations>().Equipped(playerAnimationManager.direction);
@@ -402,6 +405,7 @@ public class Shooting : MonoBehaviour
         itemNames.Remove(itemName);
         Destroy(items[itemName]);
         items[itemName] = null;
+        items.Remove(itemName);
     }
 
     public virtual void Shoot()
