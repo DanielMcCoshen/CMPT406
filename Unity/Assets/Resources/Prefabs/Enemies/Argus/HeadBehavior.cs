@@ -22,6 +22,10 @@ public class HeadBehavior : MonoBehaviour
     private List<EyeBehavior> activeEyes = new List<EyeBehavior>();
     private List<EyeBehavior> inactiveEyes = new List<EyeBehavior>();
 
+    //Menu manager for setting the victory screen
+    [SerializeField]
+    private PauseMenu menuManager;
+
     private int shudderDirection = -1;
 
     // Start is called before the first frame update
@@ -73,32 +77,35 @@ public class HeadBehavior : MonoBehaviour
         if (health >= maxHealth)
         {
             currentHealth = maxHealth;
+            healthBar.SetSize(currentHealth / maxHealth);
         }
         else if (health <= 0.0f)
         {
             currentHealth = 0.0f;
+            healthBar.SetSize(currentHealth / maxHealth);
+            menuManager.BossDefeated();
         }
         else
         {
             //Checks for if the boss should do its threshold attacks, and checks if an eye should be damaged
-            if(currentHealth >= 500.0f && health < 500.0f)
+            if(currentHealth >= 600.0f && health < 600.0)
             {
                 currentState = State.SHUDDERING;
                 StartCoroutine(SpecialAttack(1.0f, 4.0f));
             }
-            else if(currentHealth >= 200.0f && health < 200.0f)
+            else if(currentHealth >= 300.0f && health < 300.0)
             {
                 currentState = State.SHUDDERING;
                 StartCoroutine(SpecialAttack(1.5f, 6.0f));
             }
             eyeDamageThreshold -= (currentHealth - health);
-            if(eyeDamageThreshold <= 0.0f)
+            if(eyeDamageThreshold <= 0.0f && activeEyes.Count > 0)
             {
                 DamageEye();
                 eyeDamageThreshold = 50.0f;
             }
             currentHealth = health;
-            healthBar.SetSize(health / maxHealth);
+            healthBar.SetSize(currentHealth / maxHealth);
         }
     }
 
@@ -129,13 +136,19 @@ public class HeadBehavior : MonoBehaviour
          *      */
         Debug.Log("Initiating special attack");
         Vector3 position = transform.position;
+        Color originalColor = gameObject.GetComponent<SpriteRenderer>().color;
+        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        gameObject.layer = 0;
         yield return new WaitForSeconds(shudderSeconds);
         SetState(State.SPECIAL);
-        yield return new WaitForSeconds(attackSeconds);
-        //Set all inactive eyes to red after the special attack
+        //Set all inactive eyes to red for the special attack
         AwakeEyes();
+        yield return new WaitForSeconds(attackSeconds);
         SetState(State.NORMAL);
+        gameObject.layer = 9;
+        gameObject.GetComponent<SpriteRenderer>().color = originalColor;
         transform.position = position;
+        
         Debug.Log("Ending special attack");
 
     }

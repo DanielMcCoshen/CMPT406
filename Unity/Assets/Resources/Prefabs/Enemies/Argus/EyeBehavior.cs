@@ -6,9 +6,9 @@ public class EyeBehavior : MonoBehaviour
 {
     public HeadBehavior head;
 
-    //Projectile prefabs
+    //Projectile prefabs, aimpoint, and firepoint
     [SerializeField]
-    private GameObject purpleProjectile, redProjectile;
+    private GameObject purpleProjectile, redProjectile, aimPoint, firePoint;
 
     //Speed for projectiles in each state
     [SerializeField]
@@ -42,6 +42,16 @@ public class EyeBehavior : MonoBehaviour
         else
         {
             Debug.LogError("Head not found.");
+        }
+
+        //Check to make sure aimPoint and firePoint have been set in the editor
+        if(aimPoint == null)
+        {
+            Debug.LogError("aimPoint not set");
+        }
+        if (firePoint == null)
+        {
+            Debug.LogError("aimPoint not set");
         }
 
         //Get the sprites for the eyes
@@ -191,12 +201,17 @@ public class EyeBehavior : MonoBehaviour
          *      */
     {
         yield return new WaitForSeconds(seconds);
-        //Create the projectile
-        GameObject newProjectile = Instantiate(projectile, gameObject.GetComponent<AimAtPlayer>().firePoint.transform.position, gameObject.GetComponent<AimAtPlayer>().firePoint.transform.rotation);
-        //Get the rigidbody for the new projectile
-        Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
-        //Add the appropriate force to that rigidbody
-        rb.AddForce(newProjectile.transform.up * projectileForce, ForceMode2D.Impulse);
+        //Check to make sure the eye hasn't closed in the meantime
+        if(currentState != State.CLOSED)
+        {
+            //Create the projectile
+            GameObject newProjectile = Instantiate(projectile, firePoint.transform.position, aimPoint.transform.rotation);
+            //Get the rigidbody for the new projectile
+            Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
+            //Add the appropriate force to that rigidbody
+            rb.AddForce(newProjectile.transform.up * projectileForce, ForceMode2D.Impulse);
+        }
+        
 
         shooting = false;
     }

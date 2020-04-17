@@ -129,7 +129,7 @@ public class HydraBehavior : MonoBehaviour
             }
             if(hydraControl.hydraHeads <= 0)
             {
-                hydraControl.menuManager.HydraDefeated();
+                hydraControl.menuManager.BossDefeated();
             }
             //StartCoroutine(Dying());
             //gameObject.GetComponent<Animator>().SetTrigger("New Trigger");
