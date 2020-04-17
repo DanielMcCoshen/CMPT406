@@ -22,6 +22,9 @@ public class EyeBehavior : MonoBehaviour
     //Used to see if it can fire another shot yet
     private bool shooting;
 
+    //Sprites
+    public Sprite[] sprites;
+
 
 
     // Start is called before the first frame update
@@ -40,6 +43,9 @@ public class EyeBehavior : MonoBehaviour
         {
             Debug.LogError("Head not found.");
         }
+
+        //Get the sprites for the eyes
+        sprites = Resources.LoadAll<Sprite>("Sprites/Bosses/Argus/Eyes");
     }
 
     // Update is called once per frame
@@ -200,7 +206,29 @@ public class EyeBehavior : MonoBehaviour
          * Method for changing the state of the eye
          * */
     {
+        //Update the state, then update the sprite renderer to show the correct sprite
         currentState = newState;
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        if(newState == State.NORMAL)
+        {
+            spriteRenderer.sprite = sprites[2];
+        }
+        else if(newState == State.DAMAGED)
+        {
+            spriteRenderer.sprite = sprites[1];
+        }
+        else if(newState == State.CLOSED)
+        {
+            spriteRenderer.sprite = sprites[0];
+        }
+        else if(newState == State.RED)
+        {
+            spriteRenderer.sprite = sprites[3];
+        }
+        else
+        {
+            Debug.LogError("Invalid state");
+        }
     }
 
     public State GetCurrentState()

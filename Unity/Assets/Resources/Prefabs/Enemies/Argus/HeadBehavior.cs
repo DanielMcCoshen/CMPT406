@@ -13,11 +13,16 @@ public class HeadBehavior : MonoBehaviour
     [SerializeField]
     private float maxHealth;
     private float currentHealth;
+    [SerializeField]
+    private HealthBar healthBar;
+    private float eyeDamageThreshold = 50.0f;
 
     //Tracking the eyes on the boss
     private List<EyeBehavior> eyes = new List<EyeBehavior>();
     private List<EyeBehavior> activeEyes = new List<EyeBehavior>();
     private List<EyeBehavior> inactiveEyes = new List<EyeBehavior>();
+
+    private int shudderDirection = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +38,11 @@ public class HeadBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(currentState == State.SHUDDERING)
+        {
+            transform.Translate(0.1f * shudderDirection, 0, 0);
+            shudderDirection *= -1;
+        }
     }
 
     public void AddEye(EyeBehavior eye)
@@ -71,18 +80,25 @@ public class HeadBehavior : MonoBehaviour
         }
         else
         {
-            //Checks for if the boss should do its threshold attacks
+            //Checks for if the boss should do its threshold attacks, and checks if an eye should be damaged
             if(currentHealth >= 500.0f && health < 500.0f)
             {
                 currentState = State.SHUDDERING;
-                SpecialAttack(1.0f, 4.0f);
+                StartCoroutine(SpecialAttack(1.0f, 4.0f));
             }
             else if(currentHealth >= 200.0f && health < 200.0f)
             {
                 currentState = State.SHUDDERING;
-                SpecialAttack(1.5f, 6.0f);
+                StartCoroutine(SpecialAttack(1.5f, 6.0f));
+            }
+            eyeDamageThreshold -= (currentHealth - health);
+            if(eyeDamageThreshold <= 0.0f)
+            {
+                DamageEye();
+                eyeDamageThreshold = 50.0f;
             }
             currentHealth = health;
+            healthBar.SetSize(health / maxHealth);
         }
     }
 
@@ -111,10 +127,16 @@ public class HeadBehavior : MonoBehaviour
          *      float shudderSeconds: how long the boss shudders before attacking
          *      float attackSeconds: How long the boss should do the attack for
          *      */
+        Debug.Log("Initiating special attack");
+        Vector3 position = transform.position;
         yield return new WaitForSeconds(shudderSeconds);
         SetState(State.SPECIAL);
         yield return new WaitForSeconds(attackSeconds);
+        //Set all inactive eyes to red after the special attack
+        AwakeEyes();
         SetState(State.NORMAL);
+        transform.position = position;
+        Debug.Log("Ending special attack");
 
     }
 
@@ -129,6 +151,7 @@ public class HeadBehavior : MonoBehaviour
         {
             case EyeBehavior.State.NORMAL:
                 selectedEye.SetState(EyeBehavior.State.DAMAGED);
+                Debug.Log("Set eye state to damaged");
                 break;
             case EyeBehavior.State.DAMAGED:
                 selectedEye.SetState(EyeBehavior.State.CLOSED);
@@ -151,11 +174,17 @@ public class HeadBehavior : MonoBehaviour
          * Method for resurrecting all destroyed eyes as red eyes
          * */
     {
-        foreach(EyeBehavior eye in inactiveEyes)
+        while(inactiveEyes.Count > 0)
         {
-            inactiveEyes.Remove(eye);
-            activeEyes.Add(eye);
-            eye.SetState(EyeBehavior.State.RED);
+            activeEyes.Add(inactiveEyes[0]);
+            inactiveEyes[0].SetState(EyeBehavior.State.RED);
+            inactiveEyes.RemoveAt(0);
         }
+    }
+
+    public void OnMouseDown()
+    {
+        Debug.Log("Head hit");
+        SetHealth(GetHealth() - 50.0f);
     }
 }
