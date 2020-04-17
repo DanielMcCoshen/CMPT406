@@ -24,6 +24,7 @@ public class SkellyBehavior : MonoBehaviour
     public Transform firePoint;
     public GameObject projectilePrefab;
     public float projectileForce;
+    public AudioSource spearThrowingSound;
 
     private Vector2 destination;
     private enum states { NOTHING, SHOOT_WAITING, SHOOTING, JUMP_WAITING, INTERMEDIATE, JUMPING };
@@ -40,6 +41,7 @@ public class SkellyBehavior : MonoBehaviour
 
     public void ThrowSpear(Vector3 position, Quaternion rotation)
     {
+        spearThrowingSound.Play();
         GameObject projectile = Instantiate(projectilePrefab, position, rotation);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         rb.AddForce(projectile.transform.up * projectileForce, ForceMode2D.Impulse);
