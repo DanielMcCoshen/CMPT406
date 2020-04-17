@@ -78,6 +78,5 @@ public class AimAtPlayer : MonoBehaviour
         {
             FacePlayer();
         }
-        
     }
 }

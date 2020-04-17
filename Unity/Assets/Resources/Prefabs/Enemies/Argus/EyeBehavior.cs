@@ -204,12 +204,20 @@ public class EyeBehavior : MonoBehaviour
         //Check to make sure the eye hasn't closed in the meantime
         if(currentState != State.CLOSED)
         {
+            //Check if the boss is doing its special attack
+            if(head.GetState() == HeadBehavior.State.SPECIAL)
+            {
+                //If it is, randomize shot direction
+                aimPoint.GetComponent<AimAtPlayer>().enabled = false;
+                aimPoint.transform.Rotate(Vector3.forward * Random.Range(0, 360));
+            }
             //Create the projectile
             GameObject newProjectile = Instantiate(projectile, firePoint.transform.position, aimPoint.transform.rotation);
             //Get the rigidbody for the new projectile
             Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
             //Add the appropriate force to that rigidbody
             rb.AddForce(newProjectile.transform.up * projectileForce, ForceMode2D.Impulse);
+            aimPoint.GetComponent<AimAtPlayer>().enabled = true;
         }
         
 

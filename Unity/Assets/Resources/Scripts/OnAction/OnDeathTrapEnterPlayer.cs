@@ -50,8 +50,23 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
 
     public override void OnDeathTrapTrigger(string trapType)
     {
-        gameObject.transform.parent.gameObject.transform.position = respawnPosition;
-        rb.velocity = new Vector3(0,0,0);
+        //Eyes of Argus boss has two spawnpoints to alternate betweeen. Check if the room is eyes of argus
+        if (SceneManager.GetActiveScene().name == "EyesOfArgus")
+        {
+            //If it is, get the Respawn control in the room
+            ArgusRespawn argusRespawn = GameObject.Find("Respawn").GetComponent<ArgusRespawn>();
+            //Switch the active respawn point
+            argusRespawn.SwitchSpawn();
+            //Put the player at the new spawn point
+            gameObject.transform.parent.gameObject.transform.position = argusRespawn.GetSpawn().position;
+        }
+
+        else
+        {
+            gameObject.transform.parent.gameObject.transform.position = respawnPosition;
+        }
+
+        rb.velocity = new Vector3(0, 0, 0);
         souls -= 1;
         Destroy(soulObjects[souls]);
         soulObjects.RemoveAt(souls);
