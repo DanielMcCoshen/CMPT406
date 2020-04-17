@@ -33,6 +33,10 @@ public class HydraBehavior : MonoBehaviour
 
     private enum states { NOTHING, SHOOTING };
     private states currentState;
+
+    [Header("Sounds")]
+    public AudioSource damageSFX;
+    public AudioSource deathSFX;
     
 
     void Start()
@@ -104,11 +108,13 @@ public class HydraBehavior : MonoBehaviour
     public void SetHealth(float damage)
     {
         this.health -= damage;
+        damageSFX.Play();
     }
 
     public void CheckHealth() {
         if(this.health <= 0)
         {
+            deathSFX.Play();
             healthBar.SetSize(0);
             if(hydraControl == null)
             {

@@ -20,6 +20,7 @@ public class SpreadWeapon : Weapon
     {
         if (!onCooldown)
         {
+            firingSFX.Play();
             FireInASpread();
         }
     }
