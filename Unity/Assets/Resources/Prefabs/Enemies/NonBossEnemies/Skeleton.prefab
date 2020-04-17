@@ -2009,8 +2009,9 @@ GameObject:
   - component: {fileID: 8364404157056839758}
   - component: {fileID: 2389030332981319274}
   - component: {fileID: 329825429761028165}
+  - component: {fileID: 8677620615699645940}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DeathZoneCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2058,6 +2059,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f7c0baded8d744283efdb1f70cf854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathAudio: {fileID: 8677620615699645940}
+--- !u!82 &8677620615699645940
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913454671146381147}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5fd2e3d5abae6cc4ab32bc65f8377536, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1931621904176867833
 GameObject:
   m_ObjectHideFlags: 0
@@ -2301,8 +2399,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6329741732084082162}
   m_Bounds:
-    m_Center: {x: 0.28461784, y: 0.0024653077, z: 0}
-    m_Extent: {x: 0.22217208, y: 0.3880915, z: 0}
+    m_Center: {x: 0.0046529323, y: 0.0003953576, z: 0}
+    m_Extent: {x: 0.25415838, y: 0.3598437, z: 0}
   m_UseBatching: 1
 --- !u!1 &2126303114813410903
 GameObject:
@@ -4139,8 +4237,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5439914535737383357}
   m_Bounds:
-    m_Center: {x: 0.041762486, y: 0.02318871, z: 0}
-    m_Extent: {x: 0.22191073, y: 0.66007006, z: 0}
+    m_Center: {x: 0.001769036, y: 0.0029949546, z: 0}
+    m_Extent: {x: 0.16970459, y: 0.6565933, z: 0}
   m_UseBatching: 1
 --- !u!1 &4441424278025235848
 GameObject:
@@ -5376,8 +5474,8 @@ MonoBehaviour:
   - {fileID: 6630202244801237028}
   - {fileID: 245277923101157248}
   m_Bounds:
-    m_Center: {x: 0.039076686, y: 0.03295064, z: 0}
-    m_Extent: {x: 1.5091827, y: 4.0099874, z: 0}
+    m_Center: {x: 0.0043717623, y: 0.005135536, z: 0}
+    m_Extent: {x: 1.3764856, y: 4.008707, z: 0}
   m_UseBatching: 1
 --- !u!1 &5708638747937478895
 GameObject:
@@ -5804,8 +5902,8 @@ MonoBehaviour:
   - {fileID: 8856871332143951709}
   - {fileID: 9212908226375149209}
   m_Bounds:
-    m_Center: {x: 0.001642704, y: 0.017294645, z: 0}
-    m_Extent: {x: 0.9174221, y: 1.2304499, z: 0}
+    m_Center: {x: 0.005178511, y: 0.006325245, z: 0}
+    m_Extent: {x: 0.9231724, y: 1.2433733, z: 0}
   m_UseBatching: 1
 --- !u!1 &6363710386509930160
 GameObject:
