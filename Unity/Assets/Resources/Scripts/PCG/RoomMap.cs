@@ -83,8 +83,6 @@ public class RoomMap : MonoBehaviour
         if (instantStopWall != null) {
             instantStopWall.SetActive(option);
             instantStopWall.GetComponent<TilemapRenderer>().enabled = !option;
-        } else {
-            Debug.LogError(this.gameObject + ": Does not have an instant stop wall.");
         }
     }
 
