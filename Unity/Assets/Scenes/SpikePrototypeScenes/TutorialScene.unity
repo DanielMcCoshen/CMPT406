@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 101926055}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TutorialMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -677,14 +677,14 @@ MonoBehaviour:
   button: {fileID: 615150307}
   initialMessages:
   - Ye wish to cross to the shores of Hades?
-  - Then though require 2 coins payment.
+  - Then thou require 2 coins payment.
   - Beware, thine immortal soul can only be reconstituted so many times before you
     return to mine ferry.
   - Twisted lost spirits and creatures most foul possess thine prize.
   - Move using the power of the old runes, W A S and D
   - Spirit, ye need to watch thine momentum as ye float. Tis not the same as the
     walking of the living.
-  - Pick up yonder spear lost soul, a weapon is needed in the perilous mists.
+  - Pick up yonder spear, lost soul, a weapon is needed in the perilous mists.
   playerMovement: {fileID: 5371079276190281038}
   shooting: {fileID: 7579152279901411806}
   player: {fileID: 5371079276190281037}
