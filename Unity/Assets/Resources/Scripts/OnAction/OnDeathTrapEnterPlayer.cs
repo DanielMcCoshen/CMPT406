@@ -69,7 +69,7 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
 
     public override void OnDeathTrapTrigger(string trapType)
     {
-        /*
+        
         //Eyes of Argus boss has two spawnpoints to alternate betweeen. Check if the room is eyes of argus
         if (SceneManager.GetActiveScene().name == "EyesOfArgus")
         {
@@ -103,7 +103,7 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
         Destroy(soulObjects[souls]);
         soulObjects.RemoveAt(souls);
         StartCoroutine(iFrames());
-        GameObject.Find("PlayerContainer").layer = 0;*/
+        GameObject.Find("PlayerContainer").layer = 0;
     }
 
     public override string NameForDeathTrap()
