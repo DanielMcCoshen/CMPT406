@@ -11762,6 +11762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06ff08ebb078cb47b97708be8368345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teleportTo: Hydra
 --- !u!58 &2514018651018872392
 CircleCollider2D:
   m_ObjectHideFlags: 0
