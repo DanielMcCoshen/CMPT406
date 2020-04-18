@@ -150,7 +150,15 @@ public class Room : MonoBehaviour
             if (floorGenerator.ReadyForBossRoom())
             {
                 votingCommenced = true;
-                RoomLayout = RoomList.Instance.BossRoom;
+                if(floorGenerator.GetCurrentLevel() == 0)
+                {
+                    RoomLayout = RoomList.Instance.BossRoom;
+                }
+                else
+                {
+                    //RoomLayout = RoomList.Instance.BossRoom2;
+                }
+                
             }
             else
             {
