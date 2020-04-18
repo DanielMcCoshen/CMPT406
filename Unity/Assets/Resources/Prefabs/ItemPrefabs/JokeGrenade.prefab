@@ -49,7 +49,7 @@ MonoBehaviour:
   playerShooting: {fileID: 0}
   firePoint: {fileID: 0}
   aimPoint: {fileID: 0}
-  ItemMenuPrefab: {fileID: 1165444753009611522, guid: 58f21ceed97b5424c9a71367fe4b73e4,
+  ItemMenuPrefab: {fileID: 1543484570356919941, guid: 1470dc100903a8440861f70e85315b3f,
     type: 3}
   rotationRate: 10.5
   numberOfProjectiles: 17
