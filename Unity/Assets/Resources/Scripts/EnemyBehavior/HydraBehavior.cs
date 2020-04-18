@@ -37,6 +37,7 @@ public class HydraBehavior : MonoBehaviour
     [Header("Sounds")]
     public AudioSource damageSFX;
     public AudioSource deathSFX;
+    public AudioSource shootSFX;
     
 
     void Start()
@@ -135,7 +136,7 @@ public class HydraBehavior : MonoBehaviour
             }
             if(hydraControl.hydraHeads <= 0)
             {
-                hydraControl.menuManager.HydraDefeated();
+                hydraControl.menuManager.BossDefeated();
             }
             //StartCoroutine(Dying());
             //gameObject.GetComponent<Animator>().SetTrigger("New Trigger");

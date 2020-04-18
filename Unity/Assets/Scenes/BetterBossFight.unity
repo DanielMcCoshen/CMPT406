@@ -124480,8 +124480,8 @@ MonoBehaviour:
   - {fileID: 1912075439}
   - {fileID: 1958151556}
   m_Bounds:
-    m_Center: {x: -0.12168884, y: 0.26883888, z: 0}
-    m_Extent: {x: 11.8616905, y: 23.898056, z: 0}
+    m_Center: {x: -0.12171936, y: 0.26883888, z: 0}
+    m_Extent: {x: 11.86169, y: 23.898056, z: 0}
   m_UseBatching: 1
 --- !u!212 &1172184824
 SpriteRenderer:
@@ -125623,6 +125623,7 @@ MonoBehaviour:
   deadHydra: {fileID: 1494675137}
   damageSFX: {fileID: 1493750039}
   deathSFX: {fileID: 143141974}
+  shootSFX: {fileID: 695787826}
 --- !u!114 &1498593914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135502,6 +135503,7 @@ MonoBehaviour:
   deadHydra: {fileID: 8850080}
   damageSFX: {fileID: 1493750039}
   deathSFX: {fileID: 143141974}
+  shootSFX: {fileID: 695787826}
 --- !u!1 &323384428493252463
 GameObject:
   m_ObjectHideFlags: 0
@@ -135983,7 +135985,7 @@ MonoBehaviour:
   - {fileID: 495198362152193508}
   - {fileID: 2198676210939219837}
   m_Bounds:
-    m_Center: {x: 0.00000667572, y: 0.025407791, z: 0}
+    m_Center: {x: 0.00000667572, y: 0.02542305, z: 0}
     m_Extent: {x: 11.740011, y: 23.654598, z: 0}
   m_UseBatching: 1
 --- !u!114 &1648193264065123753
@@ -137096,6 +137098,7 @@ MonoBehaviour:
   deadHydra: {fileID: 230152479}
   damageSFX: {fileID: 1493750039}
   deathSFX: {fileID: 143141974}
+  shootSFX: {fileID: 695787826}
 --- !u!1 &4344807077951209378
 GameObject:
   m_ObjectHideFlags: 0
@@ -137463,6 +137466,7 @@ MonoBehaviour:
   deadHydra: {fileID: 2039332867}
   damageSFX: {fileID: 1493750039}
   deathSFX: {fileID: 143141974}
+  shootSFX: {fileID: 695787826}
 --- !u!1001 &5144933122194357693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137886,6 +137890,7 @@ MonoBehaviour:
   deadHydra: {fileID: 1785682031}
   damageSFX: {fileID: 1493750039}
   deathSFX: {fileID: 143141974}
+  shootSFX: {fileID: 695787826}
 --- !u!114 &5450744435612518917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137902,7 +137907,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1347975174060829988}
   m_Bounds:
-    m_Center: {x: 0.237154, y: -1.03438, z: 0}
+    m_Center: {x: 0.237154, y: -1.0343647, z: 0}
     m_Extent: {x: 7.5236855, y: 12.622077, z: 0}
   m_UseBatching: 1
 --- !u!4 &5486739729770354169
@@ -138024,6 +138029,7 @@ MonoBehaviour:
   deadHydra: {fileID: 1295732060}
   damageSFX: {fileID: 1493750039}
   deathSFX: {fileID: 143141974}
+  shootSFX: {fileID: 695787826}
 --- !u!1 &5752528602937046909
 GameObject:
   m_ObjectHideFlags: 0

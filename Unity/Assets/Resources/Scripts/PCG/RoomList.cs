@@ -14,6 +14,7 @@ public class RoomList
     private static readonly object padlock = new object();
     private static RoomList instance;
     public GameObject BossRoom { get; }
+    public GameObject ArgusRoom { get; }
 
     private List<GameObject> allRooms;
 
@@ -97,6 +98,7 @@ public class RoomList
             Resources.Load(roomsDirectory + "Long/N-S/N-S Parallel Ice Strips") as GameObject
         };
         BossRoom =  Resources.Load(roomsDirectory + "BossPortal") as GameObject;
+        ArgusRoom = Resources.Load(roomsDirectory + "ArgusPortal") as GameObject;
     }
 
     public static RoomList Instance {

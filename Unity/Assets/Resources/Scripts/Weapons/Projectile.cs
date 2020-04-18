@@ -25,6 +25,13 @@ public class Projectile : MonoBehaviour
                     var hydraHealth = collision.gameObject.GetComponent<HydraBehavior>();
                     hydraHealth.SetHealth(damage);
                 }
+
+                else if(collision.gameObject.tag == "Head")
+                {
+                    var damage = System.Math.Abs(this.force / 30.0f);
+                    HeadBehavior head = collision.gameObject.GetComponent<HeadBehavior>();
+                    head.SetHealth(head.GetHealth() - damage);
+                }
                 else
                 {
                     Vector3 dir = this.transform.position - collision.gameObject.transform.position;

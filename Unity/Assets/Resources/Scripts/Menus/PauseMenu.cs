@@ -58,7 +58,7 @@ public class PauseMenu : MonoBehaviour
 
     }
 
-    public void HydraDefeated()
+    public void BossDefeated()
     {
         victoryUI.SetActive(true);
         Time.timeScale = 0f;

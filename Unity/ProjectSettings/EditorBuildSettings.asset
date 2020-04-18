@@ -27,6 +27,11 @@ EditorBuildSettings:
     path: Assets/Scenes/BetterBossFight.unity
     guid: d0a8a61b7adf4cf4cb0b683edbf3452e
   - enabled: 1
+<<<<<<< HEAD
+    path: Assets/Scenes/EyesOfArgus.unity
+    guid: 0d1d27f606e734445beb2cc511c3d7e5
+=======
     path: Assets/Scenes/SpikePrototypeScenes/TutorialScene.unity
     guid: a9df75e8e8f687f449294c21c060e16a
+>>>>>>> a79fa1cce6b0fa510bc7dc816d57b3c964dfeb7b
   m_configObjects: {}
