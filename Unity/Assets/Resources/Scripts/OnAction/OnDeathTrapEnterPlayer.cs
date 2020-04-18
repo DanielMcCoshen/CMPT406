@@ -55,6 +55,12 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
         respawnPosition = pos.position;
     }
 
+    public void MoveToRespawnPosition()
+    {
+        gameObject.transform.parent.gameObject.transform.position = respawnPosition;
+        rb.velocity = new Vector3(0, 0, 0);
+    }
+
     public IEnumerator iFrames()
     {
         yield return new WaitForSeconds(1.5f);
@@ -63,6 +69,7 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
 
     public override void OnDeathTrapTrigger(string trapType)
     {
+<<<<<<< HEAD
         //Eyes of Argus boss has two spawnpoints to alternate betweeen. Check if the room is eyes of argus
         if (SceneManager.GetActiveScene().name == "EyesOfArgus")
         {
@@ -90,9 +97,10 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
         }
 
         rb.velocity = new Vector3(0, 0, 0);
+=======
+        MoveToRespawnPosition();
+>>>>>>> a79fa1cce6b0fa510bc7dc816d57b3c964dfeb7b
         deathSFX.Play();
-        gameObject.transform.parent.gameObject.transform.position = respawnPosition;
-        rb.velocity = new Vector3(0,0,0);
         souls -= 1;
         Destroy(soulObjects[souls]);
         soulObjects.RemoveAt(souls);

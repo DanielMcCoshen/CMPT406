@@ -10,26 +10,26 @@ public class Player : MonoBehaviour
     public bool useController;
 
     [Header("Dodge Variables")]
-    private bool dodging;
+    protected bool dodging;
     [SerializeField]
     private float dodgeSpeedMultiplication = 3f;
     [SerializeField]
     private float dodgeLength = 0.3f;
     [SerializeField]
-    private Color dodgeColour = new Color(255,255,255);
+    protected Color dodgeColour = new Color(255,255,255);
 
     [Header("Sprite Variables")]
     [SerializeField]
-    private SpriteRenderer spriteRenderer = null;
-    private Color baseColour;
+    protected SpriteRenderer spriteRenderer = null;
+    protected Color baseColour;
 
     [Header("Object References")]
     public Rigidbody2D rb;
     public Camera mainCam;
 
-    Vector2 movementDirection;
-    Vector2 mousePos;
-    Vector2 controllerPos;
+    protected Vector2 movementDirection;
+    protected Vector2 mousePos;
+    protected Vector2 controllerPos;
     
 
     private void Start()
@@ -61,15 +61,6 @@ public class Player : MonoBehaviour
      */
     void GetInput()
     {
-        void GetDodgeInput()
-        {
-            if ((Input.GetButtonDown("Jump")) && movementDirection != Vector2.zero)
-            {
-                //Debug.Log("Dodge key pressed.");
-                dodging = true;
-                StartCoroutine(EndDash());
-            }
-        }
 
         void GetMovementInput()
         {
@@ -81,8 +72,6 @@ public class Player : MonoBehaviour
         {
             controllerPos = Vector2.right * Input.GetAxisRaw("RHorizontal") + Vector2.up * -Input.GetAxisRaw("RVertical");
         }
-
-        GetDodgeInput();
         GetMovementInput();
         GetControllerInput();
     }
@@ -90,7 +79,7 @@ public class Player : MonoBehaviour
     /**
      * Moves and rotates the player from user input.
      */
-    void DoMovement()
+    protected virtual void DoMovement()
     {
         void MoveCharacter()
         {

@@ -392,7 +392,7 @@ public class Shooting : MonoBehaviour
         }
     }
 
-    void UseItem()
+    public virtual void UseItem()
     {
         if(HasItemEquipped())
         {
@@ -408,7 +408,7 @@ public class Shooting : MonoBehaviour
         items.Remove(itemName);
     }
 
-    void Shoot()
+    public virtual void Shoot()
     {
         if (HasWeaponEquipped())
         {
