@@ -27,7 +27,7 @@ public class ArgusPortal : MonoBehaviour
             maincam.InArgusRoom = true;
             DontDestroyOnLoad(player);
             SceneManager.LoadScene("EyesOfArgus");
-            GameObject.Find("PlayerContainer").transform.position = new Vector2(18.0f, 0.0f);
+            GameObject.Find("PlayerContainer").transform.position = new Vector2(17.0f, 0.0f);
             GameObject.Find("PlayerContainer").GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
         }
     }

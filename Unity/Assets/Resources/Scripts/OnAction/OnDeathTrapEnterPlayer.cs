@@ -15,6 +15,13 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
     public AudioSource newSoulSFX;
     public AudioSource deathSFX;
 
+    //The two spawnpoints for the argus boss room
+    private GameObject spawn1;
+    private GameObject spawn2;
+
+    //Starting spawn
+    private int currentSpawn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +30,9 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
         {
             InstantiateNewSoul(x);
         }
+
+        //Set starting spawn
+        currentSpawn = 1;
     }
 
     // Update is called once per frame
@@ -57,11 +67,21 @@ public class OnDeathTrapEnterPlayer : OnDeathTrapEnter
         if (SceneManager.GetActiveScene().name == "EyesOfArgus")
         {
             //If it is, get the Respawn control in the room
-            ArgusRespawn argusRespawn = GameObject.Find("Respawn").GetComponent<ArgusRespawn>();
+            //ArgusRespawn argusRespawn = GameObject.Find("Respawn").GetComponent<ArgusRespawn>();
             //Switch the active respawn point
-            argusRespawn.SwitchSpawn();
+            //argusRespawn.SwitchSpawn();
             //Put the player at the new spawn point
-            gameObject.transform.parent.gameObject.transform.position = argusRespawn.GetSpawn().position;
+            //gameObject.transform.parent.gameObject.transform.position = argusRespawn.GetSpawn().position;
+            if(currentSpawn == 1)
+            {
+                currentSpawn = 2;
+                respawnPosition = GameObject.Find("Spawn").GetComponent<ArgusRespawn>().spawn2.transform.position;
+            }
+            else
+            {
+                currentSpawn = 1;
+                respawnPosition = GameObject.Find("Spawn").GetComponent<ArgusRespawn>().spawn1.transform.position;
+            }
         }
 
         else

@@ -37,6 +37,7 @@ public class HydraBehavior : MonoBehaviour
     [Header("Sounds")]
     public AudioSource damageSFX;
     public AudioSource deathSFX;
+    public AudioSource shootSFX;
     
 
     void Start()

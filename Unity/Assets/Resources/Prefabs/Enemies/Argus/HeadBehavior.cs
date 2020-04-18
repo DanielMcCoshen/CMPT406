@@ -28,6 +28,9 @@ public class HeadBehavior : MonoBehaviour
 
     private int shudderDirection = -1;
 
+    //SoundFX
+    public AudioSource damageSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -107,6 +110,7 @@ public class HeadBehavior : MonoBehaviour
             currentHealth = health;
             healthBar.SetSize(currentHealth / maxHealth);
         }
+        damageSFX.Play();
     }
 
     public void SetState(State newState)

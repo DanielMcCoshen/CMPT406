@@ -6,6 +6,9 @@ public class EyeBehavior : MonoBehaviour
 {
     public HeadBehavior head;
 
+    [Header("Sounds")]
+    public AudioSource shootSFX;
+
     //Projectile prefabs, aimpoint, and firepoint
     [SerializeField]
     private GameObject purpleProjectile, redProjectile, aimPoint, firePoint;
@@ -213,6 +216,8 @@ public class EyeBehavior : MonoBehaviour
             }
             //Create the projectile
             GameObject newProjectile = Instantiate(projectile, firePoint.transform.position, aimPoint.transform.rotation);
+            shootSFX.time = 0.5f;
+            shootSFX.Play();
             //Get the rigidbody for the new projectile
             Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
             //Add the appropriate force to that rigidbody

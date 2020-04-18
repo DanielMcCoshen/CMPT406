@@ -12,7 +12,7 @@ public class ExpandFireball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxSize = 3.0f;
+        maxSize = 2.0f;
         projectileTransform = gameObject.GetComponent<Transform>();
         projectile = gameObject.GetComponent<Projectile>();
     }
