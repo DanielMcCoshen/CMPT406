@@ -52,10 +52,16 @@ public class Weapon : MonoBehaviour
 
     void OnEnable()
     {
-        onCooldown = false;
         numberOfShotsFired = 0;
+        onCooldown = true;
+        StartCoroutine(NoShooting());
     }
 
+    public IEnumerator NoShooting()
+    {
+        yield return new WaitForSeconds(0.75f);
+        onCooldown = false;
+    }
     public IEnumerator WeaponCooldown()
     {
         if (numberOfShotsFired+1 >= firesBeforeCooldown)

@@ -8,6 +8,12 @@ public class SpreadWeapon : Weapon
     public int numberOfProjectiles;
     public float rotationRate;
 
+    void Start()
+    {
+        StartCoroutine(NoShooting());
+        onCooldown = true;
+    }
+
     public void FireInASpread()
     {
         for (int variance = -(numberOfProjectiles-1); variance < numberOfProjectiles; variance++)

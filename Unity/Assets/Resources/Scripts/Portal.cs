@@ -39,8 +39,6 @@ public class Portal : MonoBehaviour
             else if(teleportTo == "Argus")
             {
                 GameObject player = GameObject.FindWithTag("DontDestroy");
-                CameraController maincam = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
-                maincam.InArgusRoom = true;
                 DontDestroyOnLoad(player);
                 SceneManager.LoadScene("EyesOfArgus");
                 GameObject.Find("PlayerContainer").transform.position = new Vector2(17.0f, 0.0f);

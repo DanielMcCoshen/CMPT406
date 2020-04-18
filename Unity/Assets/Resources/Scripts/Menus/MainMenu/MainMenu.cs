@@ -20,6 +20,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(tutorialScene);
     }
 
+    public void ExitTheGame()
+    {
+        Application.Quit();
+    }
+
     public void StartMenuUpdate()
     {
         StartCoroutine(UpdateRosterLoop());
