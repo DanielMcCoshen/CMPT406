@@ -9,6 +9,7 @@ public class FloorGenerator : MonoBehaviour
 
     private FloorLayout layout;
 
+    public int level;
     public int minRooms;
     public int maxRooms;
     public int startRoomX;
@@ -70,6 +71,11 @@ public class FloorGenerator : MonoBehaviour
     public class ListWrapper
     {
         public List<Room> list;
+    }
+
+    public int GetCurrentLevel()
+    {
+        return level;
     }
 
     public bool ReadyForBossRoom()
