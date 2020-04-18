@@ -43,22 +43,11 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            if (InBossRoom)
-            {
                 //pos = new Vector3(bossRoomPos.x, bossRoomPos.y, transform.position.z);
                 pos = new Vector3(player.position.x, player.position.y, transform.position.z);
                 cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, bossFightCameraSize, bossFightZoomSpeed * Time.deltaTime);
                 //transform.position = Vector3.Lerp(transform.position, pos, bossFightZoomSpeed * Time.deltaTime);
                 transform.position = Vector3.SmoothDamp(transform.position, pos, ref velocity, smooth);
-            }
-            else if (InArgusRoom)
-            {
-                //pos = new Vector3(bossRoomPos.x, bossRoomPos.y, transform.position.z);
-                pos = new Vector3(player.position.x, player.position.y, transform.position.z);
-                cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, argusFightCameraSize, argusFightZoomSpeed * Time.deltaTime);
-                //transform.position = Vector3.Lerp(transform.position, pos, bossFightZoomSpeed * Time.deltaTime);
-                transform.position = Vector3.SmoothDamp(transform.position, pos, ref velocity, smooth);
-            }
             
         }
        

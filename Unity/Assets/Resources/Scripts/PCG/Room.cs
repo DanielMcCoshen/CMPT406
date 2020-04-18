@@ -152,11 +152,11 @@ public class Room : MonoBehaviour
                 votingCommenced = true;
                 if(floorGenerator.GetCurrentLevel() == 0)
                 {
-                    RoomLayout = RoomList.Instance.BossRoom;
+                    RoomLayout = RoomList.Instance.ArgusRoom;
                 }
                 else
                 {
-                    //RoomLayout = RoomList.Instance.BossRoom2;
+                    RoomLayout = RoomList.Instance.BossRoom;
                 }
                 
             }

@@ -33,10 +33,6 @@ public class RoomMap : MonoBehaviour
         if (instantStopWall != null) {
             instantStopWall.SetActive(false);
             instantStopWall.transform.localScale = new Vector3(1, 0.95f, 1);
-        } else {
-            if (!isTempOrGeneric) {
-                Debug.LogError(this.gameObject + ": Does not have an instant stop wall.");
-            }
         }
         
         foreach (GameObject enemy in enemies)
